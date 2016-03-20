@@ -1,0 +1,89 @@
+﻿using System;
+using System.Linq;
+
+namespace Useful.Extensions
+{
+    /// <summary>
+    /// Extensions for string object
+    /// </summary>
+    public static class StringExtensions
+    {
+        #region Has Value
+
+        /// <summary>
+        /// Find 
+        /// </summary>
+        /// <param name="src">The string to find a src in</param>
+        /// <param name="find">The string to find</param>
+        /// <param name="caseCompare">(optional)The type of compare to use the default is to ignore case</param>
+        /// <returns>A boolean denoting if the find src is in the string</returns>
+        public static bool HasValue(this string src, string find, StringComparison caseCompare = StringComparison.OrdinalIgnoreCase)
+        {
+            if (string.IsNullOrEmpty(src) || string.IsNullOrEmpty(find))
+            {
+                return false;
+            }
+            
+            var result = src.IndexOf(find, caseCompare) >= 0;
+            return result;
+        }
+
+        #endregion Has Value
+
+        #region Equals Ignore Case
+
+        /// <summary>
+        /// Wraps equals to remove the need to specify the case for ignoring case
+        /// </summary>
+        /// <param name="src">The string to perform equality on</param>
+        /// <param name="compare">The string to compare</param>
+        /// <returns>A boolean denoting the two strings are equal ignoring case</returns>
+        public static bool EqualsIgnoreCase(this string src, string compare)
+        {            
+            return src.Equals(compare, StringComparison.OrdinalIgnoreCase);
+        }
+
+        #endregion Equals Ignore Case
+
+        #region Substring
+
+        /// <summary>
+        /// SubstringOrEmpty allows substring to be used without throwing an exception if out of range
+        /// </summary>
+        /// <param name="src">The string to substring</param>
+        /// <param name="start">The substring start point</param>
+        /// <param name="length">(optional)The length to substring, the default is the remaining length from the start point</param>
+        /// <returns>The requested substring or an empty string if the out of range or empty</returns>
+        public static string SubstringOrEmpty(this string src, int start, int length = 0)
+        {
+            if (string.IsNullOrEmpty(src))
+            {
+                return string.Empty;
+            }
+
+            if (length.Equals(0))
+            {
+                length = src.Length;
+            }
+
+            // Get the requested substring
+            return new string(src.Skip(start).Take(length).ToArray());
+        }
+
+        #endregion Substring
+
+        #region Safe Trim
+
+        /// <summary>
+        /// Trim a string and return even if null or empty
+        /// </summary>
+        /// <param name="src">The string to perform a trim on</param>
+        /// <returns>The trimmed string or null or empty</returns>
+        public static string SafeTrim(this string src)
+        {
+            return string.IsNullOrEmpty(src) ? src : src.Trim();
+        }
+
+        #endregion Safe Trim
+    }
+}
