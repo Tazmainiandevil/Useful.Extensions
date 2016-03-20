@@ -1,6 +1,8 @@
 # Useful.Extensions
 A group of useful extensions
 
+<image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
+
 I found myself creating useful extensions over and over as I moved along my career path and decided that they actually needed a home to be reusable and grow. They are not trade secrets or proprietary code they are just little bits of code that are useful.
 
 __Character Extensions__
