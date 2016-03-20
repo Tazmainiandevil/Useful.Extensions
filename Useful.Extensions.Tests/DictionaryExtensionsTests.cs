@@ -7,13 +7,26 @@ namespace Useful.Extensions.Tests
     public class DictionaryExtensionsTests
     {
         [Fact]
-        public void test_value_or_default_returns_the_expected_result()
+        public void test_value_or_default_returns_the_expected_result_with_default_set()
         {
             // Arrange
             var values = new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } };
 
             // Act
             var result = values.ValueOrDefault("some text", 99);
+
+            // Assert            
+            result.Should().Be(1);
+        }
+
+        [Fact]
+        public void test_value_or_default_returns_the_expected_result()
+        {
+            // Arrange
+            var values = new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } };
+
+            // Act
+            var result = values.ValueOrDefault("some text");
 
             // Assert            
             result.Should().Be(1);
