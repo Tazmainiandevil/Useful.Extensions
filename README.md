@@ -50,7 +50,31 @@ returns ""
 "Hello World".SubstringOrEmpty(9, 10)
 ```
 returns "ld"
-     
+
+_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character to find ignoring case
+
+e.g.
+```C#
+"Hello World".SubstringAfterValue("Hello ")
+```
+returns "World"
+```C#
+"Hello World".SubstringAfterValue('W')
+```
+returns "orld"
+
+_SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring case
+
+e.g.
+```C#
+"Hello World".SubstringBeforeValue(" World")
+```
+returns "Hello"
+```C#
+"Hello World".SubstringBeforeValue('W')
+```
+returns "Hello "
+
 _SafeTrim_ - A safe version of trim that does not throw an exception if the string is null
 
 e.g. 
