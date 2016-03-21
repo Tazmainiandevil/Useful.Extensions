@@ -11,7 +11,7 @@ namespace Useful.Extensions
         #region Has Value
 
         /// <summary>
-        /// Find 
+        /// Find
         /// </summary>
         /// <param name="src">The string to find a src in</param>
         /// <param name="find">The string to find</param>
@@ -23,7 +23,7 @@ namespace Useful.Extensions
             {
                 return false;
             }
-            
+
             var result = src.IndexOf(find, caseCompare) >= 0;
             return result;
         }
@@ -39,7 +39,7 @@ namespace Useful.Extensions
         /// <param name="compare">The string to compare</param>
         /// <returns>A boolean denoting the two strings are equal ignoring case</returns>
         public static bool EqualsIgnoreCase(this string src, string compare)
-        {            
+        {
             return src.Equals(compare, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -68,6 +68,74 @@ namespace Useful.Extensions
 
             // Get the requested substring
             return new string(src.Skip(start).Take(length).ToArray());
+        }
+
+        /// <summary>
+        /// Return the substring after a given character
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The character to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringAfterValue(this string src, char find)
+        {
+            return src.SubstringAfterValue(find.ToString());
+        }
+
+        /// <summary>
+        /// Return the substring after a given character or string
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The string to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringAfterValue(this string src, string find)
+        {
+            if (string.IsNullOrEmpty(src))
+            {
+                return string.Empty;
+            }
+
+            var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+
+            if (index < 0)
+            {
+                return src;
+            }
+
+            return new string(src.Skip(index + (find ?? string.Empty).Length).Take(src.Length).ToArray());
+        }
+
+        /// <summary>
+        /// Return the substring before a given character
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The character to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringBeforeValue(this string src, char find)
+        {
+            return src.SubstringBeforeValue(find.ToString());
+        }
+
+        /// <summary>
+        /// Return the substring before a given character or string
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The string to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringBeforeValue(this string src, string find)
+        {
+            if (string.IsNullOrEmpty(src))
+            {
+                return string.Empty;
+            }
+
+            var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+
+            if (string.IsNullOrEmpty(find) || index < 0)
+            {
+                return src;
+            }
+
+            return new string(src.Take(index).ToArray());
         }
 
         #endregion Substring

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
-using FluentAssertions;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -51,7 +51,7 @@ namespace Useful.Extensions.Tests
             // Act
             var valid = testString.HasValue(comparisonString);
 
-            // Assert            
+            // Assert
             valid.Should().BeFalse();
         }
 
@@ -118,7 +118,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            // Assert            
+            // Assert
             value.EqualsIgnoreCase(compare).Should().BeTrue();
         }
 
@@ -147,7 +147,7 @@ namespace Useful.Extensions.Tests
             var value = "Test";
 
             // Act
-            // Assert            
+            // Assert
             value.SubstringOrEmpty(start, length).Should().Be(string.Empty);
         }
 
@@ -200,5 +200,125 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion Safe Trim
+
+        #region SubstringAfterValue
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_substring_after_value_with_null_or_empty_returns_empty_string(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SubstringAfterValue("something");
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
+
+        [Theory]
+        [InlineData("string", " value to find from")]
+        [InlineData("from", "")]
+        [InlineData("", "some string value to find from")]
+        [InlineData(null, "some string value to find from")]
+        [InlineData("another", "some string value to find from")]
+        [InlineData("m", "e string value to find from")]
+        [InlineData("s", "ome string value to find from")]
+        public void test_substring_after_value_with_string_find_returns_the_expected_string(string find, string expected)
+        {
+            // Arrange
+            var text = "some string value to find from";
+
+            // Act
+            var result = text.SubstringAfterValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData('v', "alue to find from you")]
+        [InlineData('V', "alue to find from you")]
+        [InlineData('z', "some string value to find from you")]
+        [InlineData('Z', "some string value to find from you")]
+        [InlineData('l', "ue to find from you")]
+        [InlineData('L', "ue to find from you")]
+        [InlineData('s', "ome string value to find from you")]
+        [InlineData('S', "ome string value to find from you")]
+        [InlineData('y', "ou")]
+        [InlineData('Y', "ou")]
+        public void test_substring_after_value_with_character_find_returns_the_expected_string(char find, string expected)
+        {
+            // Arrange
+            var text = "some string value to find from you";
+
+            // Act
+            var result = text.SubstringAfterValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        #endregion SubstringAfterValue
+
+        #region SubstringBeforeValue
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_substring_before_value_with_null_or_empty_returns_empty_string(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SubstringBeforeValue("something");
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
+
+        [Theory]
+        [InlineData("string", "some ")]
+        [InlineData("from", "some string value to find ")]
+        [InlineData("", "some string value to find from")]
+        [InlineData(null, "some string value to find from")]
+        [InlineData("another", "some string value to find from")]
+        [InlineData("m", "so")]
+        [InlineData("s", "")]
+        public void test_substring_before_value_with_string_find_returns_the_expected_string(string find, string expected)
+        {
+            // Arrange
+            var text = "some string value to find from";
+
+            // Act
+            var result = text.SubstringBeforeValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData('v', "some string ")]
+        [InlineData('V', "some string ")]
+        [InlineData('z', "some string value to find from you")]
+        [InlineData('Z', "some string value to find from you")]
+        [InlineData('l', "some string va")]
+        [InlineData('L', "some string va")]
+        [InlineData('s', "")]
+        [InlineData('S', "")]
+        [InlineData('y', "some string value to find from ")]
+        [InlineData('Y', "some string value to find from ")]
+        public void test_substring_before_value_with_character_find_returns_the_expected_string(char find, string expected)
+        {
+            // Arrange
+            var text = "some string value to find from you";
+
+            // Act
+            var result = text.SubstringBeforeValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        #endregion SubstringBeforeValue
     }
 }
