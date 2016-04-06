@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CharacterExtensions.cs" />
     <Compile Include="DictionaryExtensions.cs" />
+    <Compile Include="NullableExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
