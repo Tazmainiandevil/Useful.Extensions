@@ -3,7 +3,7 @@
     public static class NullableExtensions
     {
         /// <summary>
-        /// String version of a nullable value
+        /// String representation of a nullable value
         /// </summary>
         /// <param name="src">The nullable</param>
         /// <returns>A string representaion of the value or an empty string</returns>

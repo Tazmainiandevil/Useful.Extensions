@@ -7,3 +7,8 @@
 /Useful.Extensions.Tests/bin/Debug
 /Useful.Extensions.Tests/obj/Debug
 *.DotSettings
+/Useful.Extensions.net40/obj/Debug
+/Useful.Extensions.net45/obj/Debug
+/Useful.Extensions.net451/obj/Debug
+/Tests/Useful.Extensions.Tests/bin/Debug
+/Tests/Useful.Extensions.Tests/obj/Debug
