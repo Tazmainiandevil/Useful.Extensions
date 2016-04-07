@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA8CBFC3-2D03-433B-BD8A-C37642D18018}</ProjectGuid>
+    <ProjectGuid>{EBABC73C-04A1-4533-B699-CE94348BE7FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Useful.Extensions.Tests</RootNamespace>
-    <AssemblyName>Useful.Extensions.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Useful.Extensions.net45.Tests</RootNamespace>
+    <AssemblyName>Useful.Extensions.net45.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,33 +64,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterExtensionsTests.cs" />
-    <Compile Include="NullableExtensionsTests.cs" />
-    <Compile Include="ObjectExtensionsTests.cs" />
-    <Compile Include="DictionaryExtensionsTests.cs" />
-    <Compile Include="EnumerableExtensionsTests.cs" />
+    <Compile Include="..\Useful.Extensions.Tests\CharacterExtensionsTests.cs">
+      <Link>CharacterExtensionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\DictionaryExtensionsTests.cs">
+      <Link>DictionaryExtensionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\EnumerableExtensionsTests.cs">
+      <Link>EnumerableExtensionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\NullableExtensionsTests.cs">
+      <Link>NullableExtensionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\ObjectExtensionsTests.cs">
+      <Link>ObjectExtensionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\StringExtensionsTests.cs">
+      <Link>StringExtensionsTests.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Useful.Extensions\Useful.Extensions.csproj">
-      <Project>{3067bd97-2ba2-4862-8760-a79397071fce}</Project>
-      <Name>Useful.Extensions</Name>
+    <ProjectReference Include="..\..\Useful.Extensions.net45\Useful.Extensions.net45.csproj">
+      <Project>{ca5be34e-31ac-4704-8371-2b4eabd02811}</Project>
+      <Name>Useful.Extensions.net45</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
