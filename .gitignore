@@ -12,3 +12,7 @@
 /Useful.Extensions.net451/obj/Debug
 /Tests/Useful.Extensions.Tests/bin/Debug
 /Tests/Useful.Extensions.Tests/obj/Debug
+/Tests/Useful.Extensions.net45.Tests/bin/Debug
+/Tests/Useful.Extensions.net451.Tests/bin/Debug
+/Tests/Useful.Extensions.net45.Tests/obj/Debug
+/Tests/Useful.Extensions.net451.Tests/obj/Debug
