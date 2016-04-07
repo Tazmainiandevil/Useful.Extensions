@@ -13,7 +13,6 @@
   </metadata>
   <files>
     <file src="Useful.Extensions\bin\Release\Useful.Extensions.dll" target="lib\net452\Useful.Extensions.dll" />
-	<file src="Useful.Extensions.net40\bin\Release\Useful.Extensions.dll" target="lib\net40\Useful.Extensions.dll" />
 	<file src="Useful.Extensions.net45\bin\Release\Useful.Extensions.dll" target="lib\net45\Useful.Extensions.dll" />
 	<file src="Useful.Extensions.net451\bin\Release\Useful.Extensions.dll" target="lib\net451\Useful.Extensions.dll" />
   </files>
