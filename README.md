@@ -2,7 +2,7 @@
 A group of useful extensions in C# for .NET 4.5+
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
-[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)](https://www.nuget.org/packages/Useful.Extensions/)
+[![NuGet version](https://badge.fury.io/nu/Useful.Extensions.svg)](https://badge.fury.io/nu/Useful.Extensions)
 
 I found myself creating useful extensions over and over as I moved along my career path and decided that they actually needed a home to be reusable and grow. They are not trade secrets or proprietary code they are just little bits of code that are useful.
 
