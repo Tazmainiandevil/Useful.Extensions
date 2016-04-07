@@ -1,7 +1,8 @@
 # Useful.Extensions
-A group of useful extensions
+A group of useful extensions in C# for .NET 4.5+
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
+[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)](https://www.nuget.org/packages/Useful.Extensions/)
 
 I found myself creating useful extensions over and over as I moved along my career path and decided that they actually needed a home to be reusable and grow. They are not trade secrets or proprietary code they are just little bits of code that are useful.
 
@@ -147,3 +148,45 @@ var anon = new { Text = "Hello" };`
 ObjectExtensions.GetValueFromAnonymousType<string>(anon, "Text");
 ``` 
 returns "Hello"
+
+__Nullable Extensions__
+
+_ToStringOrEmpty_ - String representation of a nullable value or an empty string if the nullable has no value
+
+_IsEqual_ - Checks if the nullable value is equal another value
+
+e.g.
+```C#
+int? value = null;
+value.IsEqual(14);
+```
+returns false
+
+_IsNullOrDefault_ - Check if the value is null or the default value
+
+e.g.
+```C#
+int? value = 0;
+value.IsNullOrDefault();
+```
+returns true as the default for an int is 0
+
+```C#
+bool? value = true;
+value.IsNullOrDefault();
+```
+returns false
+
+_ValueOrDefault_ - Retreives the value of the nullable or the default of the type if there is not a value or specified default value
+
+e.g.
+```C#
+long? value = 123456;
+value.ValueOrDefault();
+```
+returns 123456
+```C#
+int? value = null;
+value.ValueOrDefault(-1);
+```
+returns -1 as that was the default specified
