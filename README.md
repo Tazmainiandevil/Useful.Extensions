@@ -84,6 +84,28 @@ e.g.
 ```
 returns null
 
+_Base64ToBitmap_ - A simple extension that takes a base64 bitmap string and converts it back to a Bitmap
+
+e.g.
+```C#
+// The full base64 string would be larger but for this example a small bit shown then ...
+"/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAIBAQIBAQIC...".Base64ToBitmap();
+```
+returns a bitmap object of the image
+
+_IsBase64_ - A check to see if a string has been base64 encoded
+e.g.
+```C#
+var value = Convert.ToBase64String(Encoding.UTF8.GetBytes("some value"), Base64FormattingOptions.None);
+value.IsBase64();
+```
+returns true
+
+or 
+```C#
+"some value".IsBase64();
+```
+returns false
 __Dictionary Extensions__
 
 _ValueOrDefault_ - Get the value from a dictionary or return the default for the value type (the default value can be specified if needed)
