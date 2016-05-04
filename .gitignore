@@ -16,3 +16,8 @@
 /Tests/Useful.Extensions.net451.Tests/bin/Debug
 /Tests/Useful.Extensions.net45.Tests/obj/Debug
 /Tests/Useful.Extensions.net451.Tests/obj/Debug
+*.suo
+*.user
+/Useful.Extensions/bin/Debug
+/Useful.Extensions.net45/bin/Debug
+/Useful.Extensions.net451/bin/Debug
