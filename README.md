@@ -160,9 +160,11 @@ returns a list with 0 and 1 in
 
 __Object Extensions__
 
-_Clone_ - An implentation of a deep clone
+_Clone_ - An implentation of a deep clone using serialization
 
-_GetValueFromAnonymousType_ - Not an extension but a helper to get values from `dynamic` objects
+The next set are helper functions rather than extensions
+
+_GetValueFromAnonymousType_ - Get values from `dynamic` objects by property name
 
 e.g. 
 ```C#
@@ -170,6 +172,22 @@ var anon = new { Text = "Hello" };`
 ObjectExtensions.GetValueFromAnonymousType<string>(anon, "Text");
 ``` 
 returns "Hello"
+
+_GetValueFromAnonymousTypeOrDefault_ - As with GetValueFromAnonymousType but returns a default value for the type if not found
+e.g. 
+```C#
+var anon = new { Text = "Hello" };`
+ObjectExtensions.GetValueFromAnonymousTypeOrDefault<string>(anon, "Value");
+``` 
+returns null
+
+_IsPropertyInAnonymousType_ - Checks to see if there is a property of a given name inside a `dynamic` object
+e.g. 
+```C#
+var anon = new { Text = "Hello" };`
+ObjectExtensions.IsPropertyInAnonymousType(anon, "Value");
+``` 
+returns false
 
 __Nullable Extensions__
 
