@@ -158,6 +158,29 @@ items.Page(0, 2);
 ```
 returns a list with 0 and 1 in
 
+_IsNullOrEmpty_ - Performs a check on a collection for null or empty
+
+e.g.
+
+```C#
+List<int> list = null;
+if(list.IsNullOrEmpty())
+{
+  // Perform logic here
+}
+```
+
+or 
+
+```C#
+var list = new List<string> { "somevalue" };
+if(!list.IsNullOrEmpty())
+{
+  // Perform logic here
+}
+```
+
+
 __Object Extensions__
 
 _Clone_ - An implentation of a deep clone using serialization
