@@ -95,7 +95,21 @@ namespace Useful.Extensions
             }
 
             return !src.Any();
-        }        
+        }
+
+        /// <summary>
+        /// Is Null or Empty for ICollection types
+        /// </summary>
+        /// <param name="src">The collection</param>
+        /// <returns>A boolean denoting if null or empty</returns>
+        public static bool IsNullOrEmpty<T>(this ICollection<T> src)
+        {
+            if (src == null)
+            {
+                return true;
+            }
+            return src.Count < 1;
+        }
 
         #endregion IsNullOrEmpty
     }

@@ -247,14 +247,14 @@ namespace Useful.Extensions.Tests
         {
             get
             {
-                yield return new object[] { new List<int>() };
+                yield return new object[] {Enumerable.Empty<int>()};
                 yield return new object[] { null };
             }
         }
 
         [Theory]
         [MemberData("IsNullOrEmptyTestData")]
-        public void ienumerable_is_null_or_empty_returns_true(List<int> list)
+        public void ienumerable_is_null_or_empty_returns_true(IEnumerable<int> list)
         {
             // Arrange
             // Act
@@ -266,7 +266,7 @@ namespace Useful.Extensions.Tests
         public void ienumerable_is_null_or_empty_with_entries_returns_false()
         {
             // Arrange
-            List<int> list = new List<int> { 1, 2, 3, 4 };
+            var list = new[] { 1, 2, 3, 4 };
 
             // Act
             // Assert
@@ -277,7 +277,50 @@ namespace Useful.Extensions.Tests
         public void ienumerable_is_null_or_empty_not_with_entries_returns_true()
         {
             // Arrange
-            List<int> list = new List<int> { 1, 2, 3, 4 };
+            var list = new [] { 1, 2, 3, 4 };
+
+            // Act
+            var result = !list.IsNullOrEmpty();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        public static IEnumerable<object[]> IsNullOrEmptyCollectionTestData
+        {
+            get
+            {
+                yield return new object[] { new List<int>() };
+                yield return new object[] { null };
+            }
+        }
+
+        [Theory]
+        [MemberData("IsNullOrEmptyCollectionTestData")]
+        public void collection_is_null_or_empty_returns_true(List<int> list)
+        {
+            // Arrange
+            // Act
+            // Assert
+            list.IsNullOrEmpty().Should().BeTrue();
+        }
+
+        [Fact]
+        public void collection_is_null_or_empty_with_entries_returns_false()
+        {
+            // Arrange
+            var list = new List<int> { 1, 2, 3, 4 };
+
+            // Act
+            // Assert
+            list.IsNullOrEmpty().Should().BeFalse();
+        }
+
+        [Fact]
+        public void collection_is_null_or_empty_not_with_entries_returns_true()
+        {
+            // Arrange
+            var list = new List<int> { 1, 2, 3, 4 };
 
             // Act
             var result = !list.IsNullOrEmpty();
