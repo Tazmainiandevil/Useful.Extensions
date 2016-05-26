@@ -1,7 +1,7 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -9,6 +9,7 @@ namespace Useful.Extensions.Tests
     public class EnumerableExtensionTests
     {
         #region Partition extension
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -16,8 +17,8 @@ namespace Useful.Extensions.Tests
         public void test_partition_returns_the_expected_item_count(int partitionSize)
         {
             // Arrange
-            var items = new List<int> {0, 1, 2, 3, 4, 5, 6};
-            var expectedCount = (int)Math.Ceiling((double)items.Count/partitionSize);
+            var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };
+            var expectedCount = (int)Math.Ceiling((double)items.Count / partitionSize);
 
             // Act
             var result = items.Partition(partitionSize).ToList();
@@ -30,9 +31,9 @@ namespace Useful.Extensions.Tests
         {
             get
             {
-                yield return new object[] { 1, new [] { new int[] { 0 }, new int[] { 1 }, new int[] { 2 }, new int[] { 3 } , new int[] { 4 }, new int[] { 5 }, new int[] { 6 } } };
-                yield return new object[] { 2, new [] { new int[] { 0, 1 }, new int[] { 2, 3 }, new int[] { 4, 5 }, new int[] { 6 } } };
-                yield return new object[] { 3, new [] { new int[] { 0, 1, 2 }, new int[] { 3, 4, 5 }, new int[] { 6, } } };                
+                yield return new object[] { 1, new[] { new int[] { 0 }, new int[] { 1 }, new int[] { 2 }, new int[] { 3 }, new int[] { 4 }, new int[] { 5 }, new int[] { 6 } } };
+                yield return new object[] { 2, new[] { new int[] { 0, 1 }, new int[] { 2, 3 }, new int[] { 4, 5 }, new int[] { 6 } } };
+                yield return new object[] { 3, new[] { new int[] { 0, 1, 2 }, new int[] { 3, 4, 5 }, new int[] { 6, } } };
             }
         }
 
@@ -57,7 +58,7 @@ namespace Useful.Extensions.Tests
             // Arrange
             const int partitionSize = 8;
             var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };
-            
+
             // Act
             var result = items.Partition(partitionSize).ToList();
 
@@ -92,9 +93,10 @@ namespace Useful.Extensions.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => items.Partition(invalidSize).ToList());
         }
 
-        #endregion Partition
+        #endregion Partition extension
 
         #region Partition Queryable extension
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -108,7 +110,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = items.AsQueryable().Partition(partitionSize).ToList();
 
-            // Assert            
+            // Assert
             result.Count().Should().Be(expectedCount);
         }
 
@@ -122,7 +124,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = items.AsQueryable().Partition(partitionSize).ToList();
 
-            // Assert            
+            // Assert
             result.First().Count().Should().Be(7);
         }
 
@@ -136,7 +138,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = items.AsQueryable().Partition(partitionSize).ToList();
 
-            // Assert            
+            // Assert
             result.Count().Should().Be(1);
         }
 
@@ -152,10 +154,11 @@ namespace Useful.Extensions.Tests
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => items.AsQueryable().Partition(invalidSize).ToList());
         }
-        #endregion
 
+        #endregion Partition Queryable extension
 
         #region Page extension
+
         public static IEnumerable<object[]> PageItemsTestData
         {
             get
@@ -164,7 +167,7 @@ namespace Useful.Extensions.Tests
                 yield return new object[] { new List<int> { 3, 4, 5, 6 }, 3, 5 };
             }
         }
-        
+
         [Theory]
         [MemberData("PageItemsTestData")]
         public void test_page_returns_the_expected_items(IEnumerable<int> expected, int start, int length)
@@ -174,7 +177,7 @@ namespace Useful.Extensions.Tests
 
             // Act
             var result = items.Page(start, length);
-            
+
             // Assert
             result.ShouldAllBeEquivalentTo(expected);
         }
@@ -205,7 +208,8 @@ namespace Useful.Extensions.Tests
             // Assert
             result.ShouldAllBeEquivalentTo(new int[] { });
         }
-        #endregion
+
+        #endregion Page extension
 
         #region Page Queryable extension
 
@@ -227,13 +231,61 @@ namespace Useful.Extensions.Tests
         [MemberData("PageEnumerableTestData")]
         public void test_queryable_page_with_invalid_parameters_returns_an_empty_set(int start, int length, IEnumerable<int> items)
         {
-            // Arrange            
+            // Arrange
             // Act
             var result = items.AsQueryable().Page(start, length);
 
             // Assert
             result.ShouldAllBeEquivalentTo(new int[] { });
         }
-        #endregion
+
+        #endregion Page Queryable extension
+
+        #region IsNullOrEmpty extension
+
+        public static IEnumerable<object[]> IsNullOrEmptyTestData
+        {
+            get
+            {
+                yield return new object[] { new List<int>() };
+                yield return new object[] { null };
+            }
+        }
+
+        [Theory]
+        [MemberData("IsNullOrEmptyTestData")]
+        public void ienumerable_is_null_or_empty_returns_true(List<int> list)
+        {
+            // Arrange
+            // Act
+            // Assert
+            list.IsNullOrEmpty().Should().BeTrue();
+        }
+
+        [Fact]
+        public void ienumerable_is_null_or_empty_with_entries_returns_false()
+        {
+            // Arrange
+            List<int> list = new List<int> { 1, 2, 3, 4 };
+
+            // Act
+            // Assert
+            list.IsNullOrEmpty().Should().BeFalse();
+        }
+
+        [Fact]
+        public void ienumerable_is_null_or_empty_not_with_entries_returns_true()
+        {
+            // Arrange
+            List<int> list = new List<int> { 1, 2, 3, 4 };
+
+            // Act
+            var result = !list.IsNullOrEmpty();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        #endregion IsNullOrEmpty extension
     }
 }

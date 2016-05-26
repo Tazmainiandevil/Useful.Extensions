@@ -79,5 +79,24 @@ namespace Useful.Extensions
         }
 
         #endregion Page extension
+
+        #region IsNullOrEmpty
+
+        /// <summary>
+        /// Is Null or Empty for IEnumerable types
+        /// </summary>
+        /// <param name="src">The collection</param>
+        /// <returns>A boolean denoting if null or empty</returns>
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> src)
+        {
+            if (src == null)
+            {
+                return true;
+            }
+
+            return !src.Any();
+        }        
+
+        #endregion IsNullOrEmpty
     }
 }
