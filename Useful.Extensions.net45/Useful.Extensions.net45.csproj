@@ -59,6 +59,9 @@
     <Compile Include="..\Useful.Extensions\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Useful.Extensions\SystemTime.cs">
+      <Link>SystemTime.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

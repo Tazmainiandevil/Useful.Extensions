@@ -106,6 +106,7 @@ or
 "some value".IsBase64();
 ```
 returns false
+
 __Dictionary Extensions__
 
 _ValueOrDefault_ - Get the value from a dictionary or return the default for the value type (the default value can be specified if needed)
@@ -253,3 +254,22 @@ int? value = null;
 value.ValueOrDefault(-1);
 ```
 returns -1 as that was the default specified
+
+__System Time__
+
+Allow date/time now entries to be testable. This was inspired by Oren Eini https://ayende.com/blog/3408/dealing-with-time-in-tests.
+
+e.g.
+```C#
+var now = SystemTime.Now();
+
+var utc = SystemTime.UtcNow();
+```
+
+To setup a time in the unit tests so that when System.Now() or System.UtcNow() is called it will be a specified date/time
+```C#
+SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
+
+SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);;
+```
+

@@ -83,6 +83,9 @@
     <Compile Include="..\Useful.Extensions.Tests\StringExtensionsTests.cs">
       <Link>StringExtensionsTests.cs</Link>
     </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\SystemTimeTests.cs">
+      <Link>SystemTimeTests.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
