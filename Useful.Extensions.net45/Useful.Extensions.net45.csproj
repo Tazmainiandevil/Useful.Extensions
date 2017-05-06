@@ -50,6 +50,9 @@
     <Compile Include="..\Useful.Extensions\EnumerableExtensions.cs">
       <Link>EnumerableExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Useful.Extensions\ListExtenstions.cs">
+      <Link>ListExtenstions.cs</Link>
+    </Compile>
     <Compile Include="..\Useful.Extensions\NullableExtensions.cs">
       <Link>NullableExtensions.cs</Link>
     </Compile>

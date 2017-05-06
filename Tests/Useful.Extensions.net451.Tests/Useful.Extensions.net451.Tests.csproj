@@ -74,6 +74,9 @@
     <Compile Include="..\Useful.Extensions.Tests\EnumerableExtensionsTests.cs">
       <Link>EnumerableExtensionsTests.cs</Link>
     </Compile>
+    <Compile Include="..\Useful.Extensions.Tests\ListExtensionsTests.cs">
+      <Link>ListExtensionsTests.cs</Link>
+    </Compile>
     <Compile Include="..\Useful.Extensions.Tests\NullableExtensionsTests.cs">
       <Link>NullableExtensionsTests.cs</Link>
     </Compile>
