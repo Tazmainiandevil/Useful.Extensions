@@ -1,6 +1,9 @@
-﻿using System;
+﻿#if !NETCOREAPP1_1
+using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace Useful.Extensions
 {
@@ -28,11 +31,11 @@ namespace Useful.Extensions
             }
 
             var type = src.GetType();
-            var objectProperty = type.GetProperty(property);
+            var objectProperty = type.GetTypeInfo().GetProperty(property);
 
             if (objectProperty == null)
             {
-               throw new ArgumentException("Property not found in anonymous object");
+                throw new ArgumentException("Property not found in anonymous object");
             }
             return (T)objectProperty.GetValue(src, null);
         }
@@ -52,7 +55,7 @@ namespace Useful.Extensions
             catch (ArgumentException)
             {
                 return default(T);
-            }          
+            }
         }
 
         /// <summary>
@@ -109,3 +112,4 @@ namespace Useful.Extensions
         }
     }
 }
+#endif

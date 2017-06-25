@@ -21,7 +21,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Theory]
-        [MemberData("CharacterInputTestData")]
+        [MemberData(nameof(CharacterInputTestData))]
         public void test_two_characters_are_equal_to_each_other_ignoring_case(char value, char compare)
         {
             // Arrange

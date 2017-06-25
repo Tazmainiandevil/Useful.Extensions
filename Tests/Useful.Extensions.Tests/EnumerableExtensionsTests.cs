@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -24,26 +24,25 @@ namespace Useful.Extensions.Tests
             var result = items.Partition(partitionSize).ToList();
 
             // Assert
-            result.Count().Should().Be(expectedCount);
+            result.Count.Should().Be(expectedCount);
         }
 
         public static IEnumerable<object[]> PartitionItemsTestData
         {
             get
             {
-                yield return new object[] { 1, new[] { new int[] { 0 }, new int[] { 1 }, new int[] { 2 }, new int[] { 3 }, new int[] { 4 }, new int[] { 5 }, new int[] { 6 } } };
-                yield return new object[] { 2, new[] { new int[] { 0, 1 }, new int[] { 2, 3 }, new int[] { 4, 5 }, new int[] { 6 } } };
-                yield return new object[] { 3, new[] { new int[] { 0, 1, 2 }, new int[] { 3, 4, 5 }, new int[] { 6, } } };
+                yield return new object[] { 1, new[] { new[] { 0 }, new[] { 1 }, new[] { 2 }, new[] { 3 }, new[] { 4 }, new[] { 5 }, new[] { 6 } } };
+                yield return new object[] { 2, new[] { new[] { 0, 1 }, new[] { 2, 3 }, new[] { 4, 5 }, new[] { 6 } } };
+                yield return new object[] { 3, new[] { new[] { 0, 1, 2 }, new[] { 3, 4, 5 }, new[] { 6 } } };
             }
         }
 
         [Theory]
-        [MemberData("PartitionItemsTestData")]
+        [MemberData(nameof(PartitionItemsTestData))]
         public void test_partition_returns_the_expected_items(int partitionSize, IEnumerable<int[]> expectedItems)
         {
             // Arrange
-            var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };
-            var expectedCount = (int)Math.Ceiling((double)items.Count / partitionSize);
+            var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };            
 
             // Act
             var result = items.Partition(partitionSize).ToList();
@@ -169,7 +168,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Theory]
-        [MemberData("PageItemsTestData")]
+        [MemberData(nameof(PageItemsTestData))]
         public void test_page_returns_the_expected_items(IEnumerable<int> expected, int start, int length)
         {
             // Arrange
@@ -190,15 +189,15 @@ namespace Useful.Extensions.Tests
                 yield return new object[] { 0, -1, new List<int> { 0, 1, 2, 3, 4, 5, 6 } };
                 yield return new object[] { -1, 0, new List<int> { 0, 1, 2, 3, 4, 5, 6 } };
                 yield return new object[] { -1, -1, new List<int> { 0, 1, 2, 3, 4, 5, 6 } };
-                yield return new object[] { 0, 0, new int[] { 0, 1, 2, 3, 4, 5, 6 } };
-                yield return new object[] { 0, -1, new int[] { 0, 1, 2, 3, 4, 5, 6 } };
-                yield return new object[] { -1, 0, new int[] { 0, 1, 2, 3, 4, 5, 6 } };
-                yield return new object[] { -1, -1, new int[] { 0, 1, 2, 3, 4, 5, 6 } };
+                yield return new object[] { 0, 0, new[] { 0, 1, 2, 3, 4, 5, 6 } };
+                yield return new object[] { 0, -1, new[] { 0, 1, 2, 3, 4, 5, 6 } };
+                yield return new object[] { -1, 0, new[] { 0, 1, 2, 3, 4, 5, 6 } };
+                yield return new object[] { -1, -1, new[] { 0, 1, 2, 3, 4, 5, 6 } };
             }
         }
 
         [Theory]
-        [MemberData("PageEnumerableTestData")]
+        [MemberData(nameof(PageEnumerableTestData))]
         public void test_page_with_invalid_parameters_returns_an_empty_set(int start, int length, IEnumerable<int> items)
         {
             // Arrange
@@ -214,7 +213,7 @@ namespace Useful.Extensions.Tests
         #region Page Queryable extension
 
         [Theory]
-        [MemberData("PageItemsTestData")]
+        [MemberData(nameof(PageItemsTestData))]
         public void test_queryable_page_returns_expected_items(IEnumerable<int> expected, int start, int length)
         {
             // Arrange
@@ -228,7 +227,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Theory]
-        [MemberData("PageEnumerableTestData")]
+        [MemberData(nameof(PageEnumerableTestData))]
         public void test_queryable_page_with_invalid_parameters_returns_an_empty_set(int start, int length, IEnumerable<int> items)
         {
             // Arrange
@@ -253,7 +252,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Theory]
-        [MemberData("IsNullOrEmptyTestData")]
+        [MemberData(nameof(IsNullOrEmptyTestData))]
         public void ienumerable_is_null_or_empty_returns_true(IEnumerable<int> list)
         {
             // Arrange
@@ -296,7 +295,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Theory]
-        [MemberData("IsNullOrEmptyCollectionTestData")]
+        [MemberData(nameof(IsNullOrEmptyCollectionTestData))]
         public void collection_is_null_or_empty_returns_true(List<int> list)
         {
             // Arrange
