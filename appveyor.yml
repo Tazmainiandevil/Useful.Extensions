@@ -18,4 +18,5 @@ build:
  verbosity: minimal
 
 test_script:
+  - cd tests\Useful.Extensions.Tests
   - dotnet xunit
