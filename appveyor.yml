@@ -2,13 +2,13 @@ version: 1.0.{build}
 os: Visual Studio 2017
 configuration: Release
 
-# enable AssemblyInfo.cs patching with build version number 
-assembly_info: 
- patch: true 
- file: AssemblyInfo.* 
- assembly_version: "{version}" 
- assembly_file_version: "{version}" 
- assembly_informational_version: "{version}" 
+# enable project file patching with build version number 
+dotnet_csproj:
+  patch: true
+  assembly_version: '{version}'
+  file_version: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
 
 # restore NuGet packages before running MSBuild
 before_build:

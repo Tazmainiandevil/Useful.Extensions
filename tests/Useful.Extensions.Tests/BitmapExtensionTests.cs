@@ -1,4 +1,4 @@
-﻿#if !NETCOREAPP1_1
+﻿#if NET452 || NET46
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Useful.Extensions.Tests
 {
     public class BitmapExtensionTests
     {
-        #region base64 to bitmap
+#region base64 to bitmap
 
         public static IEnumerable<object[]> InvalidBase64TestData
         {
@@ -57,7 +57,7 @@ namespace Useful.Extensions.Tests
             Assert.Throws<ArgumentException>(() => value.Base64ToBitmap());
         }
 
-        #endregion base64 to bitmap
+#endregion base64 to bitmap
     }
 }
 #endif

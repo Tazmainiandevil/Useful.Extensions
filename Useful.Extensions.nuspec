@@ -12,9 +12,8 @@
     <tags>tazmainiandevil useful.extensions useful extensions</tags>
   </metadata>
   <files>
-    <file src="Useful.Extensions\bin\Release\netcoreapp1.1\Useful.Extensions.dll" target="lib\netcoreapp.1.1\Useful.Extensions.dll" />
-    <file src="Useful.Extensions\bin\Release\net45\Useful.Extensions.dll" target="lib\net45\Useful.Extensions.dll" />
-    <file src="Useful.Extensions\bin\Release\net451\Useful.Extensions.dll" target="lib\net451\Useful.Extensions.dll" />
+    <file src="Useful.Extensions\bin\Release\netcoreapp1.1\Useful.Extensions.dll" target="lib\netcoreapp1.1\Useful.Extensions.dll" />
+    <file src="Useful.Extensions\bin\Release\netcoreapp2.0\Useful.Extensions.dll" target="lib\netcoreapp2.0\Useful.Extensions.dll" />
     <file src="Useful.Extensions\bin\Release\net452\Useful.Extensions.dll" target="lib\net452\Useful.Extensions.dll" />
     <file src="Useful.Extensions\bin\Release\net46\Useful.Extensions.dll" target="lib\net46\Useful.Extensions.dll" />
   </files>

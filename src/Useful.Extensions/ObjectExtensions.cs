@@ -1,9 +1,9 @@
-﻿#if !NETCOREAPP1_1
-using System;
-using System.IO;
+﻿using System;
 using System.Reflection;
+#if NET452 || NET46
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
+#endif
 
 namespace Useful.Extensions
 {
@@ -81,6 +81,7 @@ namespace Useful.Extensions
             return true;
         }
 
+#if NET452 || NET46
         /// <summary>
         /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
         /// Binary Serialization is used to perform the copy.
@@ -110,6 +111,6 @@ namespace Useful.Extensions
                 return (T)formatter.Deserialize(stream);
             }
         }
+#endif
     }
 }
-#endif
