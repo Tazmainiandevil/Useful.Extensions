@@ -1,14 +1,25 @@
-version: 1.0.{build}
+version: 2.0.{build}
 os: Visual Studio 2017
 configuration: Release
 
-# restore NuGet packages before running MSBuild
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+
+# restore NuGet packages before running
 before_build:
-  - nuget restore
-  
+  # Display .NET Core version
+  - cmd: dotnet --version
+  # Display minimal restore text
+  - cmd: dotnet restore --verbosity m
+
 build:
  verbosity: minimal
 
-test_script:
+test_script:  
   - cd tests\Useful.Extensions.Tests
   - dotnet xunit

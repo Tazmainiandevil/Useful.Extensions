@@ -48,7 +48,7 @@ namespace Useful.Extensions.Tests
             var result = items.Partition(partitionSize).ToList();
 
             // Assert
-            result.ShouldBeEquivalentTo(expectedItems);
+            result.Should().BeEquivalentTo(expectedItems);
         }
 
         [Fact]
@@ -178,7 +178,7 @@ namespace Useful.Extensions.Tests
             var result = items.Page(start, length);
 
             // Assert
-            result.ShouldAllBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         public static IEnumerable<object[]> PageEnumerableTestData
@@ -205,7 +205,7 @@ namespace Useful.Extensions.Tests
             var result = items.Page(start, length);
 
             // Assert
-            result.ShouldAllBeEquivalentTo(new int[] { });
+            result.Should().BeEquivalentTo(new int[] { });
         }
 
         #endregion Page extension
@@ -223,7 +223,7 @@ namespace Useful.Extensions.Tests
             var result = items.AsQueryable().Page(start, length);
 
             // Assert
-            result.ShouldAllBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [Theory]
@@ -235,7 +235,7 @@ namespace Useful.Extensions.Tests
             var result = items.AsQueryable().Page(start, length);
 
             // Assert
-            result.ShouldAllBeEquivalentTo(new int[] { });
+            result.Should().BeEquivalentTo(new int[] { });
         }
 
         #endregion Page Queryable extension

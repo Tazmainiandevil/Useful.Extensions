@@ -46,7 +46,7 @@ namespace Useful.Extensions
 
             for (var skipCount = 0; skipCount < src.Count(); skipCount += partitionSize)
             {
-                yield return src.Skip(skipCount).Take(partitionSize);
+                yield return src.Skip(skipCount).Take(partitionSize) as IQueryable<T>;
             }
         }
 
@@ -74,8 +74,8 @@ namespace Useful.Extensions
         /// <param name="length">The number of items to return</param>
         /// <returns>The subset of the collection</returns>
         public static IQueryable<T> Page<T>(this IQueryable<T> src, int start, int length)
-        {
-            return src.Skip(start).Take(length);
+        {            
+            return src.Skip(start).Take(length) as IQueryable<T>;
         }
 
         #endregion Page extension

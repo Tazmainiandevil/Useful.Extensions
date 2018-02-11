@@ -1,13 +1,15 @@
-﻿using System;
-using System.Dynamic;
+﻿#if NET452 || NET46
+
 using FluentAssertions;
+using System;
+using System.Dynamic;
 using Xunit;
 
 namespace Useful.Extensions.Tests
 {
     public class ObjectExtensionsTests
     {
-#region Get Value From Anon Tests
+        #region Get Value From Anon Tests
 
         [Fact]
         public void test_get_value_from_anonymous_type_with_null_object_throws_exception()
@@ -30,7 +32,7 @@ namespace Useful.Extensions.Tests
             var anonObject = new { Name = "Bob" };
 
             // Act
-            // Assert            
+            // Assert
             Assert.Throws<ArgumentNullException>(() => ObjectExtensions.GetValueFromAnonymousType<string>(anonObject, property));
         }
 
@@ -43,7 +45,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = ObjectExtensions.GetValueFromAnonymousType<string>(anonObject, "Name");
 
-            // Assert            
+            // Assert
             result.Should().Be("Bob");
         }
 
@@ -60,18 +62,16 @@ namespace Useful.Extensions.Tests
             result.Should().Be(3);
         }
 
-
         [Fact]
         public void test_get_value_from_anonymous_type_when_the_property_does_not_exist_throws_an_exception()
         {
             // Arrange
             var anonObject = new { Number = 3 };
 
-            // Act                        
+            // Act
             // Assert
             Assert.Throws<ArgumentException>(() => ObjectExtensions.GetValueFromAnonymousType<int>(anonObject, "Something"));
         }
-
 
         [Fact]
         public void test_get_value_from_anonymous_type_when_the_property_exists_but_the_type_is_different_throws_an_exception()
@@ -79,7 +79,7 @@ namespace Useful.Extensions.Tests
             // Arrange
             var anonObject = new { Number = 3 };
 
-            // Act                        
+            // Act
             // Assert
             Assert.Throws<InvalidCastException>(() => ObjectExtensions.GetValueFromAnonymousType<string>(anonObject, "Number"));
         }
@@ -90,7 +90,7 @@ namespace Useful.Extensions.Tests
         [InlineData(typeof(double))]
         [InlineData(typeof(long))]
         [InlineData(typeof(DateTime))]
-        public void test_get_value_from_anonymous_type_or_default_when_the_property_does_not_exist_returns_the_default<T>(T thetype)
+        public void Test_get_value_from_anonymous_type_or_default_when_the_property_does_not_exist_returns_the_default<T>(T theType)
         {
             // Arrange
             var anonObject = new { Number = 3 };
@@ -108,11 +108,10 @@ namespace Useful.Extensions.Tests
             // Arrange
             var anonObject = new { Number = 3 };
 
-            // Act            
+            // Act
             // Assert
             Assert.Throws<InvalidCastException>(() => ObjectExtensions.GetValueFromAnonymousTypeOrDefault<string>(anonObject, "Number"));
         }
-
 
         [Theory]
         [InlineData("")]
@@ -126,13 +125,13 @@ namespace Useful.Extensions.Tests
             // Act
             var result = ObjectExtensions.GetValueFromAnonymousTypeOrDefault<int>(anonObject, property);
 
-            // Assert            
+            // Assert
             result.Should().Be(default(int));
         }
 
-#endregion Get Value From Anon Tests
+        #endregion Get Value From Anon Tests
 
-#region Is Property In Anonymous Type
+        #region Is Property In Anonymous Type
 
         [Fact]
         public void test_is_property_in_anonymous_type_with_null_object_returns_false()
@@ -188,11 +187,11 @@ namespace Useful.Extensions.Tests
             // Assert
             result.Should().BeTrue();
         }
-        #endregion
+
+        #endregion Is Property In Anonymous Type
 
         #region Object Clone Tests
 
-#if NET452 || NET46
 
         [Serializable]
         private class Details
@@ -226,8 +225,8 @@ namespace Useful.Extensions.Tests
             // Act
             var result = ((Details)null).Clone();
 
-            // Assert            
-            result.ShouldBeEquivalentTo(default(Details));
+            // Assert
+            result.Should().BeEquivalentTo(default(Details));
         }
 
         [Fact]
@@ -240,9 +239,8 @@ namespace Useful.Extensions.Tests
             var result = details.Clone();
 
             // Assert
-            result.ShouldBeEquivalentTo(details);
+            result.Should().BeEquivalentTo(details);
         }
-
 
         [Fact]
         public void test_object_clone_does_not_return_the_same_reference_object()
@@ -256,7 +254,8 @@ namespace Useful.Extensions.Tests
             // Assert
             result.Should().NotBeSameAs(details);
         }
-#endif
-        #endregion Object Clone Tests
+
+       #endregion Object Clone Tests
     }
 }
+#endif

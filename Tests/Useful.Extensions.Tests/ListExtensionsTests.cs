@@ -17,7 +17,7 @@ namespace Useful.Extensions.Tests
             Action act = () => ((List<string>)null).AddMany();
 
             // Assert
-            act.ShouldThrow<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
+            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace Useful.Extensions.Tests
             items.AddMany("Bye");
 
             // Assert
-            items.ShouldAllBeEquivalentTo(expected);
+            items.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Useful.Extensions.Tests
             items.AddMany("Bye", "Later");
 
             // Assert
-            items.ShouldAllBeEquivalentTo(expected);
+            items.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace Useful.Extensions.Tests
             items.AddMany(additionalItems.ToArray());
 
             // Assert
-            items.ShouldAllBeEquivalentTo(expected);
+            items.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Useful.Extensions.Tests
             items.AddMany(new Item { Text = "Second Item", Number = 2 }, new Item { Text = "Third Item", Number = 3 });
 
             // Assert
-            items.ShouldAllBeEquivalentTo(expected);
+            items.Should().BeEquivalentTo(expected);
         }
 
         #endregion Add Many
@@ -111,7 +111,7 @@ namespace Useful.Extensions.Tests
             Action act = () => ((List<string>)null).Combine();
 
             // Assert
-            act.ShouldThrow<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
+            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace Useful.Extensions.Tests
             items.Combine(additionalItems, moreItems);
 
             // Assert
-            items.ShouldAllBeEquivalentTo(expected);
+            items.Should().BeEquivalentTo(expected);
         }
 
         #endregion Combine

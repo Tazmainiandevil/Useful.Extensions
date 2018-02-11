@@ -347,7 +347,7 @@ namespace Useful.Extensions.Tests
             result.Should().BeFalse();
         }
 
-#if !NETCOREAPP1_1
+#if !NETSTANDARD1_3
         public static IEnumerable<object[]> ValidBase64TestData
         {
             get
