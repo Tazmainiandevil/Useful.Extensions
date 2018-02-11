@@ -10,9 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <tags>tazmainiandevil useful.extensions useful extensions</tags>
+    <releaseNotes>$releaseNotes$</releaseNotes>>
   </metadata>
   <files>
-    <file src="Useful.Extensions\bin\Release\netcoreapp1.1\Useful.Extensions.dll" target="lib\netcoreapp1.1\Useful.Extensions.dll" />
     <file src="Useful.Extensions\bin\Release\netcoreapp2.0\Useful.Extensions.dll" target="lib\netcoreapp2.0\Useful.Extensions.dll" />
     <file src="Useful.Extensions\bin\Release\net452\Useful.Extensions.dll" target="lib\net452\Useful.Extensions.dll" />
     <file src="Useful.Extensions\bin\Release\net46\Useful.Extensions.dll" target="lib\net46\Useful.Extensions.dll" />
