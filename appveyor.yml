@@ -22,4 +22,4 @@ build:
 
 test_script:  
   - cd tests\Useful.Extensions.Tests
-  - dotnet xunit
+  - dotnet xunit -fxversion 2.0.5
