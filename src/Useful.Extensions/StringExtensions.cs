@@ -9,7 +9,7 @@ namespace Useful.Extensions
     /// </summary>
     public static class StringExtensions
     {
-        #region Has Value
+        #region ContainsValue
 
         /// <summary>
         /// Find
@@ -18,7 +18,7 @@ namespace Useful.Extensions
         /// <param name="find">The string to find</param>
         /// <param name="caseCompare">(optional)The type of compare to use the default is to ignore case</param>
         /// <returns>A boolean denoting if the find src is in the string</returns>
-        public static bool HasValue(this string src, string find, StringComparison caseCompare = StringComparison.OrdinalIgnoreCase)
+        public static bool ContainsValue(this string src, string find, StringComparison caseCompare = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrEmpty(src) || string.IsNullOrEmpty(find))
             {
@@ -29,7 +29,7 @@ namespace Useful.Extensions
             return result;
         }
 
-        #endregion Has Value
+        #endregion ContainsValue
 
         #region Equals Ignore Case
 

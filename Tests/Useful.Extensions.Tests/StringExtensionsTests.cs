@@ -21,7 +21,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.HasValue(comparisonString);
+            var valid = StringExtensions.ContainsValue(testString, comparisonString);
 
             // Assert
             valid.Should().BeTrue();
@@ -36,7 +36,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.HasValue(comparisonString, StringComparison.Ordinal);
+            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
 
             // Assert
             valid.Should().BeTrue();
@@ -50,7 +50,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.HasValue(comparisonString);
+            var valid = StringExtensions.ContainsValue(testString, comparisonString);
 
             // Assert
             valid.Should().BeFalse();
@@ -64,7 +64,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.HasValue(comparisonString, StringComparison.Ordinal);
+            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
 
             // Assert
             valid.Should().BeFalse();
@@ -77,7 +77,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = sometext.HasValue("sometext");
+            var valid = StringExtensions.ContainsValue(sometext, "sometext");
 
             // Assert
             valid.Should().BeFalse();
@@ -92,7 +92,7 @@ namespace Useful.Extensions.Tests
             var sometext = "sometext";
 
             // Act
-            var valid = sometext.HasValue(findtext);
+            var valid = StringExtensions.ContainsValue(sometext, findtext);
 
             // Assert
             valid.Should().BeFalse();
