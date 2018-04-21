@@ -113,19 +113,48 @@ namespace Useful.Extensions
         /// <returns>The substring value</returns>
         public static string SubstringAfterValue(this string src, string find)
         {
-            if (string.IsNullOrEmpty(src))
+            if (string.IsNullOrWhiteSpace(src))
             {
                 return string.Empty;
             }
 
             var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
-            if (index < 0)
+            return index < 0 ? src : new string(src.Skip(index + (find ?? string.Empty).Length).Take(src.Length).ToArray());
+        }
+
+        /// <summary>
+        /// Return the substring after the last occurance of a given character
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The string to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringAfterLastValue(this string src, char find)
+        {
+            return src.SubstringAfterLastValue(find.ToString());
+        }
+
+        /// <summary>
+        /// Return the substring after the last occurrence of a given character or string
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The string to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringAfterLastValue(this string src, string find)
+        {
+            if (string.IsNullOrWhiteSpace(src))
+            {
+                return string.Empty;
+            }
+
+            if (string.IsNullOrEmpty(find))
             {
                 return src;
             }
 
-            return new string(src.Skip(index + (find ?? string.Empty).Length).Take(src.Length).ToArray());
+            var index = src.LastIndexOf(find, StringComparison.OrdinalIgnoreCase);
+
+            return index < 0 ? src : new string(src.Skip(index + find.Length).Take(src.Length).ToArray());
         }
 
         /// <summary>
@@ -153,6 +182,40 @@ namespace Useful.Extensions
             }
 
             var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+
+            if (string.IsNullOrEmpty(find) || index < 0)
+            {
+                return src;
+            }
+
+            return new string(src.Take(index).ToArray());
+        }
+
+        /// <summary>
+        /// Return the substring before the last occurrence of a given character
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The character to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringBeforeLastValue(this string src, char find)
+        {
+            return src.SubstringBeforeLastValue(find.ToString());
+        }
+
+        /// <summary>
+        /// Return the substring before the last occurrence of a given character or string
+        /// </summary>
+        /// <param name="src">The string containing the content</param>
+        /// <param name="find">The string to find</param>
+        /// <returns>The substring value</returns>
+        public static string SubstringBeforeLastValue(this string src, string find)
+        {
+            if (string.IsNullOrEmpty(src))
+            {
+                return string.Empty;
+            }
+
+            var index = src.LastIndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
             if (string.IsNullOrEmpty(find) || index < 0)
             {

@@ -384,7 +384,81 @@ namespace Useful.Extensions.Tests
             result.Should().Be(expected);
         }
 
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_substring_after_value_when_character_to_find_with_null_or_empty_value_then_returns_an_empty_string(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SubstringAfterValue('@');
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
+
         #endregion SubstringAfterValue
+
+        #region SubstringAfterLastValue
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_substring_after_last_value_with_null_or_empty_returns_empty_string(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SubstringAfterLastValue("something");
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
+
+        [Theory]
+        [InlineData("an", " email someone@here.com")]
+        [InlineData("com", "")]
+        [InlineData("", "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData(null, "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData("another", "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData("r", "e.com")]
+        [InlineData("s", "omeone@here.com")]
+        [InlineData("@", "here.com")]
+        public void test_substring_after_last_value_with_string_find_returns_the_expected_string(string find, string expected)
+        {
+            // Arrange
+            var text = "There is some text that includes an '@' and an email someone@here.com";
+
+            // Act
+            var result = text.SubstringAfterLastValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData('u', "des an '@' and an email someone@here.com")]
+        [InlineData('U', "des an '@' and an email someone@here.com")]
+        [InlineData('z', "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData('Z', "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData('l', " someone@here.com")]
+        [InlineData('L', " someone@here.com")]
+        [InlineData('s', "omeone@here.com")]
+        [InlineData('S', "omeone@here.com")]
+        [InlineData('n', "e@here.com")]
+        [InlineData('N', "e@here.com")]
+        public void test_substring_after_last_value_with_character_find_returns_the_expected_string(char find, string expected)
+        {
+            // Arrange
+            var text = "There is some text that includes an '@' and an email someone@here.com";
+
+            // Act
+            var result = text.SubstringAfterLastValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        #endregion
 
         #region SubstringBeforeValue
 
@@ -445,6 +519,63 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion SubstringBeforeValue
+
+        #region SubstringBeforeLastValue
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_substring_before_last_value_with_null_or_empty_returns_empty_string(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SubstringBeforeLastValue("something");
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
+
+        [Theory]
+        [InlineData("", "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData(null, "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData("another", "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData("@", "There is some text that includes an '@' and an email someone")]
+        [InlineData("includes", "There is some text that ")]
+        [InlineData("n", "There is some text that includes an '@' and an email someo")]
+        [InlineData("u", "There is some text that incl")]
+        public void test_substring_before_last_value_with_string_find_returns_the_expected_string(string find, string expected)
+        {
+            // Arrange            
+            var text = "There is some text that includes an '@' and an email someone@here.com";
+
+            // Act
+            var result = text.SubstringBeforeLastValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData('x', "There is some te")]
+        [InlineData('X', "There is some te")]
+        [InlineData('z', "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData('Z', "There is some text that includes an '@' and an email someone@here.com")]
+        [InlineData('l', "There is some text that includes an '@' and an emai")]
+        [InlineData('L', "There is some text that includes an '@' and an emai")]
+        [InlineData('@', "There is some text that includes an '@' and an email someone")]
+        public void test_substring_before_last_value_with_character_find_returns_the_expected_string(char find, string expected)
+        {
+            // Arrange
+            var text = "There is some text that includes an '@' and an email someone@here.com";
+
+            // Act
+            var result = text.SubstringBeforeLastValue(find);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        #endregion SubstringBeforeLastValue
 
         #region Is base 64 string
 

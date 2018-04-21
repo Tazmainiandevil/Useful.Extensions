@@ -1,4 +1,5 @@
 # Useful.Extensions
+
 A group of useful extensions in C# for .NET 4.5.2, 4.6 and .NET Core App 2.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
@@ -70,7 +71,7 @@ e.g.
 'c'.EqualTo('C');
 ```
 
-or 
+or
 
 ```C#
 'c'.EqualTo('C', StringComparison.Ordinal);
@@ -78,9 +79,9 @@ or
 
 ### String Extensions
 
-_ContainsValue (formally HasValue)_ - Looks for a specified value inside a string including an option to compare by case (default is to ignore case)
+_ContainsValue (same as HasValue)_ - Looks for a specified value inside a string including an option to compare by case (default is to ignore case)
 
-e.g. 
+e.g.
 
 ```C#
 "XYZ".ContainsValue("x");
@@ -92,17 +93,38 @@ or
 "XYZ".ContainsValue("x", StringComparison.Ordinal);
 ```
 
-_EqualsIgnoreCase_ - A wrapper around `Equals` to always be a case insensitive check
+_HasValue_ - Looks for a specified value inside a string including an option to compare by case (default is to ignore case)
 
 e.g.
 
 ```C#
-XYZ.EqualsIgnoreCase("xyz");
+"XYZ".HasValue("x");
 ```
+
+or
+
+```C#
+"XYZ".HasValue("x", StringComparison.Ordinal);
+```
+
+_EqualsIgnoreCase_ - A wrapper around `Equals` to always be a case insensitive check. The check is also safe and returns false if the string is null or empty.
+
+e.g.
+
+```C#
+"XYZ".EqualsIgnoreCase("xyz");
+```
+
+```C#
+string value = null;
+value.EqualsIgnoreCase(null);
+```
+
+both examples return true
 
 _SubstringOrEmpty_ - A safe version of substring that returns an empty string if the substring is completely out of range or the value found if the length is out of range
 
-e.g. 
+e.g.
 
 ```C#
 "Hello World".SubstringOrEmpty(12, 10);
@@ -116,7 +138,7 @@ returns ""
 
 returns "ld"
 
-_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character to find ignoring case
+_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character ignoring case
 
 e.g.
 
@@ -131,6 +153,22 @@ returns "World"
 ```
 
 returns "orld"
+
+_SubstringAfterLastValue_ - A substring that returns the remaining string after the last occurrence of a given character or string ignoring case
+
+e.g.
+
+```C#
+"Hello World hello@world.com".SubstringAfterLastValue("Hello")
+```
+
+returns "@world.com"
+
+```C#
+"Hello World hello@world.com".SubstringAfterLastValue('W')
+```
+
+returns "orld.com"
 
 _SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring case
 
@@ -223,7 +261,7 @@ var result = items.Partition(4);
 
 returns an `IEnumerable<IEnumerable<int>>` that contains 2 lists one with 0, 1, 2, 3 one with 4, 5, 6
 
-_Page_ - Get a part or page of data from an IEnumerable 
+_Page_ - Get a part or page of data from an IEnumerable
 
 e.g.
 
