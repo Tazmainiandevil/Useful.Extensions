@@ -189,7 +189,7 @@ namespace Useful.Extensions.Tests
 
         #endregion Has Value Tests
 
-        #region EqualTo
+        #region Equals Ignore Case
 
         public static IEnumerable<object[]> StringCaseTestData
         {
@@ -212,7 +212,42 @@ namespace Useful.Extensions.Tests
             value.EqualsIgnoreCase(compare).Should().BeTrue();
         }
 
-        #endregion EqualTo
+        [Fact]
+        public void test_string_is_null_then_equals_ignore_case_returns_false()
+        {
+            // Arrange
+            string value = null;
+
+            // Act
+            // Assert
+            value.EqualsIgnoreCase(null).Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("   ")]        
+        public void test_string_is_emtpy_and_compare_is_emtpy_then_equals_ignore_case_returns_true(string value)
+        {
+            // Arrange
+            var compare = value;
+
+            // Act
+            // Assert
+            value.EqualsIgnoreCase(compare).Should().BeTrue();
+        }
+
+        [Fact]
+        public void test_string_is_null_and_compare_is_not_null_or_empty_then_equals_ignore_case_returns_false()
+        {
+            // Arrange
+            string value = null;
+            var compare = "Somestring";
+
+            // Assert
+            value.EqualsIgnoreCase(compare).Should().BeFalse();
+        }
+
+        #endregion Equals Ignore Case
 
         #region SubstringOrEmpty
 

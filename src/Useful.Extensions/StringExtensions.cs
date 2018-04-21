@@ -47,7 +47,7 @@ namespace Useful.Extensions
             return result;
         }
 
-        #endregion ContainsValue
+        #endregion ContainsValue / HasValue
 
         #region Equals Ignore Case
 
@@ -59,7 +59,12 @@ namespace Useful.Extensions
         /// <returns>A boolean denoting the two strings are equal ignoring case</returns>
         public static bool EqualsIgnoreCase(this string src, string compare)
         {
-            return src.Equals(compare, StringComparison.OrdinalIgnoreCase);
+            if (src == null && compare == null)
+            {
+                return true;
+            }
+
+            return (src ?? string.Empty).Equals(compare, StringComparison.OrdinalIgnoreCase);
         }
 
         #endregion Equals Ignore Case
@@ -172,7 +177,7 @@ namespace Useful.Extensions
         }
 
         #endregion Safe Trim
-      
+
         #region Is Base64
 
         /// <summary>
