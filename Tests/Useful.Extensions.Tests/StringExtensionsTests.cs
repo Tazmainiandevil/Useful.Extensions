@@ -11,6 +11,95 @@ namespace Useful.Extensions.Tests
     /// </summary>
     public class StringExtensionTests
     {
+        #region Contains Value Tests
+
+        [Theory]
+        [InlineData("RGS", "rGs")]
+        [InlineData("XYZ", "x")]
+        [InlineData("This test string is quite a long one", "This teST strIng is QuitE a lOng onE")]
+        public void test_string_contains_value_returns_true_ignoring_case(string testString, string comparisonString)
+        {
+            // Arrange
+            // Act
+            var valid = testString.ContainsValue(comparisonString);
+
+            // Assert
+            valid.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("RGS", "RGS")]
+        [InlineData("XYZ", "X")]
+        [InlineData("This test string is quite a long one", "long")]
+        [InlineData("This test string is quite a long one", "This test string is quite a long one")]
+        public void test_string_contains_value_returns_true_depending_on_case(string testString, string comparisonString)
+        {
+            // Arrange
+            // Act
+            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
+
+            // Assert
+            valid.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("RGS", "F")]
+        [InlineData("XYZ", "g")]
+        [InlineData("This test string is quite a long one", "This tEst stRing IS quiTe a Long one2")]
+        public void test_string_contains_value_contains_returns_false_ignoring_case(string testString, string comparisonString)
+        {
+            // Arrange
+            // Act
+            var valid = testString.ContainsValue(comparisonString);
+
+            // Assert
+            valid.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("RGS", "rGs")]
+        [InlineData("XYZ", "x")]
+        [InlineData("This test string is quite a long one", "This teST strIng is QuitE a lOng onE")]
+        public void test_string_contains_value_returns_false_depending_on_case(string testString, string comparisonString)
+        {
+            // Arrange
+            // Act
+            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
+
+            // Assert
+            valid.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_string_contains_value_returns_false_if_source_is_null_or_empty(string sometext)
+        {
+            // Arrange
+            // Act
+            var valid = sometext.ContainsValue("sometext");
+
+            // Assert
+            valid.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_string_contains_value_returns_false_if_find_is_null_or_empty(string findtext)
+        {
+            // Arrange
+            var sometext = "sometext";
+
+            // Act
+            var valid = sometext.ContainsValue(findtext);
+
+            // Assert
+            valid.Should().BeFalse();
+        }
+
+        #endregion Contains Value Tests
+
         #region Has Value Tests
 
         [Theory]
@@ -21,7 +110,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = StringExtensions.ContainsValue(testString, comparisonString);
+            var valid = testString.HasValue(comparisonString);
 
             // Assert
             valid.Should().BeTrue();
@@ -36,7 +125,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
+            var valid = testString.HasValue(comparisonString, StringComparison.Ordinal);
 
             // Assert
             valid.Should().BeTrue();
@@ -50,7 +139,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = StringExtensions.ContainsValue(testString, comparisonString);
+            var valid = testString.HasValue(comparisonString);
 
             // Assert
             valid.Should().BeFalse();
@@ -64,7 +153,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = testString.ContainsValue(comparisonString, StringComparison.Ordinal);
+            var valid = testString.HasValue(comparisonString, StringComparison.Ordinal);
 
             // Assert
             valid.Should().BeFalse();
@@ -77,7 +166,7 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var valid = StringExtensions.ContainsValue(sometext, "sometext");
+            var valid = sometext.HasValue("sometext");
 
             // Assert
             valid.Should().BeFalse();
@@ -92,7 +181,7 @@ namespace Useful.Extensions.Tests
             var sometext = "sometext";
 
             // Act
-            var valid = StringExtensions.ContainsValue(sometext, findtext);
+            var valid = sometext.HasValue(findtext);
 
             // Assert
             valid.Should().BeFalse();
@@ -348,6 +437,7 @@ namespace Useful.Extensions.Tests
         }
 
 #if !NETSTANDARD1_3
+
         public static IEnumerable<object[]> ValidBase64TestData
         {
             get
@@ -368,6 +458,7 @@ namespace Useful.Extensions.Tests
             // Assert
             result.Should().BeTrue();
         }
+
 #endif
 
         #endregion Is base 64 string
