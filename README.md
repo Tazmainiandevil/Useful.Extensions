@@ -1,63 +1,11 @@
 # Useful.Extensions
 
-A group of useful extensions in C# for .NET 4.5.2, 4.6 and .NET Core App 2.0
+A group of useful extensions in C# for .NET 4.5.2, 4.6, 4.6.1, .NET Core App 2.0 and .NET Standard 2.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
 
 I found myself creating useful extensions over and over as I moved along my career path and decided that they actually needed a home to be reusable and grow. They are not trade secrets or proprietary code they are just little bits of code that are useful.
-
-## .NET 4.5.2 and .NET 4.6 only
-
-### String Extensions for Bitmap
-
-_Base64ToBitmap_ - A simple extension that takes a base64 bitmap string and converts it back to a Bitmap
-
-e.g.
-
-```C#
-// The full base64 string would be larger but for this example a small bit shown then ...
-"/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAIBAQIBAQIC...".Base64ToBitmap();
-```
-
-returns a bitmap object of the image
-
-### Object Helpers
-
-_Clone_ - An implentation of a deep clone using serialization
-
-The next set are helper functions rather than extensions
-
-_GetValueFromAnonymousType_ - Get values from `dynamic` objects by property name
-
-e.g.
-
-```C#
-var anon = new { Text = "Hello" };`
-ObjectExtensions.GetValueFromAnonymousType<string>(anon, "Text");
-```
-
-returns "Hello"
-
-_GetValueFromAnonymousTypeOrDefault_ - As with GetValueFromAnonymousType but returns a default value for the type if not found
-e.g.
-
-```C#
-var anon = new { Text = "Hello" };`
-ObjectExtensions.GetValueFromAnonymousTypeOrDefault<string>(anon, "Value");
-```
-
-returns null
-
-_IsPropertyInAnonymousType_ - Checks to see if there is a property of a given name inside a `dynamic` object
-e.g.
-
-```C#
-var anon = new { Text = "Hello" };`
-ObjectExtensions.IsPropertyInAnonymousType(anon, "Value");
-```
-
-returns false
 
 ## All Frameworks
 
@@ -484,3 +432,55 @@ SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
 
 SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);
 ```
+
+## .NET 4.5.2 and .NET 4.6 only
+
+### String Extensions for Bitmap
+
+_Base64ToBitmap_ - A simple extension that takes a base64 bitmap string and converts it back to a Bitmap
+
+e.g.
+
+```C#
+// The full base64 string would be larger but for this example a small bit shown then ...
+"/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAIBAQIBAQIC...".Base64ToBitmap();
+```
+
+returns a bitmap object of the image
+
+### Object Helpers
+
+_Clone_ - An implentation of a deep clone using serialization
+
+The next set are helper functions rather than extensions
+
+_GetValueFromAnonymousType_ - Get values from `dynamic` objects by property name
+
+e.g.
+
+```C#
+var anon = new { Text = "Hello" };`
+ObjectExtensions.GetValueFromAnonymousType<string>(anon, "Text");
+```
+
+returns "Hello"
+
+_GetValueFromAnonymousTypeOrDefault_ - As with GetValueFromAnonymousType but returns a default value for the type if not found
+e.g.
+
+```C#
+var anon = new { Text = "Hello" };`
+ObjectExtensions.GetValueFromAnonymousTypeOrDefault<string>(anon, "Value");
+```
+
+returns null
+
+_IsPropertyInAnonymousType_ - Checks to see if there is a property of a given name inside a `dynamic` object
+e.g.
+
+```C#
+var anon = new { Text = "Hello" };`
+ObjectExtensions.IsPropertyInAnonymousType(anon, "Value");
+```
+
+returns false

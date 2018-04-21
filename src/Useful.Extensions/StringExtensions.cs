@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -76,14 +77,38 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string to perform startwith on</param>
         /// <param name="find">The value to look for</param>
-        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>A boolean denoting if value starts with given value</returns>
-        public static bool SafeStartsWith(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        public static bool SafeStartsWith(this string src, string find)
+        {
+            return (src ?? string.Empty).StartsWith(find);
+        }
+
+        /// <summary>
+        /// Perform a Starts With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="comparison">The string comparison type (defaults to Ordinal)</param>
+        /// <returns>A boolean denoting if value starts with given value</returns>
+        public static bool SafeStartsWith(this string src, string find, StringComparison comparison)
         {
             return (src ?? string.Empty).StartsWith(find, comparison);
         }
 
-        #endregion
+        /// <summary>
+        /// Perform a Starts With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="ignoreCase"></param>
+        /// <param name="culture"></param>
+        /// <returns>A boolean denoting if value starts with given value</returns>
+        public static bool SafeStartsWith(this string src, string find, bool ignoreCase, CultureInfo culture)
+        {
+            return (src ?? string.Empty).StartsWith(find, ignoreCase, culture);
+        }
+
+        #endregion Safe StartsWith
 
         #region Safe EndsWith
 
@@ -92,14 +117,38 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string to perform startwith on</param>
         /// <param name="find">The value to look for</param>
-        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>A boolean denoting if value ends with given value</returns>
-        public static bool SafeEndsWith(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        public static bool SafeEndsWith(this string src, string find)
+        {
+            return (src ?? string.Empty).EndsWith(find);
+        }
+
+        /// <summary>
+        /// Perform a Ends With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="comparison">The string comparison type (defaults to Ordinal)</param>
+        /// <returns>A boolean denoting if value ends with given value</returns>
+        public static bool SafeEndsWith(this string src, string find, StringComparison comparison)
         {
             return (src ?? string.Empty).EndsWith(find, comparison);
         }
 
-        #endregion
+        /// <summary>
+        /// Perform a Ends With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="ignoreCase"></param>
+        /// <param name="culture"></param>
+        /// <returns>A boolean denoting if value starts with given value</returns>
+        public static bool SafeEndsWith(this string src, string find, bool ignoreCase, CultureInfo culture)
+        {
+            return (src ?? string.Empty).EndsWith(find, ignoreCase, culture);
+        }
+
+        #endregion Safe EndsWith
 
         #region Substring
 

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Xunit;
 
@@ -216,11 +217,9 @@ namespace Useful.Extensions.Tests
         public void test_string_is_null_then_equals_ignore_case_returns_false()
         {
             // Arrange
-            string value = null;
-
             // Act
             // Assert
-            value.EqualsIgnoreCase(null).Should().BeTrue();
+            (null as string).EqualsIgnoreCase(null).Should().BeTrue();
         }
 
         [Theory]
@@ -240,11 +239,10 @@ namespace Useful.Extensions.Tests
         public void test_string_is_null_and_compare_is_not_null_or_empty_then_equals_ignore_case_returns_false()
         {
             // Arrange
-            string value = null;
             var compare = "Somestring";
 
             // Assert
-            value.EqualsIgnoreCase(compare).Should().BeFalse();
+            (null as string).EqualsIgnoreCase(compare).Should().BeFalse();
         }
 
         #endregion Equals Ignore Case
@@ -256,15 +254,42 @@ namespace Useful.Extensions.Tests
         [InlineData(null)]
         public void test_safe_starts_with_when_value_is_null_or_empty_returns_false(string value)
         {
+            // Arrange
+            // Act
+            var result = value.SafeStartsWith("Hello");
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_starts_with_when_case_type_is_specified_and_value_is_null_or_empty_returns_false(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SafeStartsWith("Hello", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_starts_with_when_culture_and_ignore_case_is_specified_and_value_is_null_or_empty_returns_false(string value)
+        {
             // Arrange            
             // Act
-            var result = value.SafeStartsWith("Hello"); 
+            var result = value.SafeStartsWith("Hello", true, CultureInfo.CurrentCulture);
 
             // Assert
             result.Should().BeFalse();
 
         }
-        #endregion
+
+        #endregion Safe StartsWith
 
         #region Safe EndsWith
 
@@ -273,15 +298,40 @@ namespace Useful.Extensions.Tests
         [InlineData(null)]
         public void test_safe_ends_with_when_value_is_null_or_empty_returns_false(string value)
         {
-            // Arrange            
+            // Arrange
             // Act
-            var result = value.SafeEndsWith("Hello"); 
+            var result = value.SafeEndsWith("Hello");
 
             // Assert
             result.Should().BeFalse();
-
         }
-        #endregion
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_ends_with_when_case_type_is_specified_and_value_is_null_or_empty_returns_false(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SafeEndsWith("Hello", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_ends_with_when_culture_and_ignore_case_is_specified_and_value_is_null_or_empty_returns_false(string value)
+        {
+            // Arrange
+            // Act
+            var result = value.SafeEndsWith("Hello", true, CultureInfo.CurrentCulture);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+        #endregion Safe EndsWith
 
         #region SubstringOrEmpty
 
