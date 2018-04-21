@@ -225,7 +225,7 @@ namespace Useful.Extensions.Tests
 
         [Theory]
         [InlineData("")]
-        [InlineData("   ")]        
+        [InlineData("   ")]
         public void test_string_is_emtpy_and_compare_is_emtpy_then_equals_ignore_case_returns_true(string value)
         {
             // Arrange
@@ -423,7 +423,6 @@ namespace Useful.Extensions.Tests
             result.Should().Be(" you");
         }
 
-
         #endregion SubstringAfterValue
 
         #region SubstringAfterLastValue
@@ -511,7 +510,7 @@ namespace Useful.Extensions.Tests
             result.Should().Be(" you");
         }
 
-        #endregion
+        #endregion SubstringAfterLastValue
 
         #region SubstringBeforeValue
 
@@ -624,7 +623,7 @@ namespace Useful.Extensions.Tests
         [InlineData("u", "There is some text that incl")]
         public void test_substring_before_last_value_with_string_find_returns_the_expected_string(string find, string expected)
         {
-            // Arrange            
+            // Arrange
             var text = "There is some text that includes an '@' and an email someone@here.com";
 
             // Act
