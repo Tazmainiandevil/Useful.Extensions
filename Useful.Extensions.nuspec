@@ -5,7 +5,7 @@
     <version>$version$</version>
     <authors>$author$</authors>
     <owners>$owners$</owners>
-    <licenseUrl>https://github.com/Tazmainiandevil/Useful.Extensions/LICENSE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/Tazmainiandevil/Useful.Extensions/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Tazmainiandevil/Useful.Extensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
@@ -14,7 +14,9 @@
   </metadata>
   <files>
     <file src="src\Useful.Extensions\bin\Release\netcoreapp2.0\Useful.Extensions.dll" target="lib\netcoreapp2.0\Useful.Extensions.dll" />
+    <file src="src\Useful.Extensions\bin\Release\netstandard2.0\Useful.Extensions.dll" target="lib\netstandard2.0\Useful.Extensions.dll" />
     <file src="src\Useful.Extensions\bin\Release\net452\Useful.Extensions.dll" target="lib\net452\Useful.Extensions.dll" />
     <file src="src\Useful.Extensions\bin\Release\net46\Useful.Extensions.dll" target="lib\net46\Useful.Extensions.dll" />
+    <file src="src\Useful.Extensions\bin\Release\net461\Useful.Extensions.dll" target="lib\net461\Useful.Extensions.dll" />
   </files>
 </package>
