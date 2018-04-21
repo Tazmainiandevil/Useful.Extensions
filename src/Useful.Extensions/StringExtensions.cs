@@ -69,6 +69,38 @@ namespace Useful.Extensions
 
         #endregion Equals Ignore Case
 
+        #region Safe StartsWith
+
+        /// <summary>
+        /// Perform a Starts With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
+        /// <returns>A boolean denoting if value starts with given value</returns>
+        public static bool SafeStartsWith(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        {
+            return (src ?? string.Empty).StartsWith(find, comparison);
+        }
+
+        #endregion
+
+        #region Safe EndsWith
+
+        /// <summary>
+        /// Perform a Ends With even if the src is null
+        /// </summary>
+        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="find">The value to look for</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
+        /// <returns>A boolean denoting if value ends with given value</returns>
+        public static bool SafeEndsWith(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        {
+            return (src ?? string.Empty).EndsWith(find, comparison);
+        }
+
+        #endregion
+
         #region Substring
 
         /// <summary>

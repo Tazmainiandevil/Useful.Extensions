@@ -268,6 +268,26 @@ e.g.
 
 returns null
 
+_SafeStartsWith_ - A safe version of starts with that does not throw an exception if the string is null
+
+e.g.
+
+```C#
+(null as string).SafeStartsWith("Find");
+```
+
+returns false
+
+_SafeEndsWith_ - A safe version of ends with that does not throw an exception if the string is null
+
+e.g.
+
+```C#
+(null as string).SafeEndsWith("Find");
+```
+
+returns false
+
 _IsBase64_ - A check to see if a string has been base64 encoded
 e.g.
 

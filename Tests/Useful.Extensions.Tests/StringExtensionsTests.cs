@@ -249,6 +249,40 @@ namespace Useful.Extensions.Tests
 
         #endregion Equals Ignore Case
 
+        #region Safe StartsWith
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_starts_with_when_value_is_null_or_empty_returns_false(string value)
+        {
+            // Arrange            
+            // Act
+            var result = value.SafeStartsWith("Hello"); 
+
+            // Assert
+            result.Should().BeFalse();
+
+        }
+        #endregion
+
+        #region Safe EndsWith
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void test_safe_ends_with_when_value_is_null_or_empty_returns_false(string value)
+        {
+            // Arrange            
+            // Act
+            var result = value.SafeEndsWith("Hello"); 
+
+            // Assert
+            result.Should().BeFalse();
+
+        }
+        #endregion
+
         #region SubstringOrEmpty
 
         [Theory]
