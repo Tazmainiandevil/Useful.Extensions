@@ -99,10 +99,11 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The character to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringAfterValue(this string src, char find)
+        public static string SubstringAfterValue(this string src, char find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
-            return src.SubstringAfterValue(find.ToString());
+            return src.SubstringAfterValue(find.ToString(), comparison);
         }
 
         /// <summary>
@@ -110,15 +111,16 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringAfterValue(this string src, string find)
+        public static string SubstringAfterValue(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrWhiteSpace(src))
             {
                 return string.Empty;
             }
 
-            var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+            var index = src.IndexOf(find ?? string.Empty, comparison);
 
             return index < 0 ? src : new string(src.Skip(index + (find ?? string.Empty).Length).Take(src.Length).ToArray());
         }
@@ -128,10 +130,11 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringAfterLastValue(this string src, char find)
+        public static string SubstringAfterLastValue(this string src, char find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
-            return src.SubstringAfterLastValue(find.ToString());
+            return src.SubstringAfterLastValue(find.ToString(), comparison);
         }
 
         /// <summary>
@@ -139,8 +142,9 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringAfterLastValue(this string src, string find)
+        public static string SubstringAfterLastValue(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrWhiteSpace(src))
             {
@@ -152,7 +156,7 @@ namespace Useful.Extensions
                 return src;
             }
 
-            var index = src.LastIndexOf(find, StringComparison.OrdinalIgnoreCase);
+            var index = src.LastIndexOf(find, comparison);
 
             return index < 0 ? src : new string(src.Skip(index + find.Length).Take(src.Length).ToArray());
         }
@@ -162,10 +166,11 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The character to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringBeforeValue(this string src, char find)
+        public static string SubstringBeforeValue(this string src, char find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
-            return src.SubstringBeforeValue(find.ToString());
+            return src.SubstringBeforeValue(find.ToString(), comparison);
         }
 
         /// <summary>
@@ -173,15 +178,16 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringBeforeValue(this string src, string find)
+        public static string SubstringBeforeValue(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrEmpty(src))
             {
                 return string.Empty;
             }
 
-            var index = src.IndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+            var index = src.IndexOf(find ?? string.Empty, comparison);
 
             if (string.IsNullOrEmpty(find) || index < 0)
             {
@@ -196,10 +202,11 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The character to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringBeforeLastValue(this string src, char find)
+        public static string SubstringBeforeLastValue(this string src, char find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
-            return src.SubstringBeforeLastValue(find.ToString());
+            return src.SubstringBeforeLastValue(find.ToString(), comparison);
         }
 
         /// <summary>
@@ -207,15 +214,16 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>
+        /// <param name="comparison">The string comparison type (defaults to OrdinalIgnoreCase)</param>
         /// <returns>The substring value</returns>
-        public static string SubstringBeforeLastValue(this string src, string find)
+        public static string SubstringBeforeLastValue(this string src, string find, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrEmpty(src))
             {
                 return string.Empty;
             }
 
-            var index = src.LastIndexOf(find ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+            var index = src.LastIndexOf(find ?? string.Empty, comparison);
 
             if (string.IsNullOrEmpty(find) || index < 0)
             {

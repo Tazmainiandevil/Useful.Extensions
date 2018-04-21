@@ -138,60 +138,132 @@ returns ""
 
 returns "ld"
 
-_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character ignoring case
+_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character ignoring case by default
 
 e.g.
 
 ```C#
-"Hello World".SubstringAfterValue("Hello ")
+"Hello World".SubstringAfterValue("Hello ");
 ```
 
 returns "World"
 
 ```C#
-"Hello World".SubstringAfterValue('W')
+"Hello World".SubstringAfterValue('W');
 ```
 
 returns "orld"
 
-_SubstringAfterLastValue_ - A substring that returns the remaining string after the last occurrence of a given character or string ignoring case
+Case Sensitve substring
+
+```C#
+"Hello world World".SubstringAfterValue('W', StringComparison.Ordinal);
+```
+
+returns "orld"
+
+```C#
+"Hello world World".SubstringAfterValue("world", StringComparison.Ordinal);
+```
+
+returns " World"
+
+_SubstringAfterLastValue_ - A substring that returns the remaining string after the last occurrence of a given character or string ignoring case by default
 
 e.g.
 
 ```C#
-"Hello World hello@world.com".SubstringAfterLastValue("Hello")
+"Hello World hello@world.com".SubstringAfterLastValue("Hello");
 ```
 
 returns "@world.com"
 
 ```C#
-"Hello World hello@world.com".SubstringAfterLastValue('W')
+"Hello World hello@world.com".SubstringAfterLastValue('W');
 ```
 
 returns "orld.com"
 
-_SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring case
+Case Sensitve substring
+
+```C#
+"Hello world World".SubstringAfterLastValue('W', StringComparison.Ordinal);
+```
+
+returns "orld"
+
+```C#
+"Hello world World".SubstringAfterLastValue("world", StringComparison.Ordinal);
+```
+
+returns " World"
+
+_SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring case by default
 
 e.g.
 
 ```C#
-"Hello World".SubstringBeforeValue(" World")
+"Hello World".SubstringBeforeValue(" World");
 ```
 
 returns "Hello"
 
 ```C#
-"Hello World".SubstringBeforeValue('W')
+"Hello World".SubstringBeforeValue('W');
 ```
 
 returns "Hello "
+
+Case Sensitve substring
+
+```C#
+"Hello world World".SubstringBeforeValue(" World", StringComparison.Ordinal);
+```
+
+returns "Hello world"
+
+```C#
+"Hello world World".SubstringBeforeValue('W', StringComparison.Ordinal);
+```
+
+returns "Hello world "
+
+_SubstringBeforeLastValue_ - A substring that returns the string before the last occurrence of a given string or character ignoring case by default
+
+e.g.
+
+```C#
+"Hello World World".SubstringBeforeLastValue(" world");
+```
+
+returns "Hello World"
+
+```C#
+"Hello World World".SubstringBeforeLastValue('w');
+```
+
+returns ""Hello World "
+
+Case Sensitve substring
+
+```C#
+"Hello World world".SubstringBeforeLastValue(" World", StringComparison.Ordinal);
+```
+
+returns "Hello"
+
+```C#
+"Hello World world".SubstringBeforeLastValue('W', StringComparison.Ordinal);
+```
+
+returns ""Hello "
 
 _SafeTrim_ - A safe version of trim that does not throw an exception if the string is null
 
 e.g.
 
 ```C#
-(null as string).SafeTrim()
+(null as string).SafeTrim();
 ```
 
 returns null
@@ -221,13 +293,13 @@ _ValueOrDefault_ - Get the value from a dictionary or return the default for the
 e.g.
 
 ```C#
-new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("value", 99)
+new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("value", 99);
 ```
 
 returns 99
 
 ```C#
-new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("some text")
+new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("some text");
 ```
 
 returns 1
@@ -237,13 +309,13 @@ _TryGetValueOrDefault_ - Same as _ValueOrDefault_ only uses the dictionary metho
 e.g.
 
 ```C#
-new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("value", 99)
+new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("value", 99);
 ```
 
 returns 99
 
 ```C#
-new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("some text")
+new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("some text");
 ```
 
 returns 1
@@ -390,5 +462,5 @@ To setup a time in the unit tests so that when System.Now() or System.UtcNow() i
 ```C#
 SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
 
-SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);;
+SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);
 ```

@@ -397,6 +397,33 @@ namespace Useful.Extensions.Tests
             result.Should().Be(string.Empty);
         }
 
+        [Fact]
+        public void test_substring_after_value_when_character_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string value to find From you";
+
+            // Act
+            var result = text.SubstringAfterValue('F', StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("rom you");
+        }
+
+        [Fact]
+        public void test_substring_after_value_when_string_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string value to find From you";
+
+            // Act
+            var result = text.SubstringAfterValue("From", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be(" you");
+        }
+
+
         #endregion SubstringAfterValue
 
         #region SubstringAfterLastValue
@@ -456,6 +483,32 @@ namespace Useful.Extensions.Tests
 
             // Assert
             result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_substring_after_last_value_when_character_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string value to Find From you";
+
+            // Act
+            var result = text.SubstringAfterLastValue('F', StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("rom you");
+        }
+
+        [Fact]
+        public void test_substring_after_last_value_when_string_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string From value to find From you";
+
+            // Act
+            var result = text.SubstringAfterLastValue("From", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be(" you");
         }
 
         #endregion
@@ -518,6 +571,32 @@ namespace Useful.Extensions.Tests
             result.Should().Be(expected);
         }
 
+        [Fact]
+        public void test_substring_before_value_when_character_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string value to Find From you";
+
+            // Act
+            var result = text.SubstringBeforeValue('F', StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("some string value to ");
+        }
+
+        [Fact]
+        public void test_substring_before_value_when_string_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string From value to find From you";
+
+            // Act
+            var result = text.SubstringBeforeValue("From", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("some string ");
+        }
+
         #endregion SubstringBeforeValue
 
         #region SubstringBeforeLastValue
@@ -573,6 +652,32 @@ namespace Useful.Extensions.Tests
 
             // Assert
             result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_substring_before_last_value_when_character_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string value to Find From you";
+
+            // Act
+            var result = text.SubstringBeforeLastValue('F', StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("some string value to Find ");
+        }
+
+        [Fact]
+        public void test_substring_before_last_value_when_string_to_find_is_case_sensitive_then_the_correct_string_is_returned()
+        {
+            // Arrange
+            var text = "some string From value to find From you";
+
+            // Act
+            var result = text.SubstringBeforeLastValue("From", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().Be("some string From value to find ");
         }
 
         #endregion SubstringBeforeLastValue
