@@ -362,7 +362,7 @@ items.AddMany("Another", "Day");
 
 Results in a list containing "Hello", "World", "Another", "Day"
 
-### Nullable Extensions_
+### Nullable Extensions
 
 _ToStringOrEmpty_ - String representation of a nullable value or an empty string if the nullable has no value
 
@@ -395,7 +395,7 @@ value.IsNullOrDefault();
 
 returns false
 
-_ValueOrDefault_ - Retreives the value of the nullable or the default of the type if there is not a value or specified default value
+_ValueOrDefault_ - Retrieves the value of the nullable or the default of the type if there is not a value or specified default value
 
 e.g.
 
@@ -412,6 +412,63 @@ value.ValueOrDefault(-1);
 ```
 
 returns -1 as that was the default specified
+
+### Date Time Extensions
+
+_ShouldBeWithinRangeOf_ - Determines that a DateTime is close to an expected date.  Has an optional parameter of an int.  This represents the variation we can accept in seconds.
+
+e.g.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 05);
+
+dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
+```
+
+returns true, as the date and time we are checking is within five seconds of the expected date and time.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 11);
+
+dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
+```
+
+returns false, as the date and time we are checking is over the default ten seconds of the expected date and time.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 19);
+
+dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, 20);
+```
+
+returns true, as the date and time we are checking is within nineteen seconds of the expected date and time.  This is using the optional parameter where we can set the seconds of variation.
+
+_Between_ - Determines if the DateTime is between a specified start and end time.  Has an optional parameter of a bool.  This defaults to false, and doesn't include the specific start time or end time.
+
+e.g.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+var startOfRange = new DateTime(2016, 12, 15, 12, 30, 00);
+var endOfRange = new DateTime(2017, 01, 02, 23, 59, 59);
+
+dateToCheck.Between(startOfRange, endOfRange);
+```
+
+returns true, as the date and time being checked is within the ranges supplied.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 02, 12, 30, 00);
+var startOfRange = new DateTime(2016, 12, 15, 12, 30, 00);
+var endOfRange = new DateTime(2017, 01, 02, 12, 30, 00);
+
+dateToCheck.Between(startOfRange, endOfRange, true);
+```
+
+returns true, as the date and time being checked is within the ranges supplied, and as the inclusive parameter is true, we are going right up to the end range limit.
 
 ### System Time Helpers
 
