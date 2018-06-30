@@ -1,6 +1,6 @@
 # Useful.Extensions
 
-A group of useful extensions in C# for .NET 4.5.2, 4.6, 4.6.1, .NET Core App 2.0 and .NET Standard 2.0
+A group of useful extensions in C# for .NET 4.5.2, 4.6, 4.6.1, .NET Core App 2.0 and .NET Standard 1.3, .NET Standard 1.6, .NET Standard 2.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
