@@ -1,6 +1,6 @@
 # Useful.Extensions
 
-A group of useful extensions in C# for .NET 4.5.2, 4.6, 4.6.1, .NET Core App 2.0 and .NET Standard 2.0
+A group of useful extensions in C# for .NET 4.5.2, 4.6, 4.6.1, .NET Core App 2.0 and .NET Standard 1.3, .NET Standard 1.6, .NET Standard 2.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
@@ -11,7 +11,7 @@ I found myself creating useful extensions over and over as I moved along my care
 
 ### Character Extensions
 
-_EqualTo_ - A simple comparision of characters including an option to compare by case (default is to ignore case)
+_EqualTo_ - A simple comparison of characters including an option to compare by case (default is to ignore case)
 
 e.g.
 
@@ -86,7 +86,7 @@ returns ""
 
 returns "ld"
 
-_SubstringAfterValue_ - A substring that returns the remainaing string after a given string or character ignoring case by default
+_SubstringAfterValue_ - A substring that returns the remaining string after a given string or character ignoring case by default
 
 e.g.
 
@@ -162,7 +162,7 @@ returns "Hello"
 
 returns "Hello "
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```C#
 "Hello world World".SubstringBeforeValue(" World", StringComparison.Ordinal);
@@ -192,7 +192,7 @@ returns "Hello World"
 
 returns ""Hello World "
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```C#
 "Hello World world".SubstringBeforeLastValue(" World", StringComparison.Ordinal);
