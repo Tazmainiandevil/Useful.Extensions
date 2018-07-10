@@ -34,9 +34,7 @@ namespace Useful.Extensions
             var lowDate = expectedTime.AddSeconds(-secondsRange);
             var highDate = expectedTime.AddSeconds(secondsRange);
 
-            var result = currentTime > lowDate && currentTime < highDate;
-
-            return result;
+            return currentTime > lowDate && currentTime < highDate;
         }
 
         /// <summary>
@@ -51,9 +49,9 @@ namespace Useful.Extensions
         /// </returns>
         public static bool Between(this DateTime datetime, DateTime startTime, DateTime endTime, bool timesInclusive = false)
         {
-            return (timesInclusive)
-                       ? (datetime >= startTime) && (datetime <= endTime)
-                       : (datetime > startTime) && (datetime < endTime);
+            return timesInclusive
+                       ? datetime >= startTime && datetime <= endTime
+                       : datetime > startTime && datetime < endTime;
         }
     }
 }
