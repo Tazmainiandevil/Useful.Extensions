@@ -102,7 +102,7 @@ returns "World"
 
 returns "orld"
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```C#
 "Hello world World".SubstringAfterValue('W', StringComparison.Ordinal);
@@ -132,7 +132,7 @@ returns "@world.com"
 
 returns "orld.com"
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```C#
 "Hello world World".SubstringAfterLastValue('W', StringComparison.Ordinal);
@@ -343,9 +343,9 @@ e.g.
 ```C#
 var list = new List<string> { "Hello" };
 var additionalList = new List<string> { "World" };
-var anotherlList = new List<string> { "Bye" };
+var anotherList = new List<string> { "Bye" };
 
-list.Combine(additionalList, anotherlList);
+list.Combine(additionalList, anotherList);
 ```
 
 Results in a list containing "Hello", "World", "Bye"
@@ -415,7 +415,9 @@ returns -1 as that was the default specified
 
 ### Date Time Extensions
 
-_ShouldBeWithinRangeOf_ - Determines that a DateTime is close to an expected date.  Has an optional parameter of an int.  This represents the variation we can accept in seconds.
+_ShouldBeWithinRangeOf_ - Determines that a DateTime is close to an expected date.  
+
+Has an optional parameter of an int.  This represents the variation we can accept in seconds and must be a positive value, otherwise, an ArgumentOutOfRangeException will be thrown.
 
 e.g.
 
@@ -445,6 +447,15 @@ dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, 20);
 ```
 
 returns true, as the date and time we are checking is within nineteen seconds of the expected date and time.  This is using the optional parameter where we can set the seconds of variation.
+
+```C#
+var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 19);
+
+dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, -20);
+```
+
+throws an ArgumentOutOfRangeException with the message: "Range parameter must be a positive value."
 
 _Between_ - Determines if the DateTime is between a specified start and end time.  Has an optional parameter of a bool.  This defaults to false, and doesn't include the specific start time or end time.
 

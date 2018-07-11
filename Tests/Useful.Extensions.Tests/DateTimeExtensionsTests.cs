@@ -12,31 +12,20 @@ namespace Useful.Extensions.Tests
     {
         #region ShouldBeWithinRangeOf
 
-        public static IEnumerable<object[]> ValidDates
+        public static IEnumerable<object[]> ValidDates => new[]
         {
-            get
-            {
-                return new[]
-                {
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 02) },
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 09) },
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 51) }
-                };
-            }
-        }
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 02) },
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 09) },
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 51) },
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 00) }
+        };
 
-        public static IEnumerable<object[]> InValidDates
+        public static IEnumerable<object[]> InValidDates => new[]
         {
-            get
-            {
-                return new[]
-                {
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 30) },
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 10) },
-                   new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 50) }
-                };
-            }
-        }
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 30) },
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 10) },
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 50) }
+        };
 
         [Theory, MemberData(nameof(ValidDates))]
         public void test_should_be_within_range_with_valid_dates_in_range_returns_true_using_default(
@@ -92,15 +81,44 @@ namespace Useful.Extensions.Tests
             result.Should().BeFalse();
         }
 
+        [Fact]
+        public void test_should_be_within_range_with_valid_date_and_zero_range_but_one_second_out_returns_false_using_range()
+        {
+            // Arrange.
+            var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+            var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 01);
+
+            // Act.
+            var result = dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, 0);
+
+            // Assert.
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(-20)]
+        [InlineData(-1000)]
+        public void test_should_be_within_range_with_valid_date_but_negative_parameter_throws_argument_out_of_range_exception(int rangeParameter)
+        {
+            // Arrange.
+            var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
+            var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 15);
+
+            // Act.
+            var expectedException =
+                Assert.Throws<ArgumentOutOfRangeException>(
+                    () => dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, rangeParameter));
+
+            // Assert.
+            expectedException.Message.Should().Contain("Range parameter must be a positive value.");
+        }
+        
         #endregion ShouldBeWithinRangeOf
 
         #region Between
 
-        public static IEnumerable<object[]> DateRangeTests
-        {
-            get
-            {
-                return new[]
+        public static IEnumerable<object[]> DateRangeTests => new[]
                 {
                    // Current.
                    new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), true, true },
@@ -122,8 +140,6 @@ namespace Useful.Extensions.Tests
                    new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, true, true },
                    new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, false, false },
                 };
-            }
-        }
 
         [Theory, MemberData(nameof(DateRangeTests))]
         public void test_between_returns_expected_values(DateTime dateToCheck, DateTime startOfRange, DateTime endOfRange, bool inclusive, bool expectedResult)
@@ -144,7 +160,29 @@ namespace Useful.Extensions.Tests
             var result = DateTime.Today.Between(DateTime.Today, DateTime.Today.AddDays(1));
 
             // Assert.
-            result.Should().Be(false);
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void test_between_date_as_min_date_with_min_date_values_for_both_dates_returns_false()
+        {
+            // Arrange
+            // Act
+            var result = DateTime.MinValue.Between(DateTime.MinValue, DateTime.MinValue);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void test_between_date_as_min_date_with_min_date_values_for_both_dates_and_inclusive_returns_true()
+        {
+            // Arrange
+            // Act
+            var result = DateTime.MinValue.Between(DateTime.MinValue, DateTime.MinValue, true);
+
+            // Assert
+            result.Should().BeTrue();
         }
 
         #endregion Between
