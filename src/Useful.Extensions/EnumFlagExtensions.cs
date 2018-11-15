@@ -11,9 +11,9 @@ namespace Useful.Extensions
         /// <param name="src">The enum value</param>
         /// <param name="entry">The enum entry to check</param>
         /// <returns>A boolean denoting if the entry is set</returns>
-        public static bool Contains(this Enum src, Enum entry)
+        public static bool Contains<T>(this T src, T entry) where T : Enum
         {
-            return src.HasFlag(entry);
+            return entry != null && src.HasFlag(entry);
         }
 
         /// <summary>
@@ -22,9 +22,9 @@ namespace Useful.Extensions
         /// <param name="src">The enum value</param>
         /// <param name="entries">The entries to check if set</param>
         /// <returns>A boolean denoting if any of the entries is set</returns>
-        public static bool Any(this Enum src, params Enum[] entries)
+        public static bool Any<T>(this T src, params T[] entries) where T : Enum
         {
-            return entries.Any(src.HasFlag);
+            return !entries.IsNullOrEmpty() && entries.Any(x => src.HasFlag(x));
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace Useful.Extensions
         /// <param name="src">The enum value</param>
         /// <param name="entries">The entries to check if set</param>
         /// <returns>A boolean denoting if all of the entries are set</returns>
-        public static bool All(this Enum src, params Enum[] entries)
+        public static bool All<T>(this T src, params T[] entries) where T : Enum
         {
-            return entries.All(src.HasFlag);
+            return !entries.IsNullOrEmpty() && entries.All(x => src.HasFlag(x));
         }
 
         /// <summary>
@@ -45,8 +45,13 @@ namespace Useful.Extensions
         /// <param name="src">The enum value</param>
         /// <param name="entries">The entries to set</param>
         /// <returns>The value with the entries set</returns>
-        public static T Set<T>(this Enum src, params Enum[] entries) where T : Enum        
+        public static T Set<T>(this T src, params T[] entries) where T : Enum        
         {
+            if (entries.IsNullOrEmpty())
+            {
+                return src;
+            }
+
             var type = Enum.GetUnderlyingType(src.GetType());
             dynamic srcValue = Convert.ChangeType(src, type);
 
@@ -66,8 +71,13 @@ namespace Useful.Extensions
         /// <param name="src">The enum value</param>
         /// <param name="entries">The entries to unset</param>
         /// <returns>The value with the entries unset</returns>
-        public static T UnSet<T>(this Enum src, params Enum[] entries) where T : Enum        
+        public static T UnSet<T>(this T src, params T[] entries) where T : Enum        
         {
+            if (entries.IsNullOrEmpty())
+            {
+                return src;
+            }
+
             var type = Enum.GetUnderlyingType(src.GetType());
             dynamic srcValue = Convert.ChangeType(src, type);
 

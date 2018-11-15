@@ -15,13 +15,13 @@ _EqualTo_ - A simple comparison of characters including an option to compare by 
 
 e.g.
 
-```C#
+```csharp
 'c'.EqualTo('C');
 ```
 
 or
 
-```C#
+```csharp
 'c'.EqualTo('C', StringComparison.Ordinal);
 ```
 
@@ -31,13 +31,13 @@ _ContainsValue (same as HasValue)_ - Looks for a specified value inside a string
 
 e.g.
 
-```C#
+```csharp
 "XYZ".ContainsValue("x");
 ```
 
 or
 
-```C#
+```csharp
 "XYZ".ContainsValue("x", StringComparison.Ordinal);
 ```
 
@@ -45,13 +45,13 @@ _HasValue_ - Looks for a specified value inside a string including an option to 
 
 e.g.
 
-```C#
+```csharp
 "XYZ".HasValue("x");
 ```
 
 or
 
-```C#
+```csharp
 "XYZ".HasValue("x", StringComparison.Ordinal);
 ```
 
@@ -59,11 +59,11 @@ _EqualsIgnoreCase_ - A wrapper around `Equals` to always be a case insensitive c
 
 e.g.
 
-```C#
+```csharp
 "XYZ".EqualsIgnoreCase("xyz");
 ```
 
-```C#
+```csharp
 string value = null;
 value.EqualsIgnoreCase(null);
 ```
@@ -74,13 +74,13 @@ _SubstringOrEmpty_ - A safe version of substring that returns an empty string if
 
 e.g.
 
-```C#
+```csharp
 "Hello World".SubstringOrEmpty(12, 10);
 ```
 
 returns ""
 
-```C#
+```csharp
 "Hello World".SubstringOrEmpty(9, 10);
 ```
 
@@ -90,13 +90,13 @@ _SubstringAfterValue_ - A substring that returns the remaining string after a gi
 
 e.g.
 
-```C#
+```csharp
 "Hello World".SubstringAfterValue("Hello ");
 ```
 
 returns "World"
 
-```C#
+```csharp
 "Hello World".SubstringAfterValue('W');
 ```
 
@@ -104,13 +104,13 @@ returns "orld"
 
 Case Sensitve substring
 
-```C#
+```csharp
 "Hello world World".SubstringAfterValue('W', StringComparison.Ordinal);
 ```
 
 returns "orld"
 
-```C#
+```csharp
 "Hello world World".SubstringAfterValue("world", StringComparison.Ordinal);
 ```
 
@@ -120,13 +120,13 @@ _SubstringAfterLastValue_ - A substring that returns the remaining string after 
 
 e.g.
 
-```C#
+```csharp
 "Hello World hello@world.com".SubstringAfterLastValue("Hello");
 ```
 
 returns "@world.com"
 
-```C#
+```csharp
 "Hello World hello@world.com".SubstringAfterLastValue('W');
 ```
 
@@ -134,13 +134,13 @@ returns "orld.com"
 
 Case Sensitve substring
 
-```C#
+```csharp
 "Hello world World".SubstringAfterLastValue('W', StringComparison.Ordinal);
 ```
 
 returns "orld"
 
-```C#
+```csharp
 "Hello world World".SubstringAfterLastValue("world", StringComparison.Ordinal);
 ```
 
@@ -150,13 +150,13 @@ _SubstringBeforeValue_ - A substring that returns the string before a given stri
 
 e.g.
 
-```C#
+```csharp
 "Hello World".SubstringBeforeValue(" World");
 ```
 
 returns "Hello"
 
-```C#
+```csharp
 "Hello World".SubstringBeforeValue('W');
 ```
 
@@ -164,13 +164,13 @@ returns "Hello "
 
 Case Sensitive substring
 
-```C#
+```csharp
 "Hello world World".SubstringBeforeValue(" World", StringComparison.Ordinal);
 ```
 
 returns "Hello world"
 
-```C#
+```csharp
 "Hello world World".SubstringBeforeValue('W', StringComparison.Ordinal);
 ```
 
@@ -180,13 +180,13 @@ _SubstringBeforeLastValue_ - A substring that returns the string before the last
 
 e.g.
 
-```C#
+```csharp
 "Hello World World".SubstringBeforeLastValue(" world");
 ```
 
 returns "Hello World"
 
-```C#
+```csharp
 "Hello World World".SubstringBeforeLastValue('w');
 ```
 
@@ -194,13 +194,13 @@ returns ""Hello World "
 
 Case Sensitive substring
 
-```C#
+```csharp
 "Hello World world".SubstringBeforeLastValue(" World", StringComparison.Ordinal);
 ```
 
 returns "Hello"
 
-```C#
+```csharp
 "Hello World world".SubstringBeforeLastValue('W', StringComparison.Ordinal);
 ```
 
@@ -210,7 +210,7 @@ _SafeTrim_ - A safe version of trim that does not throw an exception if the stri
 
 e.g.
 
-```C#
+```csharp
 (null as string).SafeTrim();
 ```
 
@@ -220,7 +220,7 @@ _SafeStartsWith_ - A safe version of starts with that does not throw an exceptio
 
 e.g.
 
-```C#
+```csharp
 (null as string).SafeStartsWith("Find");
 ```
 
@@ -230,7 +230,7 @@ _SafeEndsWith_ - A safe version of ends with that does not throw an exception if
 
 e.g.
 
-```C#
+```csharp
 (null as string).SafeEndsWith("Find");
 ```
 
@@ -239,7 +239,7 @@ returns false
 _IsBase64_ - A check to see if a string has been base64 encoded
 e.g.
 
-```C#
+```csharp
 var value = Convert.ToBase64String(Encoding.UTF8.GetBytes("some value"), Base64FormattingOptions.None);
 value.IsBase64();
 ```
@@ -248,7 +248,7 @@ returns true
 
 or
 
-```C#
+```csharp
 "some value".IsBase64();
 ```
 
@@ -260,13 +260,13 @@ _ValueOrDefault_ - Get the value from a dictionary or return the default for the
 
 e.g.
 
-```C#
+```csharp
 new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("value", 99);
 ```
 
 returns 99
 
-```C#
+```csharp
 new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.ValueOrDefault("some text");
 ```
 
@@ -276,13 +276,13 @@ _TryGetValueOrDefault_ - Same as _ValueOrDefault_ only uses the dictionary metho
 
 e.g.
 
-```C#
+```csharp
 new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("value", 99);
 ```
 
 returns 99
 
-```C#
+```csharp
 new Dictionary<string, int> { { "some text", 1 }, { "more text", 2 } }.TryGetValueOrDefault("some text");
 ```
 
@@ -294,7 +294,7 @@ _Partition_ - Splits an IEnumerable collection into multiple collections based o
 
 e.g.
 
-```C#
+```csharp
 var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };`
 var result = items.Partition(4);
 ```
@@ -305,7 +305,7 @@ _Page_ - Get a part or page of data from an IEnumerable
 
 e.g.
 
-```C#
+```csharp
 var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };`
 items.Page(0, 2);
 ```
@@ -316,7 +316,7 @@ _IsNullOrEmpty_ - Performs a check on a collection for null or empty
 
 e.g.
 
-```C#
+```csharp
 List<int> list = null;
 if(list.IsNullOrEmpty())
 {
@@ -326,7 +326,7 @@ if(list.IsNullOrEmpty())
 
 or
 
-```C#
+```csharp
 var list = new List<string> { "somevalue" };
 if(!list.IsNullOrEmpty())
 {
@@ -340,7 +340,7 @@ _Combine_ - Combine multiple list together
 
 e.g.
 
-```C#
+```csharp
 var list = new List<string> { "Hello" };
 var additionalList = new List<string> { "World" };
 var anotherlList = new List<string> { "Bye" };
@@ -354,7 +354,7 @@ _Add Many_ - Add multiple items to a list
 
 e.g.
 
-```C#
+```csharp
 var items = new List<string> { "Hello", "World" };
 
 items.AddMany("Another", "Day");
@@ -370,7 +370,7 @@ _IsEqual_ - Checks if the nullable value is equal another value
 
 e.g.
 
-```C#
+```csharp
 int? value = null;
 value.IsEqual(14);
 ```
@@ -381,14 +381,14 @@ _IsNullOrDefault_ - Check if the value is null or the default value
 
 e.g.
 
-```C#
+```csharp
 int? value = 0;
 value.IsNullOrDefault();
 ```
 
 returns true as the default for an int is 0
 
-```C#
+```csharp
 bool? value = true;
 value.IsNullOrDefault();
 ```
@@ -399,19 +399,87 @@ _ValueOrDefault_ - Retrieves the value of the nullable or the default of the typ
 
 e.g.
 
-```C#
+```csharp
 long? value = 123456;
 value.ValueOrDefault();
 ```
 
 returns 123456
 
-```C#
+```csharp
 int? value = null;
 value.ValueOrDefault(-1);
 ```
 
 returns -1 as that was the default specified
+
+### Enum Flag Extensions
+
+```Csharp
+[Flags]
+public enum TestEnum : short
+{
+    None = 0,
+    Item1 = 1,
+    Item2 = 2,
+    Item3 = 4,
+    Item4 = 8,
+    Item5 = 16,
+    Item6 = 32
+}
+```
+
+_Contains_ - Returns a boolean to denote if the specified flag has been set
+
+```Csharp
+var testValue = TestEnum.Item1;
+
+var result = testValue.Contains(TestEnum.Item1);
+```
+
+result would be true
+
+_Any_ - Returns a boolean to denote if any of the specified flags have been set
+
+```Csharp
+var testValue = TestEnum.Item1 | TestEnum.Item5;
+
+var result = testValue.Any(TestEnum.Item5);
+```
+
+result would be true
+
+_All_ - Returns a boolean to denote if all of the specified flags have been set
+
+```csharp
+var testValue = TestEnum.Item1 | TestEnum.Item5 | TestEnum.Item2;
+
+var result = testValue.All(TestEnum.Item5, TestEnum.Item2);
+```
+
+result would be true
+
+_Set_ - Set flags on a given enum
+
+```csharp
+ var value = TestEnum.None;
+ var result = value.Set(TestEnum.Item2, TestEnum.Item6);
+
+ result.All(TestEnum.Item2, TestEnum.Item6)
+```
+
+result would be true
+
+_UnSet_ - UnSet flags on a give enum
+
+```csharp
+ var value = TestEnum.None;
+ var result = value.UnSet(TestEnum.Item2);
+
+ result.Contains(TestEnum.Item2);
+```
+
+return would be false
 
 ### Date Time Extensions
 
@@ -419,7 +487,7 @@ _ShouldBeWithinRangeOf_ - Determines that a DateTime is close to an expected dat
 
 e.g.
 
-```C#
+```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
 var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 05);
 
@@ -428,7 +496,7 @@ dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
 
 returns true, as the date and time we are checking is within five seconds of the expected date and time.
 
-```C#
+```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
 var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 11);
 
@@ -437,7 +505,7 @@ dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
 
 returns false, as the date and time we are checking is over the default ten seconds of the expected date and time.
 
-```C#
+```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
 var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 19);
 
@@ -450,7 +518,7 @@ _Between_ - Determines if the DateTime is between a specified start and end time
 
 e.g.
 
-```C#
+```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
 var startOfRange = new DateTime(2016, 12, 15, 12, 30, 00);
 var endOfRange = new DateTime(2017, 01, 02, 23, 59, 59);
@@ -460,7 +528,7 @@ dateToCheck.Between(startOfRange, endOfRange);
 
 returns true, as the date and time being checked is within the ranges supplied.
 
-```C#
+```csharp
 var dateToCheck = new DateTime(2017, 01, 02, 12, 30, 00);
 var startOfRange = new DateTime(2016, 12, 15, 12, 30, 00);
 var endOfRange = new DateTime(2017, 01, 02, 12, 30, 00);
@@ -476,7 +544,7 @@ Allow date/time now entries to be testable. This was inspired by Oren Eini https
 
 e.g.
 
-```C#
+```csharp
 var now = SystemTime.Now();
 
 var utc = SystemTime.UtcNow();
@@ -484,7 +552,7 @@ var utc = SystemTime.UtcNow();
 
 To setup a time in the unit tests so that when System.Now() or System.UtcNow() is called it will be a specified date/time
 
-```C#
+```csharp
 SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
 
 SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);
@@ -498,7 +566,7 @@ _Base64ToBitmap_ - A simple extension that takes a base64 bitmap string and conv
 
 e.g.
 
-```C#
+```csharp
 // The full base64 string would be larger but for this example a small bit shown then ...
 "/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAIBAQIBAQIC...".Base64ToBitmap();
 ```
@@ -515,7 +583,7 @@ _GetValueFromAnonymousType_ - Get values from `dynamic` objects by property name
 
 e.g.
 
-```C#
+```csharp
 var anon = new { Text = "Hello" };`
 ObjectExtensions.GetValueFromAnonymousType<string>(anon, "Text");
 ```
@@ -525,7 +593,7 @@ returns "Hello"
 _GetValueFromAnonymousTypeOrDefault_ - As with GetValueFromAnonymousType but returns a default value for the type if not found
 e.g.
 
-```C#
+```csharp
 var anon = new { Text = "Hello" };`
 ObjectExtensions.GetValueFromAnonymousTypeOrDefault<string>(anon, "Value");
 ```
@@ -535,7 +603,7 @@ returns null
 _IsPropertyInAnonymousType_ - Checks to see if there is a property of a given name inside a `dynamic` object
 e.g.
 
-```C#
+```csharp
 var anon = new { Text = "Hello" };`
 ObjectExtensions.IsPropertyInAnonymousType(anon, "Value");
 ```
