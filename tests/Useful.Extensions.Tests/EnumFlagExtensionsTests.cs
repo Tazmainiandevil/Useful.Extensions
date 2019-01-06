@@ -63,7 +63,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item1 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.Any(TestEnumShort.Item1, TestEnumShort.Item3, TestEnumShort.Item4);
+            var result = testValue.HasAnyOf(TestEnumShort.Item1, TestEnumShort.Item3, TestEnumShort.Item4);
 
             // Assert
             result.Should().BeTrue();
@@ -76,7 +76,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.Any(TestEnumShort.Item1, TestEnumShort.Item3, TestEnumShort.Item4);
+            var result = testValue.HasAnyOf(TestEnumShort.Item1, TestEnumShort.Item3, TestEnumShort.Item4);
 
             // Assert
             result.Should().BeFalse();
@@ -89,7 +89,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.Any(null);
+            var result = testValue.HasAnyOf(null);
 
             // Assert
             result.Should().BeFalse();
@@ -106,7 +106,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.All(TestEnumShort.Item6, TestEnumShort.Item2);
+            var result = testValue.HasAllOf(TestEnumShort.Item6, TestEnumShort.Item2);
 
             // Assert
             result.Should().BeTrue();
@@ -119,7 +119,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.All(TestEnumShort.Item6, TestEnumShort.Item1);
+            var result = testValue.HasAllOf(TestEnumShort.Item6, TestEnumShort.Item1);
 
             // Assert
             result.Should().BeFalse();
@@ -132,7 +132,7 @@ namespace Useful.Extensions.Tests
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;
 
             // Act
-            var result = testValue.All(null);
+            var result = testValue.HasAllOf(null);
 
             // Assert
             result.Should().BeFalse();

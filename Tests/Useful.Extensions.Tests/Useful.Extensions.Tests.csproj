@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;net46;net461;netcoreapp2.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.5.0" />
+    <PackageReference Include="FluentAssertions" Version="5.5.3" />
     <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.console" Version="2.4.1">

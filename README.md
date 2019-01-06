@@ -439,22 +439,22 @@ var result = testValue.Contains(TestEnum.Item1);
 
 result would be true
 
-_Any_ - Returns a boolean to denote if any of the specified flags have been set
+_HasAnyOf_ - Returns a boolean to denote if any of the specified flags have been set
 
 ```Csharp
 var testValue = TestEnum.Item1 | TestEnum.Item5;
 
-var result = testValue.Any(TestEnum.Item5);
+var result = testValue.HasAnyOf(TestEnum.Item5);
 ```
 
 result would be true
 
-_All_ - Returns a boolean to denote if all of the specified flags have been set
+_HasAllOf_ - Returns a boolean to denote if all of the specified flags have been set
 
 ```csharp
 var testValue = TestEnum.Item1 | TestEnum.Item5 | TestEnum.Item2;
 
-var result = testValue.All(TestEnum.Item5, TestEnum.Item2);
+var result = testValue.HasAllOf(TestEnum.Item5, TestEnum.Item2);
 ```
 
 result would be true
