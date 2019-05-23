@@ -334,6 +334,28 @@ if(!list.IsNullOrEmpty())
 }
 ```
 
+_IsValueInList_ - Checks for a value that exists in the list
+
+e.g.
+
+```csharp
+var list = new[] { "One", "Two", "Three", "Four" };
+if(list.IsValueInList("five"))
+{
+  // Perform logic here
+}
+```
+
+or
+
+```csharp
+var list = new[] { 1, 2, 3, 4 };
+if(list.IsValueInList(3))
+{
+  // Perform logic here
+}
+```
+
 ### List Extensions
 
 _Combine_ - Combine multiple list together
