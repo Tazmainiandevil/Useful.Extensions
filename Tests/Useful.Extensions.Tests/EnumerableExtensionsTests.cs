@@ -1,7 +1,7 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -42,7 +42,7 @@ namespace Useful.Extensions.Tests
         public void test_partition_returns_the_expected_items(int partitionSize, IEnumerable<int[]> expectedItems)
         {
             // Arrange
-            var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };            
+            var items = new List<int> { 0, 1, 2, 3, 4, 5, 6 };
 
             // Act
             var result = items.Partition(partitionSize).ToList();
@@ -246,7 +246,7 @@ namespace Useful.Extensions.Tests
         {
             get
             {
-                yield return new object[] {Enumerable.Empty<int>()};
+                yield return new object[] { Enumerable.Empty<int>() };
                 yield return new object[] { null };
             }
         }
@@ -276,7 +276,7 @@ namespace Useful.Extensions.Tests
         public void ienumerable_is_null_or_empty_not_with_entries_returns_true()
         {
             // Arrange
-            var list = new [] { 1, 2, 3, 4 };
+            var list = new[] { 1, 2, 3, 4 };
 
             // Act
             var result = !list.IsNullOrEmpty();
@@ -329,5 +329,217 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion IsNullOrEmpty extension
+
+        #region IsValueInList extension
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_is_null_then_false_is_returned()
+        {
+            // Arrange
+            // Act
+            var result = ((string[])null).IsValueInList("one");
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void given_is_value_in_list_when_list_of_strings_and_search_is_null_or_empty_then_false_is_returned(string data)
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList(data);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_and_value_exists_then_true_is_returned()
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList("one");
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_and_value_not_in_the_list_then_false_is_returned()
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList("five");
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_is_null_case_sensitivity_defined_then_false_is_returned()
+        {
+            // Arrange
+            // Act
+            var result = ((string[])null).IsValueInList("one", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void given_is_value_in_list_when_list_of_strings_and_search_is_null_or_empty_and_case_defined_then_false_is_returned(string data)
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList(data, StringComparison.Ordinal);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_and_value_exists_and_search_by_case_then_true_is_returned()
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList("One", StringComparison.Ordinal);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_strings_and_value_exists_and_search_by_case_insensitive_then_true_is_returned()
+        {
+            var list = new[] { "One", "Two", "Three", "Four" };
+
+            // Act
+            var result = list.IsValueInList("two", StringComparison.OrdinalIgnoreCase);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_integers_and_value_exists_then_true_is_returned()
+        {
+            var list = new[] { 1, 2, 3, 4 };
+
+            // Act
+            var result = list.IsValueInList(1);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_integers_and_value_not_in_the_list_then_false_is_returned()
+        {
+            var list = new[] { 1, 2, 3, 4 };
+
+            // Act
+            var result = list.IsValueInList(8);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_doubles_and_value_exists_then_true_is_returned()
+        {
+            var list = new[] { 1.1d, 2.2d, 3.3d, 4.4d };
+
+            // Act
+            var result = list.IsValueInList(3.3d);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_doubles_and_value_not_in_the_list_then_false_is_returned()
+        {
+            var list = new[] { 1.1d, 2.2d, 3.3d, 4.4d };
+
+            // Act
+            var result = list.IsValueInList(8.3d);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_integers_is_null_then_false_is_returned()
+        {
+            // Arrange
+            // Act
+            var result = ((int[])null).IsValueInList(1);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_objects_is_null_then_false_is_returned()
+        {
+            // Arrange
+            // Act
+            var result = ((TestInValue[])null).IsValueInList(new TestInValue());
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void given_is_value_in_list_when_list_of_objects_with_equality_and_in_the_list_then_true_is_returned()
+        {
+            // Arrange
+            var items = new[]
+            {
+                new TestInValue {Id = 1, Value = "One"},
+                new TestInValue {Id = 2, Value = "Two"},
+            };
+
+            // Act
+            var result = items.IsValueInList(new TestInValue { Id = 2, Value = "Two" });
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        public class TestInValue : IEquatable<TestInValue>
+        {
+            public int Id { get; set; }
+            public string Value { get; set; }
+
+            public bool Equals(TestInValue other)
+            {
+                if (other == null)
+                {
+                    return false;
+                }
+
+                return Id.Equals(other?.Id) && Value.Equals(other?.Value);
+            }
+
+            public override bool Equals(object obj)
+            {
+                return Equals((TestInValue)obj);
+            }
+        }
+
+        #endregion IsValueInList extension
     }
 }
