@@ -1,9 +1,8 @@
-﻿#if NET452 || NET46
+﻿#if NETSTANDARD2_0
 using System;
 using System.Reflection;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
 
 namespace Useful.Extensions
 {
