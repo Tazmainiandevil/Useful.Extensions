@@ -1,9 +1,8 @@
-﻿#if NET452 || NET46
+﻿#if NETSTANDARD2_0
 using System;
 using System.Reflection;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
 
 namespace Useful.Extensions
 {
@@ -41,7 +40,7 @@ namespace Useful.Extensions
         }
 
         /// <summary>
-        /// Extract the value from an anonymous object or return the default if not found
+        /// Extract the value from an anonymouse object or return the default if not found
         /// </summary>
         /// <param name="src">The anonymous object</param>
         /// <param name="property">The name of the property to get the value from</param>

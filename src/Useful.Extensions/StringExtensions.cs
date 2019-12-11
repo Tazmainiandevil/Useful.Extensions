@@ -95,7 +95,7 @@ namespace Useful.Extensions
             return (src ?? string.Empty).StartsWith(find, comparison);
         }
 
-        #if !NETSTANDARD1_3 && !NETSTANDARD1_6
+        #if NETSTANDARD2_0
 
         /// <summary>
         /// Perform a Starts With even if the src is null
@@ -138,7 +138,7 @@ namespace Useful.Extensions
             return (src ?? string.Empty).EndsWith(find, comparison);
         }
 
-        #if !NETSTANDARD1_3 && !NETSTANDARD1_6
+        #if NETSTANDARD2_0
         /// <summary>
         /// Perform a Ends With even if the src is null
         /// </summary>

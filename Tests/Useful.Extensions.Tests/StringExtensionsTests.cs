@@ -790,7 +790,7 @@ namespace Useful.Extensions.Tests
             result.Should().BeFalse();
         }
 
-#if !NETSTANDARD1_3
+#if NETSTANDARD1_6 || NETSTANDARD2_0
 
         public static IEnumerable<object[]> ValidBase64TestData
         {

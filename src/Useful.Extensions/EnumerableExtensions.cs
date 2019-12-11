@@ -74,7 +74,7 @@ namespace Useful.Extensions
         /// <param name="length">The number of items to return</param>
         /// <returns>The subset of the collection</returns>
         public static IQueryable<T> Page<T>(this IQueryable<T> src, int start, int length)
-        {            
+        {
             return src.Skip(start).Take(length) as IQueryable<T>;
         }
 
@@ -112,5 +112,24 @@ namespace Useful.Extensions
         }
 
         #endregion IsNullOrEmpty
+
+        #region IsValueInList
+
+        public static bool IsValueInList(this IEnumerable<string> src, string find)
+        {
+            return src != null && src.Any(x => x.EqualsIgnoreCase(find));
+        }
+
+        public static bool IsValueInList(this IEnumerable<string> src, string find, StringComparison compare)
+        {
+            return src != null && src.Any(x => x.Equals(find, compare));
+        }
+
+        public static bool IsValueInList<T>(this IEnumerable<T> src, T find)
+        {
+            return src != null && src.Any(x => x.Equals(find));
+        }
+        
+        #endregion IsValueInList
     }
 }

@@ -1,4 +1,4 @@
-﻿#if NET452 || NET46
+﻿//#if NETSTANDARD2_0
 
 using FluentAssertions;
 using System;
@@ -258,4 +258,4 @@ namespace Useful.Extensions.Tests
        #endregion Object Clone Tests
     }
 }
-#endif
+//#endif

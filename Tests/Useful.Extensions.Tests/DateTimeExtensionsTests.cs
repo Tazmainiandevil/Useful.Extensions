@@ -16,8 +16,7 @@ namespace Useful.Extensions.Tests
         {
             new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 02) },
             new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 09) },
-            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 51) },
-            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 30, 00) }
+            new object[] { new DateTime(2017, 01, 01, 12, 30, 00), new DateTime(2017, 01, 01, 12, 29, 51) }
         };
 
         public static IEnumerable<object[]> InValidDates => new[]
@@ -81,39 +80,6 @@ namespace Useful.Extensions.Tests
             result.Should().BeFalse();
         }
 
-        [Fact]
-        public void test_should_be_within_range_with_valid_date_and_zero_range_but_one_second_out_returns_false_using_range()
-        {
-            // Arrange.
-            var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
-            var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 01);
-
-            // Act.
-            var result = dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, 0);
-
-            // Assert.
-            result.Should().BeFalse();
-        }
-
-        [Theory]
-        [InlineData(-1)]
-        [InlineData(-20)]
-        [InlineData(-1000)]
-        public void test_should_be_within_range_with_valid_date_but_negative_parameter_throws_argument_out_of_range_exception(int rangeParameter)
-        {
-            // Arrange.
-            var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
-            var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 15);
-
-            // Act.
-            var expectedException =
-                Assert.Throws<ArgumentOutOfRangeException>(
-                    () => dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, rangeParameter));
-
-            // Assert.
-            expectedException.Message.Should().Contain("Range parameter must be a positive value.");
-        }
-        
         #endregion ShouldBeWithinRangeOf
 
         #region Between
