@@ -9,6 +9,45 @@ I found myself creating useful extensions over and over as I moved along my care
 
 ## Methods
 
+### Array Extensions
+
+_SafeGetElement_ - Gets an element from an array, without throwing an exception if the index is out of bounds.
+
+#### Using just the index parameter (array location)
+
+e.g.
+
+```csharp
+var intArray = new[] { 2, 4, 8, 1, 7 };
+var itemValue = intArray.SafeGetElement(2);
+```
+
+itemValue will be 8.
+
+#### Using the array location and a default value to return if the element is not found
+
+e.g.
+
+```csharp
+var intArray = new[] { 2, 4, 8, 1, 7 };
+var itemValue = intArray.SafeGetElement(20, 1);
+```
+
+itemValue will be 1, as the array does not contain 20 elements.
+
+#### Using the array location, default value and a function to apply to the element value
+
+e.g.
+
+```csharp
+var intArray = new[] { 2, 4, 8, 1, 7 };
+var itemValue = intArray.SafeGetElement(1, 1, (s) => s * 2);
+```
+
+itemValue will be 8, as the element at location 1, is 4, which is then multiplied by 2.
+
+The test project has more examples using strings and classes.
+
 ### Character Extensions
 
 _EqualTo_ - A simple comparison of characters including an option to compare by case (default is to ignore case)
