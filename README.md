@@ -102,7 +102,7 @@ returns "World"
 
 returns "orld"
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```csharp
 "Hello world World".SubstringAfterValue('W', StringComparison.Ordinal);
@@ -132,7 +132,7 @@ returns "@world.com"
 
 returns "orld.com"
 
-Case Sensitve substring
+Case Sensitive substring
 
 ```csharp
 "Hello world World".SubstringAfterLastValue('W', StringComparison.Ordinal);
@@ -365,9 +365,9 @@ e.g.
 ```csharp
 var list = new List<string> { "Hello" };
 var additionalList = new List<string> { "World" };
-var anotherlList = new List<string> { "Bye" };
+var anotherList = new List<string> { "Bye" };
 
-list.Combine(additionalList, anotherlList);
+list.Combine(additionalList, anotherList);
 ```
 
 Results in a list containing "Hello", "World", "Bye"
@@ -584,7 +584,7 @@ SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);
 
 ### Object Helpers
 
-_Clone_ - An implentation of a deep clone using serialization
+_Clone_ - An implementation of a deep clone using serialization
 
 The next set are helper functions rather than extensions
 
