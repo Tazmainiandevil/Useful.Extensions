@@ -9,6 +9,10 @@ I found myself creating useful extensions over and over as I moved along my care
 
 ## Methods
 
+### Array Extensions
+
+_SafeGetElement_ - Gets an element from an array, without throwing an exception if the index is out of bounds.
+
 ### Character Extensions
 
 _EqualTo_ - A simple comparison of characters including an option to compare by case (default is to ignore case)
