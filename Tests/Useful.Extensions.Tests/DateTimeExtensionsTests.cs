@@ -152,5 +152,23 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion Between
+
+        #region GetAge
+
+        [Fact]
+        public void test_get_age_with_date_of_birth_in_past_returns_expected_age()
+        {
+            // Arrange.
+            var dateOfCreation = new DateTime(DateTime.Now.AddYears(-10).Year, 03, 21);
+            var expectedAge = 9;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge(new DateTime(DateTime.Now.AddYears(-1).Year, 03, 21));
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        #endregion GetAge
     }
 }
