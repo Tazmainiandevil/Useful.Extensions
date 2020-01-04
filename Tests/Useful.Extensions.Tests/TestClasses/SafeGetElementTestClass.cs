@@ -16,13 +16,7 @@ namespace Useful.Extensions.Tests.TestClasses
 
         public SafeGetElementTestClass SetAge()
         {
-            var now = DateTime.Now;
-            var age = now.Year - DateOfBirth.Year;
-
-            if (now.Month < DateOfBirth.Month || now.Month == DateOfBirth.Month && now.Day < DateOfBirth.Day) age--;
-
-            Age = age;
-
+            Age = DateOfBirth.GetAge();
             return this;
         }
     }

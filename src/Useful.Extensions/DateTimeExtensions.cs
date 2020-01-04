@@ -53,5 +53,23 @@ namespace Useful.Extensions
                        ? datetime >= startTime && datetime <= endTime
                        : datetime > startTime && datetime < endTime;
         }
+
+        /// <summary>
+        /// Determines the current age based on the date of birth / creation supplied.
+        /// </summary>
+        /// <param name="dateOfBirth"> The date of birth / creation supplied for the person / object we are looking the age for. </param>
+        /// <param name="assessmentDate"> The date that we want to use for the age check. </param>
+        /// <returns>
+        /// The age of the person or object.
+        /// </returns>
+        public static int GetAge(this DateTime dateOfBirth, DateTime assessmentDate = default)
+        {
+            var now = assessmentDate == new DateTime(0001, 01, 01) ? DateTime.Now : assessmentDate;
+            var age = now.Year - dateOfBirth.Year;
+
+            if (now.Month < dateOfBirth.Month || now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day) age--;
+
+            return age;
+        }
     }
 }

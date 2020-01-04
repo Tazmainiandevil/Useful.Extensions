@@ -152,5 +152,163 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion Between
+
+        #region GetAge
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void test_get_age_with_date_of_birth_in_past_with_days_before_check_date_returns_expected_age(int daysToAdd)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, -10, 0, daysToAdd);
+            var expectedAge = 9;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge();
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
+        [InlineData(-100)]
+        public void test_get_age_with_date_of_birth_in_past_with_days_after_check_date_returns_expected_age(int daysToSubtract)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, -10, 0, daysToSubtract);
+            var expectedAge = 10;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge();
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+        
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void test_get_age_with_date_of_birth_in_future_with_days_before_check_date_returns_expected_age(int daysToAdd)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, 10, 0, daysToAdd);
+            var expectedAge = -11;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge();
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
+        [InlineData(-100)]
+        public void test_get_age_with_date_of_birth_in_future_with_days_after_check_date_returns_expected_age(int daysToSubtract)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, 10, 0, daysToSubtract);
+            var expectedAge = -10;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge();
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void test_get_age_both_parameters_with_date_of_birth_in_past_with_days_before_check_date_returns_expected_age(int daysToAdd)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, -10, 0, daysToAdd);
+            var dateForCheck = SafeGetTestDate(DateTime.Now, -5, 0, (daysToAdd * -1));
+            var expectedAge = 4;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge(dateForCheck);
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
+        [InlineData(-100)]
+        public void test_get_age_both_parameters_with_date_of_birth_in_past_with_days_after_check_date_returns_expected_age(int daysToSubtract)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, -10, 0, daysToSubtract);
+            var dateForCheck = SafeGetTestDate(DateTime.Now, -5, 0, daysToSubtract);
+            var expectedAge = 5;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge(dateForCheck);
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        [InlineData(100)]
+        public void test_get_age_both_parameters_with_date_of_birth_in_future_with_days_before_check_date_returns_expected_age(int daysToAdd)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, 10, 0, daysToAdd);
+            var dateForCheck = SafeGetTestDate(DateTime.Now, 5, 0, (daysToAdd * -1));
+            var expectedAge = -6;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge(dateForCheck);
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        [InlineData(-10)]
+        [InlineData(-100)]
+        public void test_get_age_both_parameters_with_date_of_birth_in_future_with_days_after_check_date_returns_expected_age(int daysToSubtract)
+        {
+            // Arrange.
+            var dateOfCreation = SafeGetTestDate(DateTime.Now, 10, 0, daysToSubtract);
+            var dateForCheck = SafeGetTestDate(DateTime.Now, 5, 0, daysToSubtract);
+            var expectedAge = -5;
+
+            // Act.
+            var actualAge = dateOfCreation.GetAge(dateForCheck);
+
+            // Assert.
+            actualAge.Should().Be(expectedAge);
+        }
+
+        private DateTime SafeGetTestDate(DateTime dateToStartFrom, int yearsToAdd, int monthsToAdd, int daysToAdd)
+        {
+            var futureDate = dateToStartFrom.AddYears(yearsToAdd).AddMonths(monthsToAdd).AddDays(daysToAdd);
+            return futureDate;
+        }
+
+        #endregion GetAge
     }
 }

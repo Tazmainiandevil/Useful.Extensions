@@ -359,13 +359,16 @@ namespace Useful.Extensions.Tests
                     DateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23)
                 }
             };
+            
+            var expectedDateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23);
+            var expectedAge = expectedDateOfBirth.GetAge();
 
             var expected = new SafeGetElementTestClass
             {
                 Identity = 2,
                 Name = "Piglet",
-                DateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23),
-                Age = 54
+                DateOfBirth = expectedDateOfBirth,
+                Age = expectedAge
             };
 
             // Act.
@@ -424,12 +427,15 @@ namespace Useful.Extensions.Tests
                 }
             };
 
+            var expectedDateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23);
+            var expectedAge = expectedDateOfBirth.GetAge();
+
             var expected = new SafeGetElementTestClass
             {
                 Identity = 2,
                 Name = "Piglet",
-                DateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23),
-                Age = 1054
+                DateOfBirth = expectedDateOfBirth,
+                Age = expectedAge + 1000
             };
 
             // Act.
