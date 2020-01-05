@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -280,13 +279,12 @@ namespace Useful.Extensions.Tests
         [InlineData(null)]
         public void test_safe_starts_with_when_culture_and_ignore_case_is_specified_and_value_is_null_or_empty_returns_false(string value)
         {
-            // Arrange            
+            // Arrange
             // Act
             var result = value.SafeStartsWith("Hello", true, CultureInfo.CurrentCulture);
 
             // Assert
             result.Should().BeFalse();
-
         }
 
         #endregion Safe StartsWith
@@ -331,6 +329,7 @@ namespace Useful.Extensions.Tests
             // Assert
             result.Should().BeFalse();
         }
+
         #endregion Safe EndsWith
 
         #region SubstringOrEmpty
@@ -816,5 +815,158 @@ namespace Useful.Extensions.Tests
 #endif
 
         #endregion Is base 64 string
+
+        #region IsAllNumber
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("   ")]
+        public void given_is_numeric_when_null_or_empty_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllNumber();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("123a")]
+        [InlineData("A123")]
+        [InlineData("12a3")]
+        [InlineData("%^&£;///123")]
+        public void given_is_numeric_when_value_contains_any_non_numeric_character_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllNumber();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("12356")]
+        [InlineData("1")]
+        [InlineData("123456789012345789111111")]
+        [InlineData("394732090123028340374932879123789132749374392471923729371")]
+        public void given_is_numeric_when_string_contains_all_digits_then_returns_true(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllNumber();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        #endregion IsAllNumber
+
+        #region IsAllAlpha
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("   ")]
+        public void given_is_alpha_when_null_or_empty_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlpha();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("1ldjfls")]
+        [InlineData("A123dfdsf")]
+        [InlineData("12a3")]
+        [InlineData("%^&£;///Akjdsaljajiw")]
+        public void given_is_alpha_when_value_contains_any_non_alpha_character_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlpha();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("abcdef")]
+        [InlineData("ABCDEF")]
+        [InlineData("a")]
+        [InlineData("A")]
+        [InlineData("dslfjsdljdsljfdlfjldsfjlhdiahdoidosjdlajodslakdjasdad")]
+        [InlineData("akjsdkhdfkhkdjsfksdjhfkewieosdisdksdhkjsdhfksiasddhdjfhcnpasplaspldjskdhahdfa")]
+        [InlineData("KASJFHKSFHKNDDNKSANDCLJLSAKDNSDKDNASKJNZSDNK")]
+        [InlineData("lsdfhklLDFJGLFDJGLlfgjdlLJDFGLJDlfdgljdLFDJDGLjglfdgjl")]
+        public void given_is_alpha_when_string_contains_all_alpha_then_returns_true(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlpha();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        #endregion IsAllAlpha
+
+        #region IsAllAlphaOrNumbers
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("   ")]
+        public void given_is_alpha_or_number_when_null_or_empty_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlphaOrNumbers();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("1$")]
+        [InlineData("A£")]
+        [InlineData("a^")]
+        [InlineData("%^&£;///Akjdsaljajiw123")]
+        public void given_is_alpha_or_number_when_value_contains_any_non_alpha_character_then_returns_false(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlphaOrNumbers();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("abcdef")]
+        [InlineData("ABCDEF")]
+        [InlineData("ABCDEF72728")]
+        [InlineData("a")]
+        [InlineData("A1")]
+        [InlineData("dslfjsdljdsljfdlfjldsfjlhdiahdoidosjdlajodslakdjasdad")]
+        [InlineData("akjsdkhdfkhkdjsfksdjhfkewieosdisdksdhkjsdhfksiasddhdjfhcnpasplaspldjskdhahdfa")]
+        [InlineData("KASJFHKSFHKNDDNKSANDCLJLSAKDNSDKDNASKJNZSDNK")]
+        [InlineData("lsdfhklLDFJGLFDJGLlfgjdlLJDFGLJDlfdgljdLFDJDGLjglfdgjl")]
+        public void given_is_alpha_or_number_when_string_contains_all_alpha_and_or_numeric_then_returns_true(string input)
+        {
+            // Arrange
+            // Act
+            var result = input.IsAllAlphaOrNumbers();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        #endregion IsAllAlphaOrNumbers
     }
 }

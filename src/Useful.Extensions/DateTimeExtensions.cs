@@ -64,10 +64,10 @@ namespace Useful.Extensions
         /// </returns>
         public static int GetAge(this DateTime dateOfBirth, DateTime assessmentDate = default)
         {
-            var now = assessmentDate == new DateTime(0001, 01, 01) ? DateTime.Now : assessmentDate;
+            var now = assessmentDate == default ? DateTime.Now : assessmentDate;
             var age = now.Year - dateOfBirth.Year;
 
-            if (now.Month < dateOfBirth.Month || now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day) age--;
+            if (now.Month < dateOfBirth.Month || now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day) { age--; }
 
             return age;
         }

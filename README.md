@@ -293,6 +293,60 @@ or
 
 returns false
 
+_IsAllNumber_ - Determine if the whole string value contains only number characters
+
+e.g.
+
+```csharp
+"1235456".IsAllNumber();
+```
+
+returns true
+
+e.g.
+
+```csharp
+"1235456ABc".IsAllNumber();
+```
+
+returns false
+
+_IsAllAlpha_ - Determine if the whole string value contains only alpha characters
+
+e.g.
+
+```csharp
+"ABCDE".IsAllAlpha();
+```
+
+returns true
+
+e.g.
+
+```csharp
+"ABCDE123$".IsAllAlpha();
+```
+
+returns false
+
+_IsAllAlphaOrNumber -  Determine if the whole string value contains only alpha or number characters
+
+e.g.
+
+```csharp
+"1A235456c".IsAllAlphaOrNumber();
+```
+
+returns true
+
+e.g.
+
+```csharp
+"1A235456c%%".IsAllAlphaOrNumber();
+```
+
+returns false
+
 ### Dictionary Extensions
 
 _ValueOrDefault_ - Get the value from a dictionary or return the default for the value type (the default value can be specified if needed)
@@ -598,6 +652,28 @@ dateToCheck.Between(startOfRange, endOfRange, true);
 ```
 
 returns true, as the date and time being checked is within the ranges supplied, and as the inclusive parameter is true, we are going right up to the end range limit.
+
+_GetAge_ - Get the age from a given date representing the Date of Birth and now or a given date
+
+e.g.
+
+```csharp
+var dob = new DateTime(2003, 07, 04);
+
+var ageToday = dob.GetAge();
+
+```
+
+ageToday (ran on 05/01/2020) would return 16. If supplying the date then it would return the same using the syntax below
+
+e.g.
+
+```csharp
+var dob = new DateTime(2003, 07, 04);
+
+var ageToday = dob.GetAge(new DateTime(2020, 01, 05));
+
+```
 
 ### System Time Helpers
 

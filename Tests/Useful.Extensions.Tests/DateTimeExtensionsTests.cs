@@ -190,7 +190,7 @@ namespace Useful.Extensions.Tests
             // Assert.
             actualAge.Should().Be(expectedAge);
         }
-        
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
