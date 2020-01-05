@@ -293,12 +293,12 @@ or
 
 returns false
 
-_IsAllNumber_ - Determine if the whole string value contains only number characters
+_IsAllNumbers_ - Determine if the whole string value contains only number characters
 
 e.g.
 
 ```csharp
-"1235456".IsAllNumber();
+"1235456".IsAllNumbers();
 ```
 
 returns true
@@ -306,7 +306,7 @@ returns true
 e.g.
 
 ```csharp
-"1235456ABc".IsAllNumber();
+"1235456ABc".IsAllNumbers();
 ```
 
 returns false
@@ -329,12 +329,12 @@ e.g.
 
 returns false
 
-_IsAllAlphaOrNumber -  Determine if the whole string value contains only alpha or number characters
+_IsAllAlphaOrNumbers -  Determine if the whole string value contains only alpha or number characters
 
 e.g.
 
 ```csharp
-"1A235456c".IsAllAlphaOrNumber();
+"1A235456c".IsAllAlphaOrNumbers();
 ```
 
 returns true
@@ -342,7 +342,7 @@ returns true
 e.g.
 
 ```csharp
-"1A235456c%%".IsAllAlphaOrNumber();
+"1A235456c%%".IsAllAlphaOrNumbers();
 ```
 
 returns false
