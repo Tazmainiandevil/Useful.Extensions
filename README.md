@@ -329,7 +329,7 @@ e.g.
 
 returns false
 
-_IsAllAlphaOrNumbers -  Determine if the whole string value contains only alpha or number characters
+_IsAllAlphaOrNumbers_ -  Determine if the whole string value contains only alpha or number characters
 
 e.g.
 
