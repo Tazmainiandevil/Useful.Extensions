@@ -372,8 +372,7 @@ namespace Useful.Extensions
                 return false;
             }
 
-            var regex = new Regex(IsNumericPattern);
-            return regex.IsMatch(src);
+            return Regex.IsMatch(src, IsNumericPattern, RegexOptions.Compiled);
         }
 
         #endregion IsAllNumbers
@@ -394,8 +393,7 @@ namespace Useful.Extensions
                 return false;
             }
 
-            var regex = new Regex(IsAlphaPattern);
-            return regex.IsMatch(src);
+            return Regex.IsMatch(src, IsAlphaPattern, RegexOptions.Compiled);
         }
 
         #endregion IsAllAlpha
@@ -416,8 +414,7 @@ namespace Useful.Extensions
                 return false;
             }
 
-            var regex = new Regex(IsAlphaNumericPattern);
-            return regex.IsMatch(src);
+            return Regex.IsMatch(src, IsAlphaNumericPattern, RegexOptions.Compiled);
         }
 
         #endregion IsAllAlphaOrNumbers
