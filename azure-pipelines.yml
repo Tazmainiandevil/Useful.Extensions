@@ -1,0 +1,55 @@
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: Release
+
+jobs:
+  - job: BuildCode
+    displayName: Build Code
+    steps:
+    - task: NuGetCommand@2
+      inputs:
+        command: 'restore'
+        restoreSolution: '**/*.sln'
+        feedsToUse: 'select'
+    - task: VSBuild@1
+      inputs:
+        solution: '**\*.sln'
+        configuration: '$(buildConfiguration)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/src/Useful.Extensions/bin
+        artifactName: MyApp
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/tests/Useful.Extensions.Tests/bin
+        artifactName: MyAppTests
+
+  - job: TestCode
+    displayName: Unit Test Run
+    dependsOn: BuildCode
+    strategy:
+      parallel: 2
+    steps:
+    - checkout: none
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'MyAppTests'
+        targetPath: '$(Pipeline.Workspace)'
+    - task: VSTest@2
+      inputs:
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: |
+          **\*test*.dll
+          !**\*TestAdapter.dll
+          !**\obj\**
+        searchFolder: '$(Pipeline.Workspace)'
+        runInParallel: true
+        batchingBasedOnAgentsOption: 'customBatchSize'
+        customBatchSizeValue: '100'
+        configuration: '$(buildConfiguration)'
+        failOnMinTestsNotRun: true
