@@ -17,7 +17,7 @@ namespace Useful.Extensions.Tests
             Action act = () => ((List<string>)null).AddMany();
 
             // Assert
-            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
+            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null (Parameter 'src')");
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace Useful.Extensions.Tests
             Action act = () => ((List<string>)null).Combine();
 
             // Assert
-            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null\r\nParameter name: src");
+            act.Should().Throw<ArgumentNullException>().WithMessage("The list cannot be null (Parameter 'src')");
         }
 
         [Fact]

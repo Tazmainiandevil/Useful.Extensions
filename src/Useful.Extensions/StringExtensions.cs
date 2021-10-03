@@ -39,13 +39,7 @@ namespace Useful.Extensions
         /// <returns>A boolean denoting if the find src is in the string</returns>
         public static bool HasValue(this string src, string find, StringComparison caseCompare = StringComparison.OrdinalIgnoreCase)
         {
-            if (string.IsNullOrEmpty(src) || string.IsNullOrEmpty(find))
-            {
-                return false;
-            }
-
-            var result = src.IndexOf(find, caseCompare) >= 0;
-            return result;
+            return ContainsValue(src, find, caseCompare);
         }
 
         #endregion ContainsValue / HasValue
@@ -95,8 +89,6 @@ namespace Useful.Extensions
             return (src ?? string.Empty).StartsWith(find, comparison);
         }
 
-#if NETSTANDARD2_0
-
         /// <summary>
         /// Perform a Starts With even if the src is null
         /// </summary>
@@ -109,7 +101,6 @@ namespace Useful.Extensions
         {
             return (src ?? string.Empty).StartsWith(find, ignoreCase, culture);
         }
-#endif
 
         #endregion Safe StartsWith
 
@@ -138,7 +129,6 @@ namespace Useful.Extensions
             return (src ?? string.Empty).EndsWith(find, comparison);
         }
 
-#if NETSTANDARD2_0
         /// <summary>
         /// Perform a Ends With even if the src is null
         /// </summary>
@@ -151,7 +141,6 @@ namespace Useful.Extensions
         {
             return (src ?? string.Empty).EndsWith(find, ignoreCase, culture);
         }
-#endif
 
         #endregion Safe EndsWith
 

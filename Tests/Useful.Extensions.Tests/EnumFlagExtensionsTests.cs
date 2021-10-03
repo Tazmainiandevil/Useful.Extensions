@@ -203,7 +203,7 @@ namespace Useful.Extensions.Tests
             var result = value.UnSet(entries);
 
             // Assert
-            result.Should().Be(3);
+            result.Should().Be((TestEnumShort)3);
         }
 
         #endregion UnSet

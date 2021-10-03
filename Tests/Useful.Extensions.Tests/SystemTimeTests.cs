@@ -12,7 +12,7 @@ namespace Useful.Extensions.Tests
             // Arrange
             // Act
             // Assert
-            SystemTime.Now().Should().BeCloseTo(DateTime.Now);
+            SystemTime.Now().Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(20));
         }
       
         [Fact]
@@ -21,7 +21,7 @@ namespace Useful.Extensions.Tests
             // Arrange
             // Act
             // Assert
-            SystemTime.UtcNow().Should().BeCloseTo(DateTime.UtcNow);
+            SystemTime.UtcNow().Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromMilliseconds(20));
         }
     }
 }

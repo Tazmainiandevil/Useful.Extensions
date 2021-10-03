@@ -1,6 +1,4 @@
-﻿//#if NETSTANDARD2_0
-
-using FluentAssertions;
+﻿using FluentAssertions;
 using System;
 using System.Dynamic;
 using Xunit;
@@ -192,7 +190,6 @@ namespace Useful.Extensions.Tests
 
         #region Object Clone Tests
 
-
         [Serializable]
         private class Details
         {
@@ -255,7 +252,6 @@ namespace Useful.Extensions.Tests
             result.Should().NotBeSameAs(details);
         }
 
-       #endregion Object Clone Tests
+        #endregion Object Clone Tests
     }
 }
-//#endif
