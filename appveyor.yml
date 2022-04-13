@@ -1,5 +1,5 @@
 version: 2.0.{build}
-os: Visual Studio 2019
+os: Visual Studio 2022
 configuration: Release
 
 dotnet_csproj:
