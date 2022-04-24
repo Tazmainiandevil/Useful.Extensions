@@ -305,7 +305,7 @@ namespace Useful.Extensions.Tests
 
         private DateTime SafeGetTestDate(DateTime dateToStartFrom, int yearsToAdd, int monthsToAdd, int daysToAdd)
         {
-            var futureDate = dateToStartFrom.AddYears(yearsToAdd).AddMonths(monthsToAdd).AddDays(daysToAdd);
+            var futureDate = dateToStartFrom.AddDays(daysToAdd).AddMonths(monthsToAdd).AddYears(yearsToAdd);
             return futureDate;
         }
 
