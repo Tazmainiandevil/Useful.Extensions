@@ -1,6 +1,6 @@
 # Useful.Extensions
 
-A group of useful extensions in C#, supporting .NET Standard 1.6 and .NET Standard 2.0
+A group of useful extensions in C#, supporting .NET 5.0 and NET 6.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
@@ -694,8 +694,6 @@ SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
 
 SystemTime.UtcNow = () => new DateTime(2000, 1, 1, 9, 10, 47);
 ```
-
-## .NETSTANDARD 2.0 only
 
 ### Object Helpers
 
