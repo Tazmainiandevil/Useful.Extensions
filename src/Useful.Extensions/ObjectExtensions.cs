@@ -1,8 +1,6 @@
 ﻿
 using System;
 using System.Reflection;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -103,16 +101,10 @@ namespace Useful.Extensions
             {
                 return default(T);
             }
-            
-            var byteArray = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source, GetJsonSerializerOptions()));
 
+            var byteArray = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source, GetJsonSerializerOptions()));
             return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
 
-            //var formatter = new BinaryFormatter();
-            //using var stream = new MemoryStream();
-            //formatter.Serialize(stream, source);
-            //stream.Seek(0, SeekOrigin.Begin);
-            //return (T)formatter.Deserialize(stream);
         }
 
         private static JsonSerializerOptions GetJsonSerializerOptions()
@@ -126,4 +118,5 @@ namespace Useful.Extensions
             };
         }
     }
+
 }

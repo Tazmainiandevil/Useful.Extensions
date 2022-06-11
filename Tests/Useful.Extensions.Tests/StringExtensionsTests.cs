@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -789,8 +790,6 @@ namespace Useful.Extensions.Tests
             result.Should().BeFalse();
         }
 
-#if NETSTANDARD1_6 || NETSTANDARD2_0
-
         public static IEnumerable<object[]> ValidBase64TestData
         {
             get
@@ -811,8 +810,6 @@ namespace Useful.Extensions.Tests
             // Assert
             result.Should().BeTrue();
         }
-
-#endif
 
         #endregion Is base 64 string
 
