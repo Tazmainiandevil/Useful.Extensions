@@ -1,6 +1,6 @@
 # Useful.Extensions
 
-A group of useful extensions in C#, supporting .NET Standard 2.0, .NET 6.0 and .NET 7.0
+A group of useful extensions in C#, supporting .NET 6.0 and .NET 7.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
