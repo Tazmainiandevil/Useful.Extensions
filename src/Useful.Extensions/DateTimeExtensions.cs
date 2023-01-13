@@ -50,8 +50,8 @@ namespace Useful.Extensions
         public static bool Between(this DateTime datetime, DateTime startTime, DateTime endTime, bool timesInclusive = false)
         {
             return timesInclusive
-                       ? datetime >= startTime && datetime <= endTime
-                       : datetime > startTime && datetime < endTime;
+                ? datetime >= startTime && datetime <= endTime
+                : datetime > startTime && datetime < endTime;
         }
 
         /// <summary>

@@ -195,7 +195,7 @@ namespace Useful.Extensions.Tests
         {
             public string Input { get; set; }
             public int Number { get; set; }
-            public AdditionalDetails additional { get; set; }
+            public AdditionalDetails Additional { get; set; }
         }
 
         [Serializable]
@@ -230,7 +230,7 @@ namespace Useful.Extensions.Tests
         public void test_object_clone_returns_an_equivalent_object()
         {
             // Arrange
-            var details = new Details { Input = "test1", Number = 57, additional = new AdditionalDetails { DateOfBirth = new DateTime(1973, 5, 1) } };
+            var details = new Details { Input = "test1", Number = 57, Additional = new AdditionalDetails { DateOfBirth = new DateTime(1973, 5, 1) } };
 
             // Act
             var result = details.Clone();
@@ -243,7 +243,7 @@ namespace Useful.Extensions.Tests
         public void test_object_clone_does_not_return_the_same_reference_object()
         {
             // Arrange
-            var details = new Details { Input = "test1", Number = 57, additional = new AdditionalDetails { DateOfBirth = new DateTime(1973, 5, 1) } };
+            var details = new Details { Input = "test1", Number = 57, Additional = new AdditionalDetails { DateOfBirth = new DateTime(1973, 5, 1) } };
 
             // Act
             var result = details.Clone();

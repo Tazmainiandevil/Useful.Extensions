@@ -69,7 +69,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Starts With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <returns>A boolean denoting if value starts with given value</returns>
         public static bool SafeStartsWith(this string src, string find)
@@ -80,7 +80,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Starts With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <param name="comparison">The string comparison type (defaults to Ordinal)</param>
         /// <returns>A boolean denoting if value starts with given value</returns>
@@ -92,7 +92,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Starts With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <param name="ignoreCase"></param>
         /// <param name="culture"></param>
@@ -109,7 +109,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Ends With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <returns>A boolean denoting if value ends with given value</returns>
         public static bool SafeEndsWith(this string src, string find)
@@ -120,7 +120,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Ends With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <param name="comparison">The string comparison type (defaults to Ordinal)</param>
         /// <returns>A boolean denoting if value ends with given value</returns>
@@ -132,7 +132,7 @@ namespace Useful.Extensions
         /// <summary>
         /// Perform a Ends With even if the src is null
         /// </summary>
-        /// <param name="src">The string to perform startwith on</param>
+        /// <param name="src">The string to perform start with on</param>
         /// <param name="find">The value to look for</param>
         /// <param name="ignoreCase"></param>
         /// <param name="culture"></param>
@@ -201,7 +201,7 @@ namespace Useful.Extensions
         }
 
         /// <summary>
-        /// Return the substring after the last occurance of a given character
+        /// Return the substring after the last occurrence of a given character
         /// </summary>
         /// <param name="src">The string containing the content</param>
         /// <param name="find">The string to find</param>

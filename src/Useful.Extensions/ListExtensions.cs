@@ -6,7 +6,7 @@ namespace Useful.Extensions
     /// <summary>
     /// Extensions for Lists
     /// </summary>
-    public static class ListExtenstions
+    public static class ListExtensions
     {
         /// <summary>
         /// Combine multiple lists together
@@ -23,9 +23,9 @@ namespace Useful.Extensions
             foreach (var element in otherLists)
             {
                 src.AddRange(element);
-            }            
+            }
         }
-        
+
         /// <summary>
         /// Add Many items to a list
         /// </summary>
@@ -35,7 +35,7 @@ namespace Useful.Extensions
         {
             if (src == null)
             {
-                throw new ArgumentNullException("src", "The list cannot be null");
+                throw new ArgumentNullException(nameof(src), "The list cannot be null");
             }
 
             src.AddRange(items);

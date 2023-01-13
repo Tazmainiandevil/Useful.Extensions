@@ -83,7 +83,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Fact]
-        public void set_value_on_enum_anywhen_entries_is_null_then_returns_false()
+        public void set_value_on_enum_any_when_entries_is_null_then_returns_false()
         {
             // Arrange
             var testValue = TestEnumShort.Item6 | TestEnumShort.Item5 | TestEnumShort.Item2;

@@ -113,7 +113,6 @@ namespace Useful.Extensions.Tests
             response.Should().Be(0);
         }
 
-
         [Fact]
         public void test_value_or_default_on_a_nullable_type_with_null_value_and_specific_default_value_returns_the_expected_default_value()
         {
@@ -139,6 +138,7 @@ namespace Useful.Extensions.Tests
             // Assert
             response.Should().Be(66);
         }
+
         #endregion ValueOrDefault
     }
 }

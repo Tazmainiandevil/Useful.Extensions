@@ -52,6 +52,6 @@ namespace Useful.Extensions.Tests
             // Act
             // Assert
             Assert.True(first.EqualTo(compare, StringComparison.Ordinal));
-        }      
+        }
     }
 }

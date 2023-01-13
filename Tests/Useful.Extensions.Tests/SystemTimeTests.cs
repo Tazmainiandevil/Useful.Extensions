@@ -14,7 +14,7 @@ namespace Useful.Extensions.Tests
             // Assert
             SystemTime.Now().Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(20));
         }
-      
+
         [Fact]
         public void system_time_returns_utc_now()
         {

@@ -74,11 +74,11 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void test_string_contains_value_returns_false_if_source_is_null_or_empty(string sometext)
+        public void test_string_contains_value_returns_false_if_source_is_null_or_empty(string someText)
         {
             // Arrange
             // Act
-            var valid = sometext.ContainsValue("sometext");
+            var valid = someText.ContainsValue("someText");
 
             // Assert
             valid.Should().BeFalse();
@@ -87,13 +87,13 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void test_string_contains_value_returns_false_if_find_is_null_or_empty(string findtext)
+        public void test_string_contains_value_returns_false_if_find_is_null_or_empty(string findText)
         {
             // Arrange
-            var sometext = "sometext";
+            var someText = "someText";
 
             // Act
-            var valid = sometext.ContainsValue(findtext);
+            var valid = someText.ContainsValue(findText);
 
             // Assert
             valid.Should().BeFalse();
@@ -163,11 +163,11 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void test_string_has_value_returns_false_if_source_is_null_or_empty(string sometext)
+        public void test_string_has_value_returns_false_if_source_is_null_or_empty(string someText)
         {
             // Arrange
             // Act
-            var valid = sometext.HasValue("sometext");
+            var valid = someText.HasValue("someText");
 
             // Assert
             valid.Should().BeFalse();
@@ -176,13 +176,13 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void test_string_has_value_returns_false_if_find_is_null_or_empty(string findtext)
+        public void test_string_has_value_returns_false_if_find_is_null_or_empty(string findText)
         {
             // Arrange
-            var sometext = "sometext";
+            var someText = "someText";
 
             // Act
-            var valid = sometext.HasValue(findtext);
+            var valid = someText.HasValue(findText);
 
             // Assert
             valid.Should().BeFalse();
@@ -196,10 +196,10 @@ namespace Useful.Extensions.Tests
         {
             get
             {
-                yield return new object[] { "sometext", "SOMETEXT" };
-                yield return new object[] { "sometext", "sometext" };
-                yield return new object[] { "sometext", "SometexT" };
-                yield return new object[] { "sometext", "sOmetexT" };
+                yield return new object[] { "someText", "SOMETEXT" };
+                yield return new object[] { "someText", "someText" };
+                yield return new object[] { "someText", "SometexT" };
+                yield return new object[] { "someText", "sOmetexT" };
             }
         }
 
@@ -225,7 +225,7 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData("")]
         [InlineData("   ")]
-        public void test_string_is_emtpy_and_compare_is_emtpy_then_equals_ignore_case_returns_true(string value)
+        public void test_string_is_empty_and_compare_is_empty_then_equals_ignore_case_returns_true(string value)
         {
             // Arrange
             var compare = value;
@@ -239,7 +239,7 @@ namespace Useful.Extensions.Tests
         public void test_string_is_null_and_compare_is_not_null_or_empty_then_equals_ignore_case_returns_false()
         {
             // Arrange
-            var compare = "Somestring";
+            var compare = "SomeString";
 
             // Assert
             (null as string).EqualsIgnoreCase(compare).Should().BeFalse();
@@ -338,7 +338,7 @@ namespace Useful.Extensions.Tests
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void test_try_substring_retuns_empty_string_when_null_empty(string value)
+        public void test_try_substring_returns_empty_string_when_null_empty(string value)
         {
             // Arrange
             // Act

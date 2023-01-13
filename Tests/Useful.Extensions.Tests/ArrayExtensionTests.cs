@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-
 using FluentAssertions;
 using Useful.Extensions.Tests.TestClasses;
 using Xunit;
@@ -359,7 +358,7 @@ namespace Useful.Extensions.Tests
                     DateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23)
                 }
             };
-            
+
             var expectedDateOfBirth = new DateTime(DateTime.Now.AddYears(-54).Year, 2, 23);
             var expectedAge = expectedDateOfBirth.GetAge();
 
