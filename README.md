@@ -1,6 +1,6 @@
 # Useful.Extensions
 
-A group of useful extensions in C#, supporting .NET Standard 2.0 and .NET 6.0
+A group of useful extensions in C#, supporting .NET Standard 2.0, .NET 6.0 and .NET 7.0
 
 <image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/Useful.Extensions?branch=master&svg=true">
 <a href="https://badge.fury.io/nu/Useful.Extensions"><img src="https://badge.fury.io/nu/Useful.Extensions.svg" alt="NuGet version" height="18"></a>
@@ -44,13 +44,13 @@ var intArray = new[] { 2, 4, 8, 1, 7 };
 var itemValue = intArray.SafeGetElement(1, 1, (s) => s * 2);
 ```
 
-itemValue will be 8, as the element at location 1, is 4, which is then multiplied by 2.
+`itemValue` will be 8, as the element at location 1, is 4, which is then multiplied by 2.
 
 The test project has more examples using strings and classes.
 
 ### Character Extensions
 
-_EqualTo_ - A simple comparison of characters including an option to compare by case (default is to ignore case)
+_EqualTo_ - A simple comparison of characters including an option to compare by the case (default is to ignore case)
 
 e.g.
 
@@ -66,7 +66,7 @@ or
 
 ### String Extensions
 
-_ContainsValue (same as HasValue)_ - Looks for a specified value inside a string including an option to compare by case (default is to ignore case)
+_ContainsValue (same as HasValue)_ - Looks for a specified value inside a string including an option to compare by the case (default is to ignore case)
 
 e.g.
 
@@ -80,7 +80,7 @@ or
 "XYZ".ContainsValue("x", StringComparison.Ordinal);
 ```
 
-_HasValue_ - Looks for a specified value inside a string including an option to compare by case (default is to ignore case)
+_HasValue_ - Looks for a specified value inside a string including an option to compare by the case (default is to ignore case)
 
 e.g.
 
@@ -94,7 +94,7 @@ or
 "XYZ".HasValue("x", StringComparison.Ordinal);
 ```
 
-_EqualsIgnoreCase_ - A wrapper around `Equals` to always be a case insensitive check. The check is also safe and returns false if the string is null or empty.
+_EqualsIgnoreCase_ - A wrapper around `Equals` to always be a case-insensitive check. The check is also safe and returns false if the string is null or empty.
 
 e.g.
 
@@ -125,7 +125,7 @@ returns ""
 
 returns "ld"
 
-_SubstringAfterValue_ - A substring that returns the remaining string after a given string or character ignoring case by default
+_SubstringAfterValue_ - A substring that returns the remaining string after a given string or character ignoring the case by default
 
 e.g.
 
@@ -185,7 +185,7 @@ returns "orld"
 
 returns " World"
 
-_SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring case by default
+_SubstringBeforeValue_ - A substring that returns the string before a given string or character ignoring the case by default
 
 e.g.
 
@@ -215,7 +215,7 @@ returns "Hello world"
 
 returns "Hello world "
 
-_SubstringBeforeLastValue_ - A substring that returns the string before the last occurrence of a given string or character ignoring case by default
+_SubstringBeforeLastValue_ - A substring that returns the string before the last occurrence of a given string or character ignoring the case by default
 
 e.g.
 
@@ -451,7 +451,7 @@ if(list.IsValueInList(3))
 
 ### List Extensions
 
-_Combine_ - Combine multiple list together
+_Combine_ - Combine multiple lists together
 
 e.g.
 
@@ -481,7 +481,7 @@ Results in a list containing "Hello", "World", "Another", "Day"
 
 _ToStringOrEmpty_ - String representation of a nullable value or an empty string if the nullable has no value
 
-_IsEqual_ - Checks if the nullable value is equal another value
+_IsEqual_ - Checks if the nullable value is equal to another value
 
 e.g.
 
@@ -609,7 +609,7 @@ var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 05);
 dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
 ```
 
-returns true, as the date and time we are checking is within five seconds of the expected date and time.
+returns true, as the date and time we are checking are within five seconds of the expected date and time.
 
 ```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
@@ -618,7 +618,7 @@ var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 11);
 dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck);
 ```
 
-returns false, as the date and time we are checking is over the default ten seconds of the expected date and time.
+returns false, as the date and time we are checking are over the default ten seconds of the expected date and time.
 
 ```csharp
 var dateToCheck = new DateTime(2017, 01, 01, 12, 30, 00);
@@ -627,9 +627,9 @@ var expectedDateToCheck = new DateTime(2017, 01, 01, 12, 30, 19);
 dateToCheck.ShouldBeWithinRangeOf(expectedDateToCheck, 20);
 ```
 
-returns true, as the date and time we are checking is within nineteen seconds of the expected date and time.  This is using the optional parameter where we can set the seconds of variation.
+returns true, as the date and time we are checking are within nineteen seconds of the expected date and time.  This is using the optional parameter where we can set the seconds of variation.
 
-_Between_ - Determines if the DateTime is between a specified start and end time.  Has an optional parameter of a bool.  This defaults to false, and doesn't include the specific start time or end time.
+_Between_ - Determines if the DateTime is between a specified start and end time.  Has an optional parameter of a bool.  This defaults to false and doesn't include the specific start time or end time.
 
 e.g.
 
@@ -641,7 +641,7 @@ var endOfRange = new DateTime(2017, 01, 02, 23, 59, 59);
 dateToCheck.Between(startOfRange, endOfRange);
 ```
 
-returns true, as the date and time being checked is within the ranges supplied.
+returns true, as the date and time being checked are within the ranges supplied.
 
 ```csharp
 var dateToCheck = new DateTime(2017, 01, 02, 12, 30, 00);
@@ -651,7 +651,7 @@ var endOfRange = new DateTime(2017, 01, 02, 12, 30, 00);
 dateToCheck.Between(startOfRange, endOfRange, true);
 ```
 
-returns true, as the date and time being checked is within the ranges supplied, and as the inclusive parameter is true, we are going right up to the end range limit.
+returns true, as the date and time being checked are within the ranges supplied, and as the inclusive parameter is true, we are going right up to the end range limit.
 
 _GetAge_ - Get the age from a given date representing the Date of Birth and now or a given date
 
@@ -687,7 +687,7 @@ var now = SystemTime.Now();
 var utc = SystemTime.UtcNow();
 ```
 
-To setup a time in the unit tests so that when System.Now() or System.UtcNow() is called it will be a specified date/time
+To set up a time in the unit tests so that when System.Now() or System.UtcNow() is called it will be a specified date/time
 
 ```csharp
 SystemTime.Now = () => new DateTime(2000, 1, 1, 10, 10, 47);
