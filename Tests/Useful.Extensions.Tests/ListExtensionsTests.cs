@@ -85,9 +85,9 @@ namespace Useful.Extensions.Tests
             // Arrange
             var expected = new List<Item>
             {
-                new Item {Text = "First Item", Number = 1},
-                new Item {Text = "Second Item", Number = 2},
-                new Item {Text = "Third Item", Number = 3}
+                new Item { Text = "First Item", Number = 1 },
+                new Item { Text = "Second Item", Number = 2 },
+                new Item { Text = "Third Item", Number = 3 }
             };
 
             var items = new List<Item> { new Item { Text = "First Item", Number = 1 } };
@@ -151,10 +151,10 @@ namespace Useful.Extensions.Tests
 
             var list = new List<string> { "Hello" };
             var additionalList = new List<string> { "Bye", "World" };
-            var anotherlList = new List<string> { "Later" };
+            var anotherList = new List<string> { "Later" };
 
             // Act
-            list.Combine(additionalList, anotherlList);
+            list.Combine(additionalList, anotherList);
 
             // Assert
             list.Should().BeEquivalentTo(expected);
@@ -166,15 +166,15 @@ namespace Useful.Extensions.Tests
             // Arrange
             var expected = new List<Item>
             {
-                new Item {Text = "First Item", Number = 1},
-                new Item {Text = "Second Item", Number = 2},
-                new Item {Text = "Third Item", Number = 3},
-                new Item {Text = "Fourth Item", Number = 4},
-                new Item {Text = "Fifth Item", Number = 5}
+                new Item { Text = "First Item", Number = 1 },
+                new Item { Text = "Second Item", Number = 2 },
+                new Item { Text = "Third Item", Number = 3 },
+                new Item { Text = "Fourth Item", Number = 4 },
+                new Item { Text = "Fifth Item", Number = 5 }
             };
 
             var items = new List<Item> { new Item { Text = "First Item", Number = 1 } };
-            var additionalItems = new List<Item> {new Item { Text = "Second Item", Number = 2 }, new Item { Text = "Third Item", Number = 3 } };
+            var additionalItems = new List<Item> { new Item { Text = "Second Item", Number = 2 }, new Item { Text = "Third Item", Number = 3 } };
             var moreItems = new List<Item> { new Item { Text = "Fourth Item", Number = 4 }, new Item { Text = "Fifth Item", Number = 5 } };
 
             // Act
@@ -188,7 +188,7 @@ namespace Useful.Extensions.Tests
 
         #region Test Class
 
-        private class Item
+        private sealed class Item
         {
             public string Text { get; set; }
             public int Number { get; set; }

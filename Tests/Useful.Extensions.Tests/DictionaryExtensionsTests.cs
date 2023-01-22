@@ -15,7 +15,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = values.ValueOrDefault("some text", 99);
 
-            // Assert            
+            // Assert
             result.Should().Be(1);
         }
 
@@ -28,7 +28,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = values.ValueOrDefault("some text");
 
-            // Assert            
+            // Assert
             result.Should().Be(1);
         }
 
@@ -41,9 +41,8 @@ namespace Useful.Extensions.Tests
             // Act
             var result = values.ValueOrDefault("something", 99);
 
-            // Assert         
+            // Assert
             result.Should().Be(99);
-
         }
 
         [Fact]
@@ -51,9 +50,9 @@ namespace Useful.Extensions.Tests
         {
             // Arrange
             // Act
-            var result = ((Dictionary<string, int>) null).ValueOrDefault("something", 99);
+            var result = ((Dictionary<string, int>)null).ValueOrDefault("something", 99);
 
-            // Assert           
+            // Assert
             result.Should().Be(99);
         }
 
@@ -66,7 +65,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = values.TryGetValueOrDefault(1, 99);
 
-            // Assert            
+            // Assert
             result.Should().Be(100);
         }
 
@@ -79,9 +78,8 @@ namespace Useful.Extensions.Tests
             // Act
             var result = values.TryGetValueOrDefault(9, 99);
 
-            // Assert         
+            // Assert
             result.Should().Be(99);
-
         }
 
         [Fact]
@@ -91,7 +89,7 @@ namespace Useful.Extensions.Tests
             // Act
             var result = ((Dictionary<int, int>)null).TryGetValueOrDefault(9, 99);
 
-            // Assert           
+            // Assert
             result.Should().Be(99);
         }
     }

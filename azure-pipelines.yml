@@ -10,19 +10,36 @@ jobs:
   - job: BuildCode
     displayName: Build Code
     steps:
-    - task: NuGetCommand@2
+    - task: UseDotNet@2
+      displayName: 'Get Dotnet 6 SDK'
+      timeoutInMinutes: 10
       inputs:
-        command: 'restore'
-        restoreSolution: '**/*.sln'
-        feedsToUse: 'select'
+        packageType: 'sdk'
+        version: 6.0.306
+
+    - task: UseDotNet@2
+      displayName: 'Get Dotnet 7 SDK'
+      timeoutInMinutes: 10
+      inputs:
+        packageType: 'sdk'
+        version: 7.0.100
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: '**/*.csproj'
+
     - task: VSBuild@1
       inputs:
         solution: '**\*.sln'
         configuration: '$(buildConfiguration)'
+
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: $(System.DefaultWorkingDirectory)/src/Useful.Extensions/bin
         artifactName: MyApp
+
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: $(System.DefaultWorkingDirectory)/tests/Useful.Extensions.Tests/bin

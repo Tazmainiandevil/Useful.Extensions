@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -37,11 +36,12 @@ namespace Useful.Extensions
             {
                 throw new ArgumentException("Property not found in anonymous object");
             }
+
             return (T)objectProperty.GetValue(src, null);
         }
 
         /// <summary>
-        /// Extract the value from an anonymouse object or return the default if not found
+        /// Extract the value from an anonymous object or return the default if not found
         /// </summary>
         /// <param name="src">The anonymous object</param>
         /// <param name="property">The name of the property to get the value from</param>
@@ -93,7 +93,7 @@ namespace Useful.Extensions
         {
             if (!typeof(T).IsSerializable)
             {
-                throw new ArgumentException("The type must be serializable.", "source");
+                throw new ArgumentException("The type must be serializable.", nameof(source));
             }
 
             // Don't serialize a null object, simply return the default for that object
@@ -104,7 +104,6 @@ namespace Useful.Extensions
 
             var byteArray = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source, GetJsonSerializerOptions()));
             return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
-
         }
 
         private static JsonSerializerOptions GetJsonSerializerOptions()
@@ -114,9 +113,8 @@ namespace Useful.Extensions
                 PropertyNamingPolicy = null,
                 WriteIndented = true,
                 AllowTrailingCommas = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
         }
     }
-
 }

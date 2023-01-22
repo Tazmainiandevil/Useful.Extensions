@@ -76,7 +76,7 @@ namespace Useful.Extensions.Tests
             var result = items.Partition(partitionSize).ToList();
 
             // Assert
-            result.Count().Should().Be(1);
+            result.Count.Should().Be(1);
         }
 
         [Theory]
@@ -110,7 +110,7 @@ namespace Useful.Extensions.Tests
             var result = items.AsQueryable().Partition(partitionSize).ToList();
 
             // Assert
-            result.Count().Should().Be(expectedCount);
+            result.Count.Should().Be(expectedCount);
         }
 
         [Fact]
@@ -138,7 +138,7 @@ namespace Useful.Extensions.Tests
             var result = items.AsQueryable().Partition(partitionSize).ToList();
 
             // Assert
-            result.Count().Should().Be(1);
+            result.Count.Should().Be(1);
         }
 
         [Theory]
@@ -253,7 +253,7 @@ namespace Useful.Extensions.Tests
 
         [Theory]
         [MemberData(nameof(IsNullOrEmptyTestData))]
-        public void ienumerable_is_null_or_empty_returns_true(IEnumerable<int> list)
+        public void iEnumerable_is_null_or_empty_returns_true(IEnumerable<int> list)
         {
             // Arrange
             // Act
@@ -262,7 +262,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Fact]
-        public void ienumerable_is_null_or_empty_with_entries_returns_false()
+        public void iEnumerable_is_null_or_empty_with_entries_returns_false()
         {
             // Arrange
             var list = new[] { 1, 2, 3, 4 };
@@ -273,7 +273,7 @@ namespace Useful.Extensions.Tests
         }
 
         [Fact]
-        public void ienumerable_is_null_or_empty_not_with_entries_returns_true()
+        public void iEnumerable_is_null_or_empty_not_with_entries_returns_true()
         {
             // Arrange
             var list = new[] { 1, 2, 3, 4 };
@@ -508,8 +508,8 @@ namespace Useful.Extensions.Tests
             // Arrange
             var items = new[]
             {
-                new TestInValue {Id = 1, Value = "One"},
-                new TestInValue {Id = 2, Value = "Two"},
+                new TestInValue { Id = 1, Value = "One" },
+                new TestInValue { Id = 2, Value = "Two" }
             };
 
             // Act

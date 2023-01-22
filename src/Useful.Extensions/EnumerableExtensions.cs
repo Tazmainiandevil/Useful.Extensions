@@ -5,7 +5,7 @@ using System.Linq;
 namespace Useful.Extensions
 {
     /// <summary>
-    /// Extensions for IEnumerables
+    /// Extensions for IEnumerable
     /// </summary>
     public static class EnumerableExtensions
     {
@@ -21,7 +21,7 @@ namespace Useful.Extensions
         {
             if (partitionSize <= 0)
             {
-                throw new ArgumentOutOfRangeException("partitionSize");
+                throw new ArgumentOutOfRangeException(nameof(partitionSize));
             }
 
             var list = src.ToList();
@@ -41,7 +41,7 @@ namespace Useful.Extensions
         {
             if (partitionSize <= 0)
             {
-                throw new ArgumentOutOfRangeException("partitionSize");
+                throw new ArgumentOutOfRangeException(nameof(partitionSize));
             }
 
             for (var skipCount = 0; skipCount < src.Count(); skipCount += partitionSize)
@@ -108,6 +108,7 @@ namespace Useful.Extensions
             {
                 return true;
             }
+
             return src.Count < 1;
         }
 
@@ -129,7 +130,7 @@ namespace Useful.Extensions
         {
             return src != null && src.Any(x => x.Equals(find));
         }
-        
+
         #endregion IsValueInList
     }
 }

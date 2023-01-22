@@ -85,27 +85,27 @@ namespace Useful.Extensions.Tests
         #region Between
 
         public static IEnumerable<object[]> DateRangeTests => new[]
-                {
-                   // Current.
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), true, true },
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), false, true },
+        {
+            // Current.
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), true, true },
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), false, true },
 
-                   // Past.
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-1), true, false },
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-1), false, false },
+            // Past.
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-1), true, false },
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-1), false, false },
 
-                   // Future.
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(1), DateTime.Today.AddDays(2), true, false },
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(1), DateTime.Today.AddDays(2), false, false },
+            // Future.
+            new object[] { DateTime.Today, DateTime.Today.AddDays(1), DateTime.Today.AddDays(2), true, false },
+            new object[] { DateTime.Today, DateTime.Today.AddDays(1), DateTime.Today.AddDays(2), false, false },
 
-                   // Same start date.
-                   new object[] { DateTime.Today, DateTime.Today, DateTime.Today.AddDays(1), true, true },
-                   new object[] { DateTime.Today, DateTime.Today, DateTime.Today.AddDays(1), false, false },
+            // Same start date.
+            new object[] { DateTime.Today, DateTime.Today, DateTime.Today.AddDays(1), true, true },
+            new object[] { DateTime.Today, DateTime.Today, DateTime.Today.AddDays(1), false, false },
 
-                   // Same end date.
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, true, true },
-                   new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, false, false },
-                };
+            // Same end date.
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, true, true },
+            new object[] { DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, false, false }
+        };
 
         [Theory, MemberData(nameof(DateRangeTests))]
         public void test_between_returns_expected_values(DateTime dateToCheck, DateTime startOfRange, DateTime endOfRange, bool inclusive, bool expectedResult)

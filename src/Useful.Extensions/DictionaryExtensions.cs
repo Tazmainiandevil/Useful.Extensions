@@ -40,7 +40,7 @@ namespace Useful.Extensions
             }
 
             TValue value;
-            return src.TryGetValue(key, out value) ? value : defaultValue;            
+            return src.TryGetValue(key, out value) ? value : defaultValue;
         }
     }
 }

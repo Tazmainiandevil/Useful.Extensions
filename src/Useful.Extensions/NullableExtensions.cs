@@ -6,7 +6,7 @@
         /// String representation of a nullable value
         /// </summary>
         /// <param name="src">The nullable</param>
-        /// <returns>A string representaion of the value or an empty string</returns>
+        /// <returns>A string representation of the value or an empty string</returns>
         public static string ToStringOrEmpty<T>(this T? src) where T : struct
         {
             return src.HasValue ? src.Value.ToString() : string.Empty;
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Retreives the value of the nullable or the default of the type if there is not a value or specified default value
+        /// Retrieves the value of the nullable or the default of the type if there is not a value or specified default value
         /// </summary>
         /// <param name="src">The nullable</param>
         /// <param name="defaultValue">(optional) A default to use if there is no value</param>
