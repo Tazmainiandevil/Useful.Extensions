@@ -541,5 +541,127 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion IsValueInList extension
+
+        #region String.Join
+
+        [Fact]
+        public void test_join_with_char_separator_and_single_item_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_multiple_items_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana,apple,orange";
+            string[] input = { "Banana", "apple", "orange" };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_single_item_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_multiple_items_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana, apple, orange";
+            string[] input = { "Banana", "apple", "orange" };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_single_item_in_collection_and_index_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(',', 0, 1);
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("Banana,apple", 0, 2)]
+        [InlineData("apple,orange,pineapple", 1, 3)]
+        [InlineData("orange,pineapple", 2, 2)]
+        [InlineData("Banana,apple,orange,pineapple,grape,plum", 0, 6)]
+        public void test_join_with_char_separator_and_multiple_items_in_collection_and_index_returns_string(string expected, int index, int count)
+        {
+            // Arrange.
+            string[] input = { "Banana", "apple", "orange", "pineapple", "grape", "plum" };
+
+            // Act.
+            var actual = input.Join(',', index, count);
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_single_item_in_collection_and_index_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(", ", 0, 1);
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("Banana, apple", 0, 2)]
+        [InlineData("apple, orange, pineapple", 1, 3)]
+        [InlineData("orange, pineapple", 2, 2)]
+        [InlineData("Banana, apple, orange, pineapple, grape, plum", 0, 6)]
+        public void test_join_with_string_separator_and_multiple_items_in_collection_and_index_returns_string(string expected, int index, int count)
+        {
+            // Arrange.
+            string[] input = { "Banana", "apple", "orange", "pineapple", "grape", "plum" };
+
+            // Act.
+            var actual = input.Join(", ", index, count);
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        #endregion String.Join
     }
 }
