@@ -449,6 +449,28 @@ if(list.IsValueInList(3))
 }
 ```
 
+_Join_ - A fluent version of the classic `string.Join()` methods
+
+If you have an array of strings and you want to output them as a comma delimited string, then the code you would have to write would look like this:
+
+```csharp
+var items = new string[] { "Me", "You", "Them", "Us" };
+var itemsAsString = string.Join(", ", items);
+```
+
+The output would be:
+
+> Me, You, Them, Us
+
+Wouldn't it be nice to use a fluent style, like this:
+
+```csharp
+var items = new string[] { "Me", "You", "Them", "Us" };
+var itemsAsString = items.Join(", ");
+```
+
+Well, now you can.
+
 ### List Extensions
 
 _Combine_ - Combine multiple lists together
