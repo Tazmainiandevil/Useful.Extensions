@@ -179,48 +179,6 @@ namespace Useful.Extensions
             return result;
         }
 
-        public static string Join(
-            this IEnumerable<string> source,
-            string separator,
-            int startIndex,
-            int count)
-        {
-            var result = string.Join(
-                separator,
-                source,
-                startIndex,
-                count);
-            return result;
-        }
-
-        public static string Join<T>(
-            this IEnumerable<T> source,
-            char separator,
-            int startIndex,
-            int count)
-        {
-            var result = string.Join(
-                separator,
-                source,
-                startIndex,
-                count);
-            return result;
-        }
-
-        public static string Join<T>(
-            this IEnumerable<T> source,
-            string separator,
-            int startIndex,
-            int count)
-        {
-            var result = string.Join(
-                separator,
-                source,
-                startIndex,
-                count);
-            return result;
-        }
-
         #endregion String.Join
     }
 }
