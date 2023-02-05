@@ -135,49 +135,73 @@ namespace Useful.Extensions
 
         #region String.Join
 
-        public static string Join(
-            this string[] source,
-            char separator)
+        public static string Join(this IEnumerable<string> source, char separator)
         {
             var result = string.Join(separator, source);
             return result;
         }
 
-        public static string Join(
-            this string[] source,
-            string separator)
+        public static string Join(this IEnumerable<string> source, string separator)
         {
             var result = string.Join(separator, source);
             return result;
         }
 
-        public static string Join(
-            this string[] source,
-            char separator,
-            int startIndex,
-            int count)
-        {
-            var result = string.Join(
-                separator,
-                source,
-                startIndex,
-                count);
-            return result;
-        }
-
-        public static string Join(
-            this string[] source,
-            string separator,
-            int startIndex,
-            int count)
-        {
-            var result = string.Join(
-                separator,
-                source,
-                startIndex,
-                count);
-            return result;
-        }
+        // public static string Join(this IEnumerable<string> source, char separator, int startIndex, int count)
+        // {
+        //     var result = string.Join(separator, source, startIndex, count);
+        //     return result;
+        // }
+        //
+        // public static string Join(this IEnumerable<string> source, string separator, int startIndex, int count)
+        // {
+        //     var result = string.Join(separator, source, startIndex, count);
+        //     return result;
+        // }
+        
+        // public static string Join(
+        //     this string[] source,
+        //     char separator)
+        // {
+        //     var result = string.Join(separator, source);
+        //     return result;
+        // }
+        //
+        // public static string Join(
+        //     this string[] source,
+        //     string separator)
+        // {
+        //     var result = string.Join(separator, source);
+        //     return result;
+        // }
+        //
+        // public static string Join(
+        //     this string[] source,
+        //     char separator,
+        //     int startIndex,
+        //     int count)
+        // {
+        //     var result = string.Join(
+        //         separator,
+        //         source,
+        //         startIndex,
+        //         count);
+        //     return result;
+        // }
+        //
+        // public static string Join(
+        //     this string[] source,
+        //     string separator,
+        //     int startIndex,
+        //     int count)
+        // {
+        //     var result = string.Join(
+        //         separator,
+        //         source,
+        //         startIndex,
+        //         count);
+        //     return result;
+        // }
 
         #endregion String.Join
     }
