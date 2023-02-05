@@ -19,5 +19,10 @@ namespace Useful.Extensions.Tests.TestClasses
             Age = DateOfBirth.GetAge();
             return this;
         }
+
+        public override string ToString()
+        {
+            return $"{Identity}: {Name} - {Age}";
+        }
     }
 }
