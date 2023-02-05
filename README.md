@@ -347,6 +347,50 @@ e.g.
 
 returns false
 
+_Join_ - A fluent version of the classic `string.Join()` methods
+
+If you have an array/list of strings and you want to output them as a comma-delimited string, then the code you would have to write would look like this:
+
+```csharp
+var items = new string[] { "Me", "You", "Them", "Us" };
+var itemsAsString = string.Join(", ", items);
+```
+
+The output would be:
+
+> Me, You, Them, Us
+
+Wouldn't it be nice to use a fluent style, like this:
+
+```csharp
+var items = new string[] { "Me", "You", "Them", "Us" };
+var itemsAsString = items.Join(", ");
+```
+
+Or this:
+
+```csharp
+var items = new List<string> { "Me", "You", "Them", "Us" };
+var itemsAsString = items.Join(", ");
+```
+
+Well, now you can.
+
+It is possible to use this extension on other types as there is a generic extension that will accept an `IEnumerable<T>`.  However, the class must have an overridden `ToString()` method, otherwise, it will return the class name.
+
+As an example, this test class doesn't override the `ToString()` method, so when we call it like this:
+
+```csharp
+var items = new List<TestClass> { "Me", "You", "Them", "Us" };
+var itemsAsString = items.Join(", ");
+```
+
+The output is like this:
+
+> Useful.Extensions.Tests.TestClasses.TestClass
+
+Not very useful, is it?
+
 ### Dictionary Extensions
 
 _ValueOrDefault_ - Get the value from a dictionary or return the default for the value type (the default value can be specified if needed)
@@ -448,28 +492,6 @@ if(list.IsValueInList(3))
   // Perform logic here
 }
 ```
-
-_Join_ - A fluent version of the classic `string.Join()` methods
-
-If you have an array of strings and you want to output them as a comma-delimited string, then the code you would have to write would look like this:
-
-```csharp
-var items = new string[] { "Me", "You", "Them", "Us" };
-var itemsAsString = string.Join(", ", items);
-```
-
-The output would be:
-
-> Me, You, Them, Us
-
-Wouldn't it be nice to use a fluent style, like this:
-
-```csharp
-var items = new string[] { "Me", "You", "Them", "Us" };
-var itemsAsString = items.Join(", ");
-```
-
-Well, now you can.
 
 ### List Extensions
 
