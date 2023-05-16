@@ -132,5 +132,33 @@ namespace Useful.Extensions
         }
 
         #endregion IsValueInList
+
+        #region String.Join
+
+        public static string Join(this IEnumerable<string> source, char separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join(this IEnumerable<string> source, string separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join<T>(this IEnumerable<T> source, char separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join<T>(this IEnumerable<T> source, string separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        #endregion String.Join
     }
 }
