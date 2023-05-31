@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Useful.Extensions.Tests.TestClasses;
 using Xunit;
 
 namespace Useful.Extensions.Tests
@@ -541,5 +542,191 @@ namespace Useful.Extensions.Tests
         }
 
         #endregion IsValueInList extension
+
+        #region String.Join
+
+        [Fact]
+        public void test_join_with_char_separator_and_single_item_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_multiple_items_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana,apple,orange";
+            string[] input = { "Banana", "apple", "orange" };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_single_item_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            string[] input = { expected };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_multiple_items_in_collection_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana, apple, orange";
+            string[] input = { "Banana", "apple", "orange" };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_single_item_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            List<string> input = new() { expected };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_multiple_items_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana,apple,orange,pineapple,grape,plum";
+            List<string> input = new() { "Banana", "apple", "orange", "pineapple", "grape", "plum" };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_single_item_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana";
+            List<string> input = new() { expected };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_multiple_items_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "Banana, apple, orange, pineapple, grape, plum";
+            List<string> input = new() { "Banana", "apple", "orange", "pineapple", "grape", "plum" };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_single_class_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "1: Pooh - 55";
+            List<SafeGetElementTestClass> input = new()
+                { new SafeGetElementTestClass { Identity = 1, Name = "Pooh", Age = 55 } };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_char_separator_and_multiple_classes_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "1: Pooh - 55,2: Piglet - 40,3: Tigger - 45,4: Eeyore - 65";
+            List<SafeGetElementTestClass> input = new()
+            {
+                new SafeGetElementTestClass { Identity = 1, Name = "Pooh", Age = 55 },
+                new SafeGetElementTestClass { Identity = 2, Name = "Piglet", Age = 40 },
+                new SafeGetElementTestClass { Identity = 3, Name = "Tigger", Age = 45 },
+                new SafeGetElementTestClass { Identity = 4, Name = "Eeyore", Age = 65 }
+            };
+
+            // Act.
+            var actual = input.Join(',');
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_single_class_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "1: Pooh - 55";
+            List<SafeGetElementTestClass> input = new()
+                { new SafeGetElementTestClass { Identity = 1, Name = "Pooh", Age = 55 } };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        [Fact]
+        public void test_join_with_string_separator_and_multiple_classes_in_list_returns_string()
+        {
+            // Arrange.
+            const string expected = "1: Pooh - 55, 2: Piglet - 40, 3: Tigger - 45, 4: Eeyore - 65";
+            List<SafeGetElementTestClass> input = new()
+            {
+                new SafeGetElementTestClass { Identity = 1, Name = "Pooh", Age = 55 },
+                new SafeGetElementTestClass { Identity = 2, Name = "Piglet", Age = 40 },
+                new SafeGetElementTestClass { Identity = 3, Name = "Tigger", Age = 45 },
+                new SafeGetElementTestClass { Identity = 4, Name = "Eeyore", Age = 65 }
+            };
+
+            // Act.
+            var actual = input.Join(", ");
+
+            // Assert.
+            actual.Should().Be(expected);
+        }
+
+        #endregion String.Join
     }
 }

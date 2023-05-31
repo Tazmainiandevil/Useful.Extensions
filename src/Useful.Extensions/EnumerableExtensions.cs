@@ -36,7 +36,7 @@ namespace Useful.Extensions
         /// </summary>
         /// <param name="src">The collection</param>
         /// <param name="partitionSize">(optional) The size of each partition required, default is 10</param>
-        /// <returns>The src in the required size batch</returns>
+        /// <returns>The source in the required size batch</returns>
         public static IEnumerable<IQueryable<T>> Partition<T>(this IQueryable<T> src, int partitionSize = 10)
         {
             if (partitionSize <= 0)
@@ -132,5 +132,33 @@ namespace Useful.Extensions
         }
 
         #endregion IsValueInList
+
+        #region String.Join
+
+        public static string Join(this IEnumerable<string> source, char separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join(this IEnumerable<string> source, string separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join<T>(this IEnumerable<T> source, char separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        public static string Join<T>(this IEnumerable<T> source, string separator)
+        {
+            var result = string.Join(separator, source);
+            return result;
+        }
+
+        #endregion String.Join
     }
 }
