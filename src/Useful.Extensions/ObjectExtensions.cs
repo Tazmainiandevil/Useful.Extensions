@@ -1,120 +1,113 @@
-﻿using System;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿namespace Useful.Extensions;
 
-namespace Useful.Extensions
+/// <summary>
+/// Extensions for Object
+/// </summary>
+public static class ObjectExtensions
 {
     /// <summary>
-    /// Extensions for Object
+    /// Extract the value from a anonymous object by property name
     /// </summary>
-    public static class ObjectExtensions
+    /// <param name="src">The anonymous object</param>
+    /// <param name="property">The name of the property to get the value from</param>
+    /// <returns>The value of the given property</returns>
+    public static T GetValueFromAnonymousType<T>(object src, string property)
     {
-        /// <summary>
-        /// Extract the value from a anonymous object by property name
-        /// </summary>
-        /// <param name="src">The anonymous object</param>
-        /// <param name="property">The name of the property to get the value from</param>
-        /// <returns>The value of the given property</returns>
-        public static T GetValueFromAnonymousType<T>(object src, string property)
+        if (src == null)
         {
-            if (src == null)
-            {
-                throw new ArgumentNullException(nameof(src));
-            }
-
-            if (string.IsNullOrWhiteSpace(property))
-            {
-                throw new ArgumentNullException(nameof(property));
-            }
-
-            var type = src.GetType();
-            var objectProperty = type.GetTypeInfo().GetProperty(property);
-
-            if (objectProperty == null)
-            {
-                throw new ArgumentException("Property not found in anonymous object");
-            }
-
-            return (T)objectProperty.GetValue(src, null);
+            throw new ArgumentNullException(nameof(src));
         }
 
-        /// <summary>
-        /// Extract the value from an anonymous object or return the default if not found
-        /// </summary>
-        /// <param name="src">The anonymous object</param>
-        /// <param name="property">The name of the property to get the value from</param>
-        /// <returns>The value of the given property or the default</returns>
-        public static T GetValueFromAnonymousTypeOrDefault<T>(object src, string property)
+        if (string.IsNullOrWhiteSpace(property))
         {
-            try
-            {
-                return GetValueFromAnonymousType<T>(src, property);
-            }
-            catch (ArgumentException)
-            {
-                return default(T);
-            }
+            throw new ArgumentNullException(nameof(property));
         }
 
-        /// <summary>
-        /// Check if an anonymous object has a property with a given name
-        /// </summary>
-        /// <param name="src">The anonymous object</param>
-        /// <param name="property">The name of the property to get the value from</param>
-        /// <returns>A boolean denoting if the property exists</returns>
-        public static bool IsPropertyInAnonymousType(object src, string property)
+        var type = src.GetType();
+        var objectProperty = type.GetTypeInfo().GetProperty(property);
+
+        if (objectProperty == null)
         {
-            if (src == null || string.IsNullOrWhiteSpace(property))
-            {
-                return false;
-            }
-
-            var type = src.GetType();
-            var objectProperty = type.GetProperty(property);
-            if (objectProperty == null)
-            {
-                return false;
-            }
-
-            return true;
+            throw new ArgumentException("Property not found in anonymous object");
         }
 
-        /// <summary>
-        /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
-        /// Binary Serialization is used to perform the copy.
-        /// Perform a deep Copy of the object.
-        /// </summary>
-        /// <typeparam name="T">The type of object being copied.</typeparam>
-        /// <param name="source">The object instance to copy.</param>
-        /// <returns>The copied object.</returns>
-        public static T Clone<T>(this T source)
+        return (T)objectProperty.GetValue(src, null);
+    }
+
+    /// <summary>
+    /// Extract the value from an anonymous object or return the default if not found
+    /// </summary>
+    /// <param name="src">The anonymous object</param>
+    /// <param name="property">The name of the property to get the value from</param>
+    /// <returns>The value of the given property or the default</returns>
+    public static T GetValueFromAnonymousTypeOrDefault<T>(object src, string property)
+    {
+        try
         {
-            if (!typeof(T).IsSerializable)
-            {
-                throw new ArgumentException("The type must be serializable.", nameof(source));
-            }
+            return GetValueFromAnonymousType<T>(src, property);
+        }
+        catch (ArgumentException)
+        {
+            return default(T);
+        }
+    }
 
-            // Don't serialize a null object, simply return the default for that object
-            if (ReferenceEquals(source, null))
-            {
-                return default(T);
-            }
-
-            var byteArray = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source, GetJsonSerializerOptions()));
-            return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
+    /// <summary>
+    /// Check if an anonymous object has a property with a given name
+    /// </summary>
+    /// <param name="src">The anonymous object</param>
+    /// <param name="property">The name of the property to get the value from</param>
+    /// <returns>A boolean denoting if the property exists</returns>
+    public static bool IsPropertyInAnonymousType(object src, string property)
+    {
+        if (src == null || string.IsNullOrWhiteSpace(property))
+        {
+            return false;
         }
 
-        private static JsonSerializerOptions GetJsonSerializerOptions()
+        var type = src.GetType();
+        var objectProperty = type.GetProperty(property);
+        if (objectProperty == null)
         {
-            return new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = null,
-                WriteIndented = true,
-                AllowTrailingCommas = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            };
+            return false;
         }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
+    /// Binary Serialization is used to perform the copy.
+    /// Perform a deep Copy of the object.
+    /// </summary>
+    /// <typeparam name="T">The type of object being copied.</typeparam>
+    /// <param name="source">The object instance to copy.</param>
+    /// <returns>The copied object.</returns>
+    public static T Clone<T>(this T source)
+    {
+        if (!typeof(T).IsSerializable)
+        {
+            throw new ArgumentException("The type must be serializable.", nameof(source));
+        }
+
+        // Don't serialize a null object, simply return the default for that object
+        if (ReferenceEquals(source, null))
+        {
+            return default(T);
+        }
+
+        var byteArray = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source, GetJsonSerializerOptions()));
+        return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
+    }
+
+    private static JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        return new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = null,
+            WriteIndented = true,
+            AllowTrailingCommas = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
     }
 }
