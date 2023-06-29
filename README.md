@@ -646,6 +646,29 @@ _UnSet_ - UnSet flags on a give enum
 
 return would be false
 
+### Enum Extensions
+
+```csharp
+public enum TestEnumDescription
+{
+    [Description("none")]
+    None = 0,
+    [Description("one")]
+    Item1 = 1,
+    [Description("two")]
+    Item2 = 2
+}
+```
+
+_GetDescription_ - Gets the description value from an enum
+
+```csharp
+var item = TestEnumNoDescription.Item1;
+var description = item.GetDescription();
+```
+
+return value would be "one"
+
 ### Date Time Extensions
 
 _ShouldBeWithinRangeOf_ - Determines that a DateTime is close to an expected date.  Has an optional parameter of an int.  This represents the variation we can accept in seconds.
