@@ -55,85 +55,85 @@ class Build : NukeBuild
                 .SetTestAdapterPath(TestsDirectory / "*.Tests")
             );
         });
-    Target SnykAuth => _ => _
-        .DependsOn(BuildTestCode)
-        .Executes(() =>
-        {
-            PowerShellTasks.PowerShell(_ => _
-                .SetCommand("npm install snyk@latest -g")
-            );
-            PowerShellTasks.PowerShell(_ => _
-                .SetCommand($"snyk auth {SnykToken}")
-            );
-        });
-    Target SnykTest => _ => _
-        .DependsOn(SnykAuth)
-        .Requires(() => SnykSeverityThreshold)
-        .Executes(() =>
-        {
-            PowerShellTasks.PowerShell(_ => _
-                .SetCommand($"snyk test --all-projects --exclude=build --severity-threshold={SnykSeverityThreshold.ToLowerInvariant()}")
-            );
-        });
-    Target SnykCodeTest => _ => _
-        .DependsOn(SnykAuth)
-        .Requires(() => SnykCodeSeverityThreshold)
-        .Executes(() =>
-        {
-            PowerShellTasks.PowerShell(_ => _
-                .SetCommand($"snyk code test --all-projects --exclude=build --severity-threshold={SnykCodeSeverityThreshold.ToLowerInvariant()}")
-            );
-        });
-    Target GenerateSbom => _ => _
-        .DependsOn(SnykAuth)
-        .Produces(OutputDirectory / "*.json")
-        .Executes(() =>
-        {
-            OutputDirectory.CreateOrCleanDirectory();
-            PowerShellTasks.PowerShell(_ => _
-                .SetCommand($"snyk sbom --all-projects --format spdx2.3+json --json-file-output={OutputDirectory / "sbom.json"}")
-            );
-        });
-    //Target SnykTest => _ => _
+    //Target SnykAuth => _ => _
     //    .DependsOn(BuildTestCode)
-    //    .Requires(() => SnykToken, () => SnykSeverityThreshold)
     //    .Executes(() =>
     //    {
-    //        // Snyk Test
-    //        DockerTasks.DockerRun(_ => _
-    //            .EnableRm()
-    //            .SetVolume($"{RootDirectory}:/app")
-    //            .SetEnv($"SNYK_TOKEN={SnykToken}")
-    //            .SetImage("snyk/snyk:dotnet")
+    //        PowerShellTasks.PowerShell(_ => _
+    //            .SetCommand("npm install snyk@latest -g")
+    //        );
+    //        PowerShellTasks.PowerShell(_ => _
+    //            .SetCommand($"snyk auth {SnykToken}")
+    //        );
+    //    });
+    //Target SnykTest => _ => _
+    //    .DependsOn(SnykAuth)
+    //    .Requires(() => SnykSeverityThreshold)
+    //    .Executes(() =>
+    //    {
+    //        PowerShellTasks.PowerShell(_ => _
     //            .SetCommand($"snyk test --all-projects --exclude=build --severity-threshold={SnykSeverityThreshold.ToLowerInvariant()}")
     //        );
     //    });
     //Target SnykCodeTest => _ => _
-    //    .DependsOn(BuildTestCode)
-    //    .Requires(() => SnykToken, () => SnykCodeSeverityThreshold)
+    //    .DependsOn(SnykAuth)
+    //    .Requires(() => SnykCodeSeverityThreshold)
     //    .Executes(() =>
     //    {
-    //        DockerTasks.DockerRun(_ => _
-    //            .EnableRm()
-    //            .SetVolume($"{RootDirectory}:/app")
-    //            .SetEnv($"SNYK_TOKEN={SnykToken}")
-    //            .SetImage("snyk/snyk:dotnet")
+    //        PowerShellTasks.PowerShell(_ => _
     //            .SetCommand($"snyk code test --all-projects --exclude=build --severity-threshold={SnykCodeSeverityThreshold.ToLowerInvariant()}")
     //        );
     //    });
     //Target GenerateSbom => _ => _
-    //    .DependsOn(BuildTestCode)
+    //    .DependsOn(SnykAuth)
     //    .Produces(OutputDirectory / "*.json")
-    //    .Requires(() => SnykToken)
     //    .Executes(() =>
     //    {
     //        OutputDirectory.CreateOrCleanDirectory();
-    //        DockerTasks.DockerRun(_ => _
-    //            .EnableRm()
-    //            .SetVolume($"{RootDirectory}:/app")
-    //            .SetEnv($"SNYK_TOKEN={SnykToken}")
-    //            .SetImage("snyk/snyk:dotnet")
-    //            .SetCommand($"snyk sbom --all-projects --format spdx2.3+json --json-file-output={OutputDirectory.Name}/sbom.json")
+    //        PowerShellTasks.PowerShell(_ => _
+    //            .SetCommand($"snyk sbom --all-projects --format spdx2.3+json --json-file-output={OutputDirectory / "sbom.json"}")
     //        );
     //    });
+    Target SnykTest => _ => _
+        .DependsOn(BuildTestCode)
+        .Requires(() => SnykToken, () => SnykSeverityThreshold)
+        .Executes(() =>
+        {
+            // Snyk Test
+            DockerTasks.DockerRun(_ => _
+                .EnableRm()
+                .SetVolume($"{RootDirectory}:/app")
+                .SetEnv($"SNYK_TOKEN={SnykToken}")
+                .SetImage("snyk/snyk:dotnet")
+                .SetCommand($"snyk test --all-projects --exclude=build --severity-threshold={SnykSeverityThreshold.ToLowerInvariant()}")
+            );
+        });
+    Target SnykCodeTest => _ => _
+        .DependsOn(BuildTestCode)
+        .Requires(() => SnykToken, () => SnykCodeSeverityThreshold)
+        .Executes(() =>
+        {
+            DockerTasks.DockerRun(_ => _
+                .EnableRm()
+                .SetVolume($"{RootDirectory}:/app")
+                .SetEnv($"SNYK_TOKEN={SnykToken}")
+                .SetImage("snyk/snyk:dotnet")
+                .SetCommand($"snyk code test --all-projects --exclude=build --severity-threshold={SnykCodeSeverityThreshold.ToLowerInvariant()}")
+            );
+        });
+    Target GenerateSbom => _ => _
+        .DependsOn(BuildTestCode)
+        .Produces(OutputDirectory / "*.json")
+        .Requires(() => SnykToken)
+        .Executes(() =>
+        {
+            OutputDirectory.CreateOrCleanDirectory();
+            DockerTasks.DockerRun(_ => _
+                .EnableRm()
+                .SetVolume($"{RootDirectory}:/app")
+                .SetEnv($"SNYK_TOKEN={SnykToken}")
+                .SetImage("snyk/snyk:dotnet")
+                .SetCommand($"snyk sbom --all-projects --format spdx2.3+json --json-file-output={OutputDirectory.Name}/sbom.json")
+            );
+        });
 }
