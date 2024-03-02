@@ -1,0 +1,6 @@
+{
+  "$schema": "./build.schema.json",
+  "Solution": "Useful.Extensions.sln",
+  "SnykSeverityThreshold": "high",
+  "SnykCodeSeverityThreshold": "high"
+}
