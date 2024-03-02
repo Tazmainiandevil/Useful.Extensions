@@ -60,6 +60,9 @@ class Build : NukeBuild
         .Executes(() =>
         {
             PowerShellTasks.PowerShell(_ => _
+                .SetCommand("npm install snyk@latest -g")
+            );
+            PowerShellTasks.PowerShell(_ => _
                 .SetCommand($"snyk auth {SnykToken}")
             );
         });
