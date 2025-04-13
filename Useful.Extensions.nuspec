@@ -15,7 +15,7 @@
 
   <files>
     <file src="LICENSE.txt" target="" />
-    <file src="src\Useful.Extensions\bin\Release\net6.0\Useful.Extensions.dll" target="lib\net6.0\Useful.Extensions.dll" />
-    <file src="src\Useful.Extensions\bin\Release\net7.0\Useful.Extensions.dll" target="lib\net7.0\Useful.Extensions.dll" />
+    <file src="src\Useful.Extensions\bin\Release\net8.0\Useful.Extensions.dll" target="lib\net8.0\Useful.Extensions.dll" />
+    <file src="src\Useful.Extensions\bin\Release\net9.0\Useful.Extensions.dll" target="lib\net9.0\Useful.Extensions.dll" />
   </files>
 </package>
